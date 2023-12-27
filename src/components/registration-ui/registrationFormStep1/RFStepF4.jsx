@@ -1,6 +1,6 @@
 import React from "react";
 
-const RFStep4 = ({
+const RFStepF4 = ({
   step,
   handleSubmit,
   register,
@@ -10,7 +10,7 @@ const RFStep4 = ({
   control,
 }) => {
   return (
-    <section className={`mt-[60px] ${step === 4 ? "block" : "hidden"}`}>
+    <section className={`mt-[60px]`}>
       <div className="">
         <div className="grid grid-cols-1 gap-3 mt-2">
           <p className="text-justify text-sm text-gray-900">
@@ -113,4 +113,4 @@ const RFStep4 = ({
   );
 };
 
-export default RFStep4;
+export default RFStepF4;

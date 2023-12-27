@@ -1,6 +1,6 @@
 import React from "react";
 
-const RFStep2 = ({
+const RFStepF2 = ({
   step,
   handleSubmit,
   register,
@@ -10,7 +10,7 @@ const RFStep2 = ({
   control,
 }) => {
   return (
-    <div className={`mt-8 ${step === 2 ? "block" : "hidden"}`}>
+    <div className={`mt-8`}>
       <h1 className="text-center font-bold md:text-xl leading-[22px] tracking-[0.4px] mb-8">
         CONSENTS, TERMS, AND POLICIES
       </h1>
@@ -104,4 +104,4 @@ const RFStep2 = ({
   );
 };
 
-export default RFStep2;
+export default RFStepF2;

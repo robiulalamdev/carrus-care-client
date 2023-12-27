@@ -1,6 +1,6 @@
 import React from "react";
 
-const RFStep3 = ({
+const RFStepF3 = ({
   step,
   handleSubmit,
   register,
@@ -10,7 +10,7 @@ const RFStep3 = ({
   control,
 }) => {
   return (
-    <div className={`${step === 3 ? "block" : "hidden"}`}>
+    <div className={``}>
       <div className="flex flex-col gap-4 mt-16">
         <h1 className="text-sm md:text-base font-semibold leading-[18px] tracking-[0.2px]">
           ACCIDENTAL BODILY FLUID EXPOSURE TO HEALTHCARE WORKER
@@ -103,4 +103,4 @@ const RFStep3 = ({
   );
 };
 
-export default RFStep3;
+export default RFStepF3;

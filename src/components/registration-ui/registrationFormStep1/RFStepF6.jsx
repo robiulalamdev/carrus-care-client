@@ -32,7 +32,7 @@ const patientResponsibilities = [
   "Agree to follow up with the primary care physician or specialist as directed",
 ];
 
-const RFStep6 = ({
+const RFStepF6 = ({
   step,
   handleSubmit,
   register,
@@ -42,7 +42,7 @@ const RFStep6 = ({
   control,
 }) => {
   return (
-    <div className={`mt-10 ${step === 6 ? "block" : "hidden"}`}>
+    <div className={`mt-10`}>
       <h1 className="text-center font-bold text-[18px] underline leading-[22px] tracking-[0.4px]">
         PATIENTS’ BILL OF RIGHTS AND RESPONSIBILITIES
       </h1>
@@ -74,4 +74,4 @@ const RFStep6 = ({
   );
 };
 
-export default RFStep6;
+export default RFStepF6;
