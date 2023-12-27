@@ -306,6 +306,55 @@ const RForm3 = ({ step, setStep }) => {
           </div>
         </div>
       </div>
+      <div className="border-x border-b border-gray-900">
+        <div className="p-2">
+          <h1 className="font-semibold text-gray-900 text-sm leading-[22px] tracking-[0.2px]">
+            Specific information to be disclosed:
+          </h1>
+          <div className="grid grid-cols-1 gap-2">
+            <div className="flex flex-wrap items-start gap-2">
+              <div className="flex items-center gap-1">
+                <input type="checkbox" className="cursor-pointer" />
+                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                  Medical Record from (insert date)
+                </h1>
+                <input
+                  type="text"
+                  className="border-b outline-none h-8 text-sm w-full border-gray-900"
+                />
+              </div>
+
+              <div className="flex items-center gap-1">
+                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                  to (insert date)
+                </h1>
+                <input
+                  type="text"
+                  className="border-b outline-none h-8 text-sm w-full border-gray-900"
+                />
+              </div>
+            </div>
+
+            <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium">
+              X Entire Medical record, including patient histories, office notes
+              (except psychotherapy notes), test results, radiology studies,
+              films, referrals, consults, billing records, insurance records,
+              and records received from other health care providers.
+            </h1>
+
+            <div className="flex items-center gap-1">
+              <input type="checkbox" className="cursor-pointer" />
+              <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                Other
+              </h1>
+              <input
+                type="text"
+                className="border-b outline-none h-8 text-sm w-full border-gray-900"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </form>
   );
 };
