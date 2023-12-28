@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Controller } from "react-hook-form";
 
 const sInsuranceItems = [
   "Aetna",
@@ -38,6 +39,9 @@ const RfStepF1 = ({
             Patient’s Last Name:
           </label>
           <input
+            {...register("patient_information.last_name", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -47,6 +51,9 @@ const RfStepF1 = ({
             First
           </label>
           <input
+            {...register("patient_information.first_name", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -56,6 +63,9 @@ const RfStepF1 = ({
             Middle
           </label>
           <input
+            {...register("patient_information.middle_name", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -63,31 +73,81 @@ const RfStepF1 = ({
 
         <div className="p-1 md:p-2 md:border-r border-gray-900 col-span-7 md:col-span-1">
           <div className="flex items-center gap-1 ">
-            <input type="radio" name="f1" className="" />
-            <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
-              Mr.
-            </label>
-          </div>
-          <div className="flex items-center gap-1 ">
-            <input type="radio" name="f1" className="" />
-            <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
-              Mrs.
-            </label>
+            <Controller
+              name="patient_information.salutation"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <>
+                  <input
+                    type="radio"
+                    {...field}
+                    id="mr"
+                    value="Mr."
+                    defaultChecked={field.value === "Mr."}
+                  />
+                  <label
+                    htmlFor="mr"
+                    className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]"
+                  >
+                    Mr.
+                  </label>
+
+                  <input
+                    type="radio"
+                    {...field}
+                    id="mrs"
+                    value="Mrs."
+                    defaultChecked={field.value === "Mrs."}
+                  />
+                  <label
+                    htmlFor="mrs"
+                    className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]"
+                  >
+                    Mrs.
+                  </label>
+                </>
+              )}
+            />
           </div>
         </div>
         <div className="p-1 md:p-2 md:border-r border-gray-900">
-          <div className="flex items-center gap-1 ">
-            <input type="radio" name="f1" className="" />
-            <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
-              Miss.
-            </label>
-          </div>
-          <div className="flex items-center gap-1 ">
-            <input type="radio" name="f1" className="" />
-            <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
-              Ms.
-            </label>
-          </div>
+          <Controller
+            name="patient_information.salutation"
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <>
+                <input
+                  type="radio"
+                  {...field}
+                  id="mr"
+                  value="Miss."
+                  defaultChecked={field.value === "Miss."}
+                />
+                <label
+                  htmlFor="mr"
+                  className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]"
+                >
+                  Miss.
+                </label>
+
+                <input
+                  type="radio"
+                  {...field}
+                  id="mr"
+                  value="Ms."
+                  defaultChecked={field.value === "Ms."}
+                />
+                <label
+                  htmlFor="mr"
+                  className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]"
+                >
+                  Ms.
+                </label>
+              </>
+            )}
+          />
         </div>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-5 border-b border-x border-gray-900 h-fit">
@@ -96,6 +156,9 @@ const RfStepF1 = ({
             Social Security No.:
           </label>
           <input
+            {...register("patient_information.social_security_no", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -105,6 +168,9 @@ const RfStepF1 = ({
             Phone Number:
           </label>
           <input
+            {...register("patient_information.phone_number", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -114,6 +180,9 @@ const RfStepF1 = ({
             Birth Date
           </label>
           <input
+            {...register("patient_information.birth_date", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -122,9 +191,12 @@ const RfStepF1 = ({
       <div className="grid md:grid-cols-2 border-b border-x border-gray-900 h-fit">
         <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
-            Street Address: Apt./Unit#
+            Street Address:
           </label>
           <input
+            {...register("patient_information.street_address", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -134,17 +206,23 @@ const RfStepF1 = ({
             City/State/Zip:
           </label>
           <input
+            {...register("patient_information.city_state_zip", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
       </div>
-      <div className="grid md:grid-cols-2 md:grid-cols-3 border-b border-x border-gray-900 h-fit">
+      <div className="grid grid-cols-1 md:grid-cols-3 border-b border-x border-gray-900 h-fit">
         <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Preferred Pharmacy
           </label>
           <input
+            {...register("patient_information.preferred_pharmacy", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -154,6 +232,9 @@ const RfStepF1 = ({
             Pharmacy Phone:
           </label>
           <input
+            {...register("patient_information.pharmacy_phone", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -163,6 +244,9 @@ const RfStepF1 = ({
             Pharmacy Address:
           </label>
           <input
+            {...register("patient_information.pharmacy_address", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -174,6 +258,9 @@ const RfStepF1 = ({
             Primary Care Physician (PCP):
           </label>
           <input
+            {...register("patient_information.primary_care_physician", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -183,6 +270,9 @@ const RfStepF1 = ({
             Phone Number:
           </label>
           <input
+            {...register("patient_information.primary_phone_number", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -192,18 +282,62 @@ const RfStepF1 = ({
             Preferred method
           </label>
           <div className="flex flex-wrap gap-2">
-            <div onClick={() => setPm(1)} className="flex items-center gap-2">
-              <input type="radio" checked={pm === 1} name="pm" />
-              <p className="font-semibold text-sm">Phone</p>
-            </div>
-            <div onClick={() => setPm(2)} className="flex items-center gap-2">
-              <input type="radio" checked={pm === 2} name="pm" />
-              <p className="font-semibold text-sm">Work</p>
-            </div>
-            <div onClick={() => setPm(3)} className="flex items-center gap-2">
-              <input type="radio" checked={pm === 3} name="pm" />
-              <p className="font-semibold text-sm">Other</p>
-            </div>
+            <Controller
+              name="patient_information.preferred_method"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      {...field}
+                      id="pm"
+                      value="Phone"
+                      defaultChecked={field.value === "Phone"}
+                    />
+                    <label
+                      htmlFor="pm"
+                      className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]"
+                    >
+                      Phone
+                    </label>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      {...field}
+                      id="pm"
+                      value="Work"
+                      defaultChecked={field.value === "Work"}
+                    />
+                    <label
+                      htmlFor="pm"
+                      className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]"
+                    >
+                      Work
+                    </label>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      {...field}
+                      id="pm"
+                      value="Other"
+                      defaultChecked={field.value === "Other"}
+                    />
+                    <label
+                      htmlFor="pm"
+                      className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]"
+                    >
+                      Other
+                    </label>
+                  </div>
+                </>
+              )}
+            />
           </div>
         </div>
       </div>

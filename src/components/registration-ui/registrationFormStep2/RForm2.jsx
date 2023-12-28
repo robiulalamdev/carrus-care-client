@@ -8,6 +8,8 @@ import {
   patientNotificationArraySpanish,
   physicianFees,
 } from "../../../utils/data";
+import { useDispatch } from "react-redux";
+import { setRForm2 } from "../../../redux/features/form/formSlice";
 
 const RForm2 = ({ step, setStep }) => {
   const {
@@ -19,10 +21,12 @@ const RForm2 = ({ step, setStep }) => {
     control,
     formState: { errors },
   } = useForm();
-
+  const dispatch = useDispatch();
   const handleSecondForm = (data) => {
-    console.log(data);
-    setStep(step + 1);
+    if (data) {
+      dispatch(setRForm2(data));
+      setStep(3);
+    }
   };
   return (
     <form
@@ -200,6 +204,7 @@ const RForm2 = ({ step, setStep }) => {
       <div className="mt-8 grid md:grid-cols-3 gap-4">
         <div className="flex flex-col gap-1 col-span-2 max-w-[350px]">
           <input
+            {...register("patient_signature", { required: true })}
             type="text"
             className="border-b outline-none h-8 w-full py-0 border-gray-900"
           />
@@ -209,6 +214,7 @@ const RForm2 = ({ step, setStep }) => {
         </div>
         <div className="flex flex-col gap-1 max-w-[350px]">
           <input
+            {...register("patient_signature_date", { required: true })}
             type="text"
             className="border-b outline-none h-8 w-full py-0 border-gray-900"
           />

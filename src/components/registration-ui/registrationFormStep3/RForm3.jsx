@@ -2,8 +2,15 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import logo from "../../../assets/brand/logo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { usePostPatientRegisterMutation } from "../../../redux/features/form/formApi";
+import { setRForm1, setRForm2 } from "../../../redux/features/form/formSlice";
+import useAuth from "../../../lib/hooks/useAuth";
 
 const RForm3 = ({ step, setStep }) => {
+  const { user } = useAuth();
+  const [postPatientRegister, { isLoading }] = usePostPatientRegisterMutation();
+  const { rForm1, rForm2 } = useSelector((state) => state.form);
   const {
     handleSubmit,
     register,
@@ -13,14 +20,32 @@ const RForm3 = ({ step, setStep }) => {
     control,
     formState: { errors },
   } = useForm();
+  const dispatch = useDispatch();
 
-  const handleSecondForm = (data) => {
-    console.log(data);
-    setStep(step + 1);
+  const handleSaveData = async (data) => {
+    const formData = {
+      ...rForm1,
+      ...rForm2,
+      ...data,
+      creator_email: user?.email,
+    };
+    const options = {
+      data: formData,
+    };
+    const result = await postPatientRegister(options);
+    console.log(result);
+    if (result?.data?.success) {
+      dispatch(setRForm1(null));
+      dispatch(setRForm2(null));
+      setStep(1);
+      alert("Form Submit Success");
+    } else {
+      alert("Form Submit Failed");
+    }
   };
   return (
     <form
-      onSubmit={handleSubmit(handleSecondForm)}
+      onSubmit={handleSubmit(handleSaveData)}
       className={`${step === 3 ? "block" : "hidden"}`}
     >
       <div>
@@ -53,12 +78,17 @@ const RForm3 = ({ step, setStep }) => {
           <h1 className="font-semibold text-gray-900 text-sm leading-[22px] tracking-[0.2px]">
             Information regarding patient for whom authorization is made:
           </h1>
+
           <div className="grid grid-cols-1 gap-2">
             <div className="flex items-center gap-1">
               <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
                 Full Name:
               </h1>
               <input
+                {...register(
+                  "patient_information_for_authorization.full_name",
+                  { required: true }
+                )}
                 type="text"
                 className="border-b outline-none h-8 text-sm w-full border-gray-900"
               />
@@ -69,6 +99,10 @@ const RForm3 = ({ step, setStep }) => {
                   Other Name(s) Used:
                 </h1>
                 <input
+                  {...register(
+                    "patient_information_for_authorization.other_name",
+                    { required: false }
+                  )}
                   type="text"
                   className="border-b outline-none h-8 text-sm w-full border-gray-900"
                 />
@@ -78,6 +112,10 @@ const RForm3 = ({ step, setStep }) => {
                   Date of Birth:
                 </h1>
                 <input
+                  {...register(
+                    "patient_information_for_authorization.date_of_birth",
+                    { required: true }
+                  )}
                   type="text"
                   className="border-b outline-none h-8 text-sm w-full border-gray-900"
                 />
@@ -90,6 +128,10 @@ const RForm3 = ({ step, setStep }) => {
                   Address:
                 </h1>
                 <input
+                  {...register(
+                    "patient_information_for_authorization.address",
+                    { required: true }
+                  )}
                   type="text"
                   className="border-b outline-none h-8 text-sm w-full border-gray-900"
                 />
@@ -99,6 +141,9 @@ const RForm3 = ({ step, setStep }) => {
                   City:
                 </h1>
                 <input
+                  {...register("patient_information_for_authorization.city", {
+                    required: true,
+                  })}
                   type="text"
                   className="border-b outline-none h-8 text-sm w-full border-gray-900"
                 />
@@ -108,6 +153,9 @@ const RForm3 = ({ step, setStep }) => {
                   State:
                 </h1>
                 <input
+                  {...register("patient_information_for_authorization.state", {
+                    required: true,
+                  })}
                   type="text"
                   className="border-b outline-none h-8 text-sm w-full max-w-[100px] border-gray-900"
                 />
@@ -117,6 +165,9 @@ const RForm3 = ({ step, setStep }) => {
                   Zip Code:
                 </h1>
                 <input
+                  {...register("patient_information_for_authorization.zip", {
+                    required: true,
+                  })}
                   type="text"
                   className="border-b outline-none h-8 text-sm w-full max-w-[100px] border-gray-900"
                 />
@@ -128,6 +179,9 @@ const RForm3 = ({ step, setStep }) => {
                   Phone:
                 </h1>
                 <input
+                  {...register("patient_information_for_authorization.phone", {
+                    required: true,
+                  })}
                   type="text"
                   className="border-b outline-none h-8 text-sm w-full border-gray-900"
                 />
@@ -137,6 +191,9 @@ const RForm3 = ({ step, setStep }) => {
                   Email: (Optional):
                 </h1>
                 <input
+                  {...register("patient_information_for_authorization.email", {
+                    required: false,
+                  })}
                   type="text"
                   className="border-b outline-none h-8 text-sm w-full border-gray-900"
                 />
@@ -660,6 +717,17 @@ const RForm3 = ({ step, setStep }) => {
           </div>
         </div>
       </section>
+
+      <div className="flex justify-center pt-20 pb-3">
+        {step === 3 && (
+          <button
+            type="submit"
+            className="w-32 h-10 bg-green-600 hover:bg-green-700 duration-150 cursor-pointer text-white text-base leading-[18px] tracking-[0.4px] border-none flex justify-center items-center"
+          >
+            Submit
+          </button>
+        )}
+      </div>
     </form>
   );
 };

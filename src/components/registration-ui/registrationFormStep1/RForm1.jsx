@@ -8,6 +8,8 @@ import RFStepF4 from "./RFStepF4";
 import RFStepF5 from "./RFStepF5";
 import RFStepF6 from "./RFStepF6";
 import RFStepF7 from "./RFStepF7";
+import { useDispatch } from "react-redux";
+import { setRForm1 } from "../../../redux/features/form/formSlice";
 
 const RForm1 = ({ step, setStep }) => {
   const {
@@ -19,9 +21,12 @@ const RForm1 = ({ step, setStep }) => {
     control,
     formState: { errors },
   } = useForm();
+  const dispatch = useDispatch();
   const handleFirstForm = (data) => {
-    console.log(data);
-    setStep(step + 1);
+    if (data) {
+      dispatch(setRForm1(data));
+      setStep(2);
+    }
   };
   return (
     <form
@@ -32,6 +37,7 @@ const RForm1 = ({ step, setStep }) => {
         <div className="flex items-center gap-1">
           <h1 className="font-bold leading-[18px] tracking-[0.2px]">Date:</h1>
           <input
+            {...register("date", { required: true })}
             type="text"
             className="border-b outline-none h-9 py-0 border-gray-900"
           />
@@ -41,6 +47,7 @@ const RForm1 = ({ step, setStep }) => {
             Reason for Visit:
           </h1>
           <input
+            {...register("reason_for_visit", { required: true })}
             type="text"
             className="border-b outline-none h-9 py-0 border-gray-900"
           />
@@ -53,6 +60,7 @@ const RForm1 = ({ step, setStep }) => {
         setError={setError}
         setValue={setValue}
         watch={watch}
+        control={control}
       />
       <RFStepF2
         step={step}
