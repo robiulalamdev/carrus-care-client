@@ -4,7 +4,7 @@ import RForm2 from "../../components/registration-ui/registrationFormStep2/RForm
 import RForm3 from "../../components/registration-ui/registrationFormStep3/RForm3";
 
 const Registration = () => {
-  const [step, setStep] = useState(3);
+  const [step, setStep] = useState(2);
 
   const handleSubmit = () => {
     console.log("Success");

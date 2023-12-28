@@ -107,15 +107,15 @@ const RForm2 = ({ step, setStep }) => {
             className="grid grid-cols-2 border-x border-b border-gray-900 h-fit"
           >
             <div className="grid grid-cols-1 gap-1 text-center border-r border-gray-900 p-2">
-              <h1 className="text-gray-800 font-medium md:font-bold text-sm md:text-base leading-[22px] tracking-[0.4px]">
+              <h1 className="text-gray-800 font-medium md:font-bold text-sm md:text-base leading-[22px] tracking-[0.4px] break-all">
                 {ff.levelOfService}
               </h1>
-              <h1 className="text-gray-800 font-medium md:font-bold text-sm md:text-base leading-[22px] tracking-[0.4px]">
+              <h1 className="text-gray-800 font-medium md:font-bold text-sm md:text-base leading-[22px] tracking-[0.4px] break-all">
                 {ff.nivelDeServicio}
               </h1>
             </div>
             <div className="flex justify-center items-center w-full p-2">
-              <h1 className="text-gray-800 font-medium md:font-bold text-sm md:text-base leading-[22px] tracking-[0.4px]">
+              <h1 className="text-gray-800 font-medium md:font-bold text-sm md:text-base leading-[22px] tracking-[0.4px] break-all">
                 {ff.facilityFee}
               </h1>
             </div>
@@ -143,15 +143,15 @@ const RForm2 = ({ step, setStep }) => {
             className="grid grid-cols-2 border-x border-b border-gray-900 h-fit"
           >
             <div className="grid grid-cols-1 gap-1 text-center border-r border-gray-900 p-2">
-              <h1 className="text-gray-800 font-medium md:font-bold text-sm md:text-base leading-[22px] tracking-[0.4px]">
+              <h1 className="text-gray-800 font-medium md:font-bold text-sm md:text-base leading-[22px] tracking-[0.4px] break-all">
                 {ff.levelOfService}
               </h1>
-              <h1 className="text-gray-800 font-medium md:font-bold text-sm md:text-base leading-[22px] tracking-[0.4px]">
+              <h1 className="text-gray-800 font-medium md:font-bold text-sm md:text-base leading-[22px] tracking-[0.4px] break-all">
                 {ff.nivelDeServicio}
               </h1>
             </div>
             <div className="flex justify-center items-center w-full p-2">
-              <h1 className="text-gray-800 font-medium md:font-bold text-sm md:text-base leading-[22px] tracking-[0.4px]">
+              <h1 className="text-gray-800 font-medium md:font-bold text-sm md:text-base leading-[22px] tracking-[0.4px] break-all">
                 {ff.feeRange}
               </h1>
             </div>
@@ -181,15 +181,15 @@ const RForm2 = ({ step, setStep }) => {
             className="grid grid-cols-2 border-x border-b border-gray-900 h-fit"
           >
             <div className="grid grid-cols-1 gap-1 text-center border-r border-gray-900 p-2">
-              <h1 className="text-gray-800 font-medium md:font-bold text-sm md:text-base leading-[22px] tracking-[0.4px]">
+              <h1 className="text-gray-800 font-medium md:font-bold text-sm md:text-base leading-[22px] tracking-[0.4px] break-all">
                 {ff.levelOfCare}
               </h1>
-              <h1 className="text-gray-800 font-medium md:font-bold text-sm md:text-base leading-[22px] tracking-[0.4px]">
+              <h1 className="text-gray-800 font-medium md:font-bold text-sm md:text-base leading-[22px] tracking-[0.4px] break-all">
                 {ff.nivelDeCuidado}
               </h1>
             </div>
             <div className="flex justify-center items-center w-full p-2">
-              <h1 className="text-gray-800 font-medium md:font-bold text-sm md:text-base leading-[22px] tracking-[0.4px]">
+              <h1 className="text-gray-800 font-medium md:font-bold text-sm md:text-base leading-[22px] tracking-[0.4px] break-all">
                 {ff.physicianFee}
               </h1>
             </div>
