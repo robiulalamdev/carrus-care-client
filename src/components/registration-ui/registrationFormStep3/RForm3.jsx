@@ -38,7 +38,7 @@ const RForm3 = ({ step, setStep }) => {
       <h1 className="text-center font-bold text-[18px] leading-[22px] tracking-[0.4px] mt-16">
         AUTHORIZATION TO USE OR DISCLOSE PROTECTED HEALTH INFORMATION
       </h1>
-      <p className="text-sm italic text-gray-900 mt-3">
+      <p className="text-sm italic text-gray-900 mt-3 text-justify md:text-start">
         This authorization may be used to permit a covered entity (as such term
         is defined by HIPAA and applicable Texas law) to use or disclose an
         individual's protected health information. Individuals completing this
@@ -152,7 +152,7 @@ const RForm3 = ({ step, setStep }) => {
             authorized to disclose this information:
           </h1>
           <div className="grid grid-cols-1 gap-2">
-            <div className="flex items-center gap-1">
+            <div className="flex items-center md:gap-1 flex-wrap md:flex-nowrap">
               <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
                 Name: Care Plus Emergency Room
               </h1>
@@ -313,7 +313,7 @@ const RForm3 = ({ step, setStep }) => {
           </h1>
           <div className="grid grid-cols-1 gap-2">
             <div className="flex flex-wrap items-start gap-2">
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 flex-wrap md:flex-nowrap">
                 <input type="checkbox" className="cursor-pointer" />
                 <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
                   Medical Record from (insert date)
@@ -324,7 +324,7 @@ const RForm3 = ({ step, setStep }) => {
                 />
               </div>
 
-              <div className="flex items-center gap-1">
+              <div className="flex items-center md:gap-1 flex-wrap md:flex-nowrap">
                 <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
                   to (insert date)
                 </h1>
@@ -359,43 +359,43 @@ const RForm3 = ({ step, setStep }) => {
       <div className="border-x border-b border-gray-900">
         <div className="">
           <div className="grid md:grid-cols-5">
-            <div className="col-span-3 border-r border-gray-900 p-2">
+            <div className="col-span-3 md:border-r border-gray-900 p-2">
               <h1 className="font-semibold text-gray-900 text-sm leading-[22px] tracking-[0.2px]">
                 Include: (Indicate by Initialing)
               </h1>
               <div className="grid grid-cols-1 gap-2 h-fit">
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 flex-wrap md:flex-nowrap">
                   <input
                     type="text"
-                    className="border-b outline-none h-8 text-sm max-w-[200px] border-gray-900"
+                    className="border-b outline-none h-8 text-sm w-full md:max-w-[200px] border-gray-900"
                   />
                   <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium">
                     Drug, Alcohol or Substance Abuse Records
                   </h1>
                 </div>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 flex-wrap md:flex-nowrap">
                   <input
                     type="text"
-                    className="border-b outline-none h-8 text-sm max-w-[200px] border-gray-900"
+                    className="border-b outline-none h-8 text-sm w-full md:max-w-[200px] border-gray-900"
                   />
                   <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium">
                     Mental Health Records <i>(Except Psychotherapy Notes)</i>
                   </h1>
                 </div>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 flex-wrap md:flex-nowrap">
                   <input
                     type="text"
-                    className="border-b outline-none h-8 text-sm max-w-[200px] border-gray-900"
+                    className="border-b outline-none h-8 text-sm w-full md:max-w-[200px] border-gray-900"
                   />
                   <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium">
                     HIV/AIDS-Related Information{" "}
                     <i>(Including HIV/AIDS Test Results)</i>
                   </h1>
                 </div>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 flex-wrap md:flex-nowrap">
                   <input
                     type="text"
-                    className="border-b outline-none h-8 text-sm max-w-[200px] border-gray-900"
+                    className="border-b outline-none h-8 text-sm w-full md:max-w-[200px] border-gray-900"
                   />
                   <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium">
                     Genetic Information <i>(Including Genetic Test Results)</i>
@@ -403,7 +403,7 @@ const RForm3 = ({ step, setStep }) => {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-1 gap-2 p-2 col-span-2">
+            <div className="grid grid-cols-1 gap-2 p-2 col-span-3 md:col-span-2">
               <h1 className="font-semibold text-gray-900 text-sm leading-[22px] tracking-[0.2px]">
                 Reason for release of information: (Choose all that Apply)
               </h1>
@@ -582,7 +582,7 @@ const RForm3 = ({ step, setStep }) => {
         <h1 className="text-gray-950 font-bold mt-10">SIGNATURES:</h1>
         <div className="grid grid-cols-1 gap-4 mt-4">
           <div className="flex flex-wrap">
-            <div className="flex items-center gap-1 flex-grow">
+            <div className="flex items-center gap-1 flex-grow flex-wrap md:flex-nowrap">
               <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
                 Patient/Legal Representative
               </h1>
@@ -601,8 +601,8 @@ const RForm3 = ({ step, setStep }) => {
               />
             </div>
           </div>
-          <div className="flex items-center gap-1 flex-grow">
-            <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+          <div className="flex items-center gap-1 flex-grow flex-wrap md:flex-nowrap">
+            <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium">
               If Legal Representative, relationship to Patient:
             </h1>
             <input
@@ -611,7 +611,7 @@ const RForm3 = ({ step, setStep }) => {
             />
           </div>
           <div className="flex flex-wrap">
-            <div className="flex items-center gap-1 flex-grow">
+            <div className="flex items-center gap-1 flex-grow flex-wrap md:flex-nowrap">
               <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
                 Witness (optional):
               </h1>
@@ -639,7 +639,7 @@ const RForm3 = ({ step, setStep }) => {
             mental health treatment.
           </p>
           <div className="flex flex-wrap">
-            <div className="flex items-center gap-1 flex-grow">
+            <div className="flex items-center gap-1 flex-grow flex-wrap md:flex-nowrap">
               <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
                 Signature of Minor (if applicable):
               </h1>
