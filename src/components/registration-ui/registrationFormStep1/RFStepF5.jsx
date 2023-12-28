@@ -31,7 +31,7 @@ const RFStepF5 = ({
       </div>
       {/* signeture 6th part */}
       <div className="flex justify-between items-end flex-wrap gap-4 mt-10">
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 flex-wrap">
           <h1 className="font-bold leading-[18px] tracking-[0.2px]">
             Acknowledge:
           </h1>

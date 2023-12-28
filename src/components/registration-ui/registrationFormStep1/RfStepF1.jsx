@@ -32,8 +32,8 @@ const RfStepF1 = ({
       <div className="bg-gray-900 text-white text-center py-1">
         <h1>PATIENT INFORMATION</h1>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-7 border-b border-x border-gray-900 h-fit">
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900 col-span-2">
+      <div className="grid grid-cols-1 md:grid-cols-7 border-b border-x border-gray-900 h-fit">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900 col-span-7 md:col-span-2">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Patient’s Last Name:
           </label>
@@ -42,7 +42,7 @@ const RfStepF1 = ({
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900 col-span-2">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900 col-span-7 md:col-span-2">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             First
           </label>
@@ -51,7 +51,7 @@ const RfStepF1 = ({
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Middle
           </label>
@@ -60,27 +60,38 @@ const RfStepF1 = ({
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900">
-          <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
-            Mr. Mrs.
-          </label>
-          <input
-            type="text"
-            className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
-          />
+
+        <div className="p-1 md:p-2 md:border-r border-gray-900 col-span-7 md:col-span-1">
+          <div className="flex items-center gap-1 ">
+            <input type="radio" name="f1" className="" />
+            <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
+              Mr.
+            </label>
+          </div>
+          <div className="flex items-center gap-1 ">
+            <input type="radio" name="f1" className="" />
+            <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
+              Mrs.
+            </label>
+          </div>
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r md:border-none border-gray-900">
-          <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
-            Miss Ms.
-          </label>
-          <input
-            type="text"
-            className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
-          />
+        <div className="p-1 md:p-2 md:border-r border-gray-900">
+          <div className="flex items-center gap-1 ">
+            <input type="radio" name="f1" className="" />
+            <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
+              Miss.
+            </label>
+          </div>
+          <div className="flex items-center gap-1 ">
+            <input type="radio" name="f1" className="" />
+            <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
+              Ms.
+            </label>
+          </div>
         </div>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-5 border-b border-x border-gray-900 h-fit">
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900 col-span-2">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900 col-span-2">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Social Security No.:
           </label>
@@ -89,7 +100,7 @@ const RfStepF1 = ({
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900 col-span-2">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900 col-span-2">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Phone Number:
           </label>
@@ -98,7 +109,7 @@ const RfStepF1 = ({
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Birth Date
           </label>
@@ -108,8 +119,8 @@ const RfStepF1 = ({
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 border-b border-x border-gray-900 h-fit">
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900">
+      <div className="grid md:grid-cols-2 border-b border-x border-gray-900 h-fit">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Street Address: Apt./Unit#
           </label>
@@ -118,7 +129,7 @@ const RfStepF1 = ({
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             City/State/Zip:
           </label>
@@ -128,8 +139,8 @@ const RfStepF1 = ({
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 border-b border-x border-gray-900 h-fit">
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900">
+      <div className="grid md:grid-cols-2 md:grid-cols-3 border-b border-x border-gray-900 h-fit">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Preferred Pharmacy
           </label>
@@ -138,7 +149,7 @@ const RfStepF1 = ({
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Pharmacy Phone:
           </label>
@@ -147,7 +158,7 @@ const RfStepF1 = ({
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Pharmacy Address:
           </label>
@@ -157,8 +168,8 @@ const RfStepF1 = ({
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 border-b border-x border-gray-900 h-fit">
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900">
+      <div className="grid grid-cols-1 md:grid-cols-3 border-b border-x border-gray-900 h-fit">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Primary Care Physician (PCP):
           </label>
@@ -167,7 +178,7 @@ const RfStepF1 = ({
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Phone Number:
           </label>
@@ -176,7 +187,7 @@ const RfStepF1 = ({
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Preferred method
           </label>
@@ -198,7 +209,7 @@ const RfStepF1 = ({
       </div>
 
       <div className="grid grid-cols-1 border-b border-x border-gray-900 h-fit">
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900 w-full">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900 w-full">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Please tell us how you learned of our service or whom we may thank.
           </label>
@@ -224,7 +235,7 @@ const RfStepF1 = ({
                 className="h-8 py-0 border-b border-gray-900 focus:outline-none"
               />
             </div>
-            <div className="flex items-end gap-1">
+            <div className="flex items-end gap-1 flex-wrap my-3 md:my-0">
               <span>Friend/Family Member:</span>
               <input
                 type="text"
@@ -312,11 +323,11 @@ const RfStepF1 = ({
         </div>
       </div>
       <div className="border-b border-x border-gray-900 h-fit">
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Please indicate primary insurance:
           </label>
-          <div className="flex flex-wrap md:gap-4 cursor-pointer">
+          <div className="flex flex-wrap gap-x-4 cursor-pointer">
             {sInsuranceItems.map((ins, index) => (
               <div
                 key={index}
@@ -340,7 +351,9 @@ const RfStepF1 = ({
             )}
           </div>
           <div className="flex items-end gap-1">
-            <span>Subscriber’s phone #</span>
+            <span className="text-gray-950 font-medium text-sm leading-[22px] tracking-[0.18px] mt-2">
+              Subscriber’s phone #
+            </span>
             <input
               type="text"
               className="h-8 py-0 border-b border-gray-900 focus:outline-none"
@@ -349,7 +362,7 @@ const RfStepF1 = ({
         </div>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-5 border-b border-x border-gray-900 h-fit">
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900 col-span-2">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900 col-span-2">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Subscriber’s Last Name:
           </label>
@@ -358,7 +371,7 @@ const RfStepF1 = ({
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900 col-span-2">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900 col-span-2">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             First:
           </label>
@@ -367,7 +380,7 @@ const RfStepF1 = ({
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Subscriber’s Social Security:
           </label>
@@ -378,7 +391,7 @@ const RfStepF1 = ({
         </div>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-5 border-b border-x border-gray-900 h-fit">
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900 col-span-2">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900 col-span-2">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Member ID Number:
           </label>
@@ -387,7 +400,7 @@ const RfStepF1 = ({
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900 col-span-2">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900 col-span-2">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Group Number:
           </label>
@@ -396,7 +409,7 @@ const RfStepF1 = ({
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Patient’s relationship to subscriber:
           </label>
@@ -425,7 +438,7 @@ const RfStepF1 = ({
         <h1>Accident Related</h1>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-5 border-b border-x border-gray-900 h-fit">
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900 col-span-1">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900 col-span-1">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Date of Accident:
           </label>
@@ -434,7 +447,7 @@ const RfStepF1 = ({
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900 col-span-2">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900 col-span-2">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Type of Accident:
           </label>
@@ -456,7 +469,7 @@ const RfStepF1 = ({
             ))}
           </div>
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900 col-span-2">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900 col-span-2">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             If auto, involvement in accident:
           </label>
@@ -482,7 +495,7 @@ const RfStepF1 = ({
         </div>
       </div>
       <div className="grid grid-cols-1 border-b border-x border-gray-900 h-fit">
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900 col-span-1">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900 col-span-1">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Name of Worker’s Comp Insurance Company or Auto Insurance:
           </label>
@@ -493,7 +506,7 @@ const RfStepF1 = ({
         </div>
       </div>
       <div className="grid grid-cols-2 border-b border-x border-gray-900 h-fit">
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900 col-span-1">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900 col-span-1">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Company Address:
           </label>
@@ -502,7 +515,7 @@ const RfStepF1 = ({
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900 col-span-1">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900 col-span-1">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             City/State/Zip:
           </label>
@@ -513,7 +526,7 @@ const RfStepF1 = ({
         </div>
       </div>
       <div className="grid grid-cols-3 border-b border-x border-gray-900 h-fit">
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900 col-span-2">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900 col-span-2">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Name of Insured:
           </label>
@@ -522,7 +535,7 @@ const RfStepF1 = ({
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Adjuster Name:
           </label>
@@ -533,7 +546,7 @@ const RfStepF1 = ({
         </div>
       </div>
       <div className="grid grid-cols-4 border-b border-x border-gray-900 h-fit">
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900 col-span-2">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900 col-span-2">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Policy Number:
           </label>
@@ -542,7 +555,7 @@ const RfStepF1 = ({
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Reported:
           </label>
@@ -564,7 +577,7 @@ const RfStepF1 = ({
             ))}
           </div>
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Claim Number:
           </label>
@@ -580,7 +593,7 @@ const RfStepF1 = ({
         <h1>IN CASE OF EMERGENCY</h1>
       </div>
       <div className="grid md:grid-cols-2 border-b border-x border-gray-900 h-fit">
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Name of local Relative/Friend:
           </label>
@@ -590,7 +603,7 @@ const RfStepF1 = ({
           />
         </div>
 
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-r border-gray-900">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Relationship to Patient:
           </label>
