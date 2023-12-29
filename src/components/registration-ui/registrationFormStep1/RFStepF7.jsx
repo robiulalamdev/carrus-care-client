@@ -1,4 +1,6 @@
 import React from "react";
+import SignatureInput from "../../common/SignatureInput";
+import { Controller } from "react-hook-form";
 
 const RFStepF7 = ({
   step,
@@ -60,9 +62,19 @@ const RFStepF7 = ({
 
       <div className="mt-8 grid md:grid-cols-3 gap-4">
         <div className="flex flex-col gap-1 col-span-2 max-w-[350px]">
-          <input
-            type="text"
-            className="border-b outline-none h-8 w-full py-0 border-gray-900"
+          <Controller
+            name="patient_signature"
+            control={control}
+            rules={{ required: "Signature is required" }}
+            render={({ field }) => (
+              <SignatureInput
+                img={field.value}
+                setValue={(value) => {
+                  setValue("patient_signature", value);
+                  field.onChange(value);
+                }}
+              />
+            )}
           />
           <h1 className="text-gray-950 text-base leading-[22px] tracking-[0.18px] font-medium">
             Patient’s Signature
@@ -70,7 +82,10 @@ const RFStepF7 = ({
         </div>
         <div className="flex flex-col gap-1 max-w-[350px]">
           <input
-            type="text"
+            {...register("patient_signature_date", {
+              required: true,
+            })}
+            type="date"
             className="border-b outline-none h-8 w-full py-0 border-gray-900"
           />
           <h1 className="text-gray-950 text-base leading-[22px] tracking-[0.18px] font-medium">

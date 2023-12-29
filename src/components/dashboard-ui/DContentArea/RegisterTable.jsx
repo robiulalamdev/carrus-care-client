@@ -8,11 +8,11 @@ const TABLE_HEAD = ["Name", "Phone", "Salutation", "Address", "Date", "Action"];
 
 const RegisterTable = () => {
   const { data } = useMyPatientRegistersQuery();
-  console.log(data);
+  // console.log(data);
   return (
-    <Card className="h-full w-full overflow-scroll mt-4">
-      <table className="w-full min-w-max table-auto text-left">
-        <thead className="bg-gray-900">
+    <Card className="w-full pt-4 min-h-screen flex flex-col justify-between">
+      <table className="w-full min-w-max table-auto text-left overflow-scroll">
+        <thead className="bg-gray-900 h-fit">
           <tr>
             {TABLE_HEAD.map((head) => (
               <th
@@ -31,10 +31,10 @@ const RegisterTable = () => {
           </tr>
         </thead>
         {data?.data?.length > 0 ? (
-          <tbody>
+          <tbody className="max-h-full flex-grow">
             {data?.data?.map((item, index) => {
               return (
-                <tr key={index}>
+                <tr key={index} className="h-fit">
                   <td className={`p-4 border-b border-blue-gray-50`}>
                     <Typography
                       variant="small"
@@ -88,7 +88,7 @@ const RegisterTable = () => {
                       color="blue-gray"
                       className="font-medium"
                     >
-                      Edit
+                      View
                     </Typography>
                   </td>
                 </tr>
@@ -100,7 +100,7 @@ const RegisterTable = () => {
         )}
       </table>
 
-      <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
+      <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4 h-fit">
         <Typography variant="small" color="blue-gray" className="font-normal">
           Page 1 of 10
         </Typography>

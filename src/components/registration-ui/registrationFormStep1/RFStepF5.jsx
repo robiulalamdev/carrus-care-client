@@ -1,4 +1,6 @@
 import React from "react";
+import { Controller } from "react-hook-form";
+import SignatureInput from "../../common/SignatureInput";
 
 const RFStepF5 = ({
   step,
@@ -36,6 +38,9 @@ const RFStepF5 = ({
             Acknowledge:
           </h1>
           <input
+            {...register("acknowledge_f", {
+              required: true,
+            })}
             type="text"
             className="border-b outline-none h-9 py-0 border-gray-900"
           />
@@ -70,9 +75,19 @@ const RFStepF5 = ({
         <div className="mt-8 grid md:grid-cols-2 gap-4">
           <div className="grid grid-cols-1 gap-3 h-fit">
             <div className="flex flex-col gap-1">
-              <input
-                type="text"
-                className="border-b outline-none h-8 w-full py-0 border-gray-900"
+              <Controller
+                name="acknowledgement_patient_signature"
+                control={control}
+                rules={{ required: "Signature is required" }}
+                render={({ field }) => (
+                  <SignatureInput
+                    img={field.value}
+                    setValue={(value) => {
+                      setValue("acknowledgement_patient_signature", value);
+                      field.onChange(value);
+                    }}
+                  />
+                )}
               />
               <h1 className="text-gray-950 text-base leading-[22px] tracking-[0.18px] font-medium">
                 Patient Signature
@@ -83,16 +98,29 @@ const RFStepF5 = ({
                 Date:
               </h1>
               <input
-                type="text"
+                {...register("acknowledgement_patient_signature_date", {
+                  required: true,
+                })}
+                type="date"
                 className="border-b outline-none h-8 w-full py-0 border-gray-900"
               />
             </div>
           </div>
           <div className="grid grid-cols-1 gap-3">
             <div className="flex flex-col gap-1">
-              <input
-                type="text"
-                className="border-b outline-none h-8 w-full py-0 border-gray-900"
+              <Controller
+                name="responsible_party_witness_signature"
+                control={control}
+                rules={{ required: "Signature is required" }}
+                render={({ field }) => (
+                  <SignatureInput
+                    img={field.value}
+                    setValue={(value) => {
+                      setValue("responsible_party_witness_signature", value);
+                      field.onChange(value);
+                    }}
+                  />
+                )}
               />
               <h1 className="text-gray-950 text-base leading-[22px] tracking-[0.18px] font-medium">
                 Responsible Party Witness Signature
@@ -103,7 +131,10 @@ const RFStepF5 = ({
                 Date:
               </h1>
               <input
-                type="text"
+                {...register("responsible_party_witness_signature_date", {
+                  required: true,
+                })}
+                type="date"
                 className="border-b outline-none h-8 w-full py-0 border-gray-900"
               />
             </div>
@@ -112,6 +143,9 @@ const RFStepF5 = ({
                 Relationship to Patient:
               </h1>
               <input
+                {...register("relationship_to_patient", {
+                  required: true,
+                })}
                 type="text"
                 className="border-b outline-none h-8 w-full py-0 border-gray-900"
               />

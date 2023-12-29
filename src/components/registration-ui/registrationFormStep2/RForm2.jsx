@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import logo from "../../../assets/brand/logo.png";
 import {
   facilityFees,
@@ -10,6 +10,7 @@ import {
 } from "../../../utils/data";
 import { useDispatch } from "react-redux";
 import { setRForm2 } from "../../../redux/features/form/formSlice";
+import SignatureInput from "../../common/SignatureInput";
 
 const RForm2 = ({ step, setStep }) => {
   const {
@@ -203,10 +204,19 @@ const RForm2 = ({ step, setStep }) => {
 
       <div className="mt-8 grid md:grid-cols-3 gap-4">
         <div className="flex flex-col gap-1 col-span-2 max-w-[350px]">
-          <input
-            {...register("patient_signature", { required: true })}
-            type="text"
-            className="border-b outline-none h-8 w-full py-0 border-gray-900"
+          <Controller
+            name="patient_statement_signature"
+            control={control}
+            rules={{ required: "Signature is required" }}
+            render={({ field }) => (
+              <SignatureInput
+                img={field.value}
+                setValue={(value) => {
+                  setValue("patient_statement_signature", value);
+                  field.onChange(value);
+                }}
+              />
+            )}
           />
           <h1 className="text-gray-950 text-base leading-[22px] tracking-[0.18px] font-medium">
             Patient Signature/Firma
@@ -214,8 +224,10 @@ const RForm2 = ({ step, setStep }) => {
         </div>
         <div className="flex flex-col gap-1 max-w-[350px]">
           <input
-            {...register("patient_signature_date", { required: true })}
-            type="text"
+            {...register("patient_statement_signature_date", {
+              required: true,
+            })}
+            type="date"
             className="border-b outline-none h-8 w-full py-0 border-gray-900"
           />
           <h1 className="text-gray-950 text-base leading-[22px] tracking-[0.18px] font-medium">

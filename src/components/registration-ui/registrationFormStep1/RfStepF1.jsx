@@ -24,9 +24,6 @@ const RfStepF1 = ({
   watch,
   control,
 }) => {
-  const [pm, setPm] = useState(1);
-  const [service, setService] = useState(1);
-  const [sInsurance, setSInsurance] = useState("");
   return (
     <div className={`mt-5`}>
       {/* -------1st part start */}
@@ -108,6 +105,9 @@ const RfStepF1 = ({
                   </label>
                 </>
               )}
+              {...register("patient_information.salutation", {
+                required: true,
+              })}
             />
           </div>
         </div>
@@ -147,6 +147,9 @@ const RfStepF1 = ({
                 </label>
               </>
             )}
+            {...register("patient_information.salutation", {
+              required: true,
+            })}
           />
         </div>
       </div>
@@ -171,7 +174,7 @@ const RfStepF1 = ({
             {...register("patient_information.phone_number", {
               required: true,
             })}
-            type="text"
+            type="number"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
@@ -183,7 +186,7 @@ const RfStepF1 = ({
             {...register("patient_information.birth_date", {
               required: true,
             })}
-            type="text"
+            type="date"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
@@ -351,6 +354,9 @@ const RfStepF1 = ({
             <div className="flex items-end gap-1">
               <span>Doctor’s Office:</span>
               <input
+                {...register("patient_information.Doctor_Office", {
+                  required: true,
+                })}
                 type="text"
                 className="h-8 py-0 border-b border-gray-900 focus:outline-none"
               />
@@ -358,6 +364,9 @@ const RfStepF1 = ({
             <div className="flex items-end gap-1">
               <span>Employer:</span>
               <input
+                {...register("patient_information.employer", {
+                  required: true,
+                })}
                 type="text"
                 className="h-8 py-0 border-b border-gray-900 focus:outline-none"
               />
@@ -365,6 +374,9 @@ const RfStepF1 = ({
             <div className="flex items-end gap-1">
               <span>Law Firm:</span>
               <input
+                {...register("patient_information.law_firm", {
+                  required: true,
+                })}
                 type="text"
                 className="h-8 py-0 border-b border-gray-900 focus:outline-none"
               />
@@ -372,55 +384,96 @@ const RfStepF1 = ({
             <div className="flex items-end gap-1 flex-wrap my-3 md:my-0">
               <span>Friend/Family Member:</span>
               <input
+                {...register("patient_information.family_member", {
+                  required: true,
+                })}
                 type="text"
                 className="h-8 py-0 border-b border-gray-900 focus:outline-none"
               />
             </div>
           </div>
+
           <div className="flex flex-wrap items-end gap-2 min-h-[42px]">
-            <div
-              onClick={() => setService(1)}
-              className="flex items-center gap-2"
-            >
-              <input type="radio" checked={service === 1} name="service" />
-              <p className="font-semibold text-sm">Media</p>
-            </div>
-            <div
-              onClick={() => setService(2)}
-              className="flex items-center gap-2"
-            >
-              <input type="radio" checked={service === 2} name="service" />
-              <p className="font-semibold text-sm">Returning</p>
-            </div>
-            <div
-              onClick={() => setService(3)}
-              className="flex items-center gap-2"
-            >
-              <input type="radio" checked={service === 3} name="service" />
-              <p className="font-semibold text-sm">Patient</p>
-            </div>
-            <div
-              onClick={() => setService(4)}
-              className="flex items-center gap-2"
-            >
-              <input type="radio" checked={service === 4} name="service" />
-              <p className="font-semibold text-sm">Pharmacy</p>
-            </div>
-            <div className="flex items-end gap-1">
-              <div
-                onClick={() => setService(5)}
-                className="flex items-center gap-2"
-              >
-                <input type="radio" checked={service === 5} name="service" />
-                <p className="font-semibold text-sm">Other:</p>
-              </div>
-              {service === 5 && (
-                <input
-                  type="text"
-                  className="h-8 py-0 border-b border-gray-900 focus:outline-none"
-                />
+            <Controller
+              name="patient_information.service"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      {...field}
+                      id="s1"
+                      value="Media"
+                      defaultChecked={field.value === "Media"}
+                    />
+                    <label htmlFor="s1" className="font-semibold text-sm">
+                      Media
+                    </label>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      {...field}
+                      id="s2"
+                      value="Returning"
+                      defaultChecked={field.value === "Returning"}
+                    />
+                    <label htmlFor="s2" className="font-semibold text-sm">
+                      Returning
+                    </label>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      {...field}
+                      id="s3"
+                      value="Patient"
+                      defaultChecked={field.value === "Patient"}
+                    />
+                    <label htmlFor="s3" className="font-semibold text-sm">
+                      Patient
+                    </label>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      {...field}
+                      id="s4"
+                      value="Pharmacy"
+                      defaultChecked={field.value === "Pharmacy"}
+                    />
+                    <label htmlFor="s4" className="font-semibold text-sm">
+                      Pharmacy
+                    </label>
+                  </div>
+                  <div className="flex items-end gap-1">
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="radio"
+                        {...field}
+                        id="s5"
+                        value="Other"
+                        defaultChecked={field.value === "Other"}
+                      />
+                      <label htmlFor="s5" className="font-semibold text-sm">
+                        Other:
+                      </label>
+                    </div>
+                    {watch("patient_information.service") === "Other" && (
+                      <input
+                        {...register("patient_information.other_service", {
+                          required: true,
+                        })}
+                        type="text"
+                        className="h-8 py-0 border-b border-gray-900 focus:outline-none"
+                      />
+                    )}
+                  </div>
+                </>
               )}
-            </div>
+            />
           </div>
         </div>
       </div>
@@ -438,20 +491,39 @@ const RfStepF1 = ({
         <div className="text-gray-950 font-medium text-base flex gap-4 items-center flex-wrap">
           Is this visit due to a work or auto accident?
           <div className="flex items-center gap-3">
-            <div
-              onClick={() => setService(1)}
-              className="flex items-center gap-2"
-            >
-              <input type="radio" checked={service === 1} name="agree" />
-              <p className="font-semibold text-sm">Yes</p>
-            </div>
-            <div
-              onClick={() => setService(2)}
-              className="flex items-center gap-2"
-            >
-              <input type="radio" checked={service === 2} name="agree" />
-              <p className="font-semibold text-sm">No</p>
-            </div>
+            <Controller
+              name="insurance_information.auto_accident"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      {...field}
+                      id="agree1"
+                      value={true}
+                      defaultChecked={field.value === true}
+                    />
+                    <label htmlFor="agree1" className="font-semibold text-sm">
+                      Yes
+                    </label>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      {...field}
+                      id="agree2"
+                      value={false}
+                      defaultChecked={field.value === false}
+                    />
+                    <label htmlFor="agree2" className="font-semibold text-sm">
+                      No
+                    </label>
+                  </div>
+                </>
+              )}
+            />
           </div>
           <h1>If yes, continue to accident related section</h1>
         </div>
@@ -462,23 +534,37 @@ const RfStepF1 = ({
             Please indicate primary insurance:
           </label>
           <div className="flex flex-wrap gap-x-4 cursor-pointer">
-            {sInsuranceItems.map((ins, index) => (
-              <div
-                key={index}
-                onClick={() => setSInsurance(ins)}
-                className="flex items-center gap-2"
-              >
-                <input
-                  type="radio"
-                  checked={sInsurance === ins}
-                  name="sinsurance"
-                  className="cursor-pointer"
-                />
-                <p className="font-semibold text-sm">{ins}</p>
-              </div>
-            ))}
-            {sInsurance === "Other" && (
+            <Controller
+              name="insurance_information.primary_insurance"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <>
+                  {sInsuranceItems.map((value, index) => (
+                    <div key={index} className="flex items-center gap-2">
+                      <input
+                        type="radio"
+                        {...field}
+                        id={index}
+                        value={value}
+                        defaultChecked={field.value === value}
+                      />
+                      <label htmlFor={index} className="font-semibold text-sm">
+                        {value}
+                      </label>
+                    </div>
+                  ))}
+                </>
+              )}
+            />
+
+            {watch("insurance_information.primary_insurance") === "Other" && (
               <input
+                {...register("insurance_information.other_primary_insurance", {
+                  required:
+                    watch("insurance_information.primary_insurance") ===
+                    "Other",
+                })}
                 type="text"
                 className="h-8 py-0 border-b border-gray-900 focus:outline-none"
               />
@@ -489,7 +575,10 @@ const RfStepF1 = ({
               Subscriber’s phone #
             </span>
             <input
-              type="text"
+              {...register("insurance_information.subscriber_phone", {
+                required: true,
+              })}
+              type="number"
               className="h-8 py-0 border-b border-gray-900 focus:outline-none"
             />
           </div>
@@ -501,6 +590,9 @@ const RfStepF1 = ({
             Subscriber’s Last Name:
           </label>
           <input
+            {...register("insurance_information.subscriber_last_name", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -510,6 +602,9 @@ const RfStepF1 = ({
             First:
           </label>
           <input
+            {...register("insurance_information.subscriber_first_name", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -519,6 +614,9 @@ const RfStepF1 = ({
             Subscriber’s Social Security:
           </label>
           <input
+            {...register("insurance_information.subscriber_social_security", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -530,7 +628,10 @@ const RfStepF1 = ({
             Member ID Number:
           </label>
           <input
-            type="text"
+            {...register("insurance_information.member_id_number", {
+              required: true,
+            })}
+            type="number"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
@@ -539,6 +640,9 @@ const RfStepF1 = ({
             Group Number:
           </label>
           <input
+            {...register("insurance_information.group_number", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -548,21 +652,32 @@ const RfStepF1 = ({
             Patient’s relationship to subscriber:
           </label>
           <div className="flex flex-wrap md:gap-4 cursor-pointer">
-            {members.map((mb, index) => (
-              <div
-                key={index}
-                onClick={() => setSInsurance(mb)}
-                className="flex items-center gap-2"
-              >
-                <input
-                  type="radio"
-                  checked={sInsurance === mb}
-                  name="sinsurance"
-                  className="cursor-pointer"
-                />
-                <p className="font-semibold text-sm">{mb}</p>
-              </div>
-            ))}
+            <Controller
+              name="insurance_information.patient_relationship_subscriber"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <>
+                  {members.map((value, index) => (
+                    <div key={index} className="flex items-center gap-2">
+                      <input
+                        type="radio"
+                        {...field}
+                        id={`prs${index}`}
+                        value={value}
+                        defaultChecked={field.value === value}
+                      />
+                      <label
+                        htmlFor={`prs${index}`}
+                        className="font-semibold text-sm"
+                      >
+                        {value}
+                      </label>
+                    </div>
+                  ))}
+                </>
+              )}
+            />
           </div>
         </div>
       </div>
@@ -577,7 +692,10 @@ const RfStepF1 = ({
             Date of Accident:
           </label>
           <input
-            type="text"
+            {...register("accident_related.date_of_accident", {
+              required: true,
+            })}
+            type="date"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
@@ -586,47 +704,71 @@ const RfStepF1 = ({
             Type of Accident:
           </label>
           <div className="flex flex-wrap md:gap-4 cursor-pointer">
-            {["Work", "Auto"].map((value, index) => (
-              <div
-                key={index}
-                onClick={() => setSInsurance(value)}
-                className="flex items-center gap-2"
-              >
-                <input
-                  type="radio"
-                  checked={value === value}
-                  name="values"
-                  className="cursor-pointer"
-                />
-                <p className="font-semibold text-sm">{value}</p>
-              </div>
-            ))}
+            <Controller
+              name="accident_related.type_of_accident"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <>
+                  {["Work", "Auto"].map((value, index) => (
+                    <div key={index} className="flex items-center gap-2">
+                      <input
+                        type="radio"
+                        {...field}
+                        id={`toa${index}`}
+                        value={value}
+                        defaultChecked={field.value === value}
+                      />
+                      <label
+                        htmlFor={`toa${index}`}
+                        className="font-semibold text-sm"
+                      >
+                        {value}
+                      </label>
+                    </div>
+                  ))}
+                </>
+              )}
+            />
           </div>
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900 col-span-2">
-          <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
-            If auto, involvement in accident:
-          </label>
-          <div className="flex flex-wrap md:gap-4 cursor-pointer">
-            {["Driver", "Passenger", "Pedestrian", "Cyclist"].map(
-              (value, index) => (
-                <div
-                  key={index}
-                  onClick={() => setSInsurance(value)}
-                  className="flex items-center gap-2"
-                >
-                  <input
-                    type="radio"
-                    checked={sInsurance === value}
-                    name="valued"
-                    className="cursor-pointer"
-                  />
-                  <p className="font-semibold text-sm">{value}</p>
-                </div>
-              )
-            )}
+        {watch("accident_related.type_of_accident") === "Auto" && (
+          <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900 col-span-2">
+            <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
+              If auto, involvement in accident:
+            </label>
+            <div className="flex flex-wrap md:gap-4 cursor-pointer">
+              <Controller
+                name="accident_related.involvement_in_accident"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <>
+                    {["Driver", "Passenger", "Pedestrian", "Cyclist"].map(
+                      (value, index) => (
+                        <div key={index} className="flex items-center gap-2">
+                          <input
+                            type="radio"
+                            {...field}
+                            id={`ia${index}`}
+                            value={value}
+                            defaultChecked={field.value === value}
+                          />
+                          <label
+                            htmlFor={`ia${index}`}
+                            className="font-semibold text-sm"
+                          >
+                            {value}
+                          </label>
+                        </div>
+                      )
+                    )}
+                  </>
+                )}
+              />
+            </div>
           </div>
-        </div>
+        )}
       </div>
       <div className="grid grid-cols-1 border-b border-x border-gray-900 h-fit">
         <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900 col-span-1">
@@ -634,6 +776,9 @@ const RfStepF1 = ({
             Name of Worker’s Comp Insurance Company or Auto Insurance:
           </label>
           <input
+            {...register("accident_related.name_of_worker", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -645,6 +790,9 @@ const RfStepF1 = ({
             Company Address:
           </label>
           <input
+            {...register("accident_related.company_address", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -654,6 +802,9 @@ const RfStepF1 = ({
             City/State/Zip:
           </label>
           <input
+            {...register("accident_related.city_state_zip", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -665,6 +816,9 @@ const RfStepF1 = ({
             Name of Insured:
           </label>
           <input
+            {...register("accident_related.name_of_insured", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -674,6 +828,9 @@ const RfStepF1 = ({
             Adjuster Name:
           </label>
           <input
+            {...register("accident_related.adjuster_name", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -685,7 +842,10 @@ const RfStepF1 = ({
             Policy Number:
           </label>
           <input
-            type="text"
+            {...register("accident_related.policy_number", {
+              required: true,
+            })}
+            type="number"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
@@ -694,21 +854,39 @@ const RfStepF1 = ({
             Reported:
           </label>
           <div className="flex flex-wrap md:gap-4 cursor-pointer">
-            {["Yes", "No"].map((value, index) => (
-              <div
-                key={index}
-                onClick={() => setSInsurance(value)}
-                className="flex items-center gap-2"
-              >
-                <input
-                  type="radio"
-                  checked={sInsurance === value}
-                  name="agreePolicy"
-                  className="cursor-pointer"
-                />
-                <p className="font-semibold text-sm">{value}</p>
-              </div>
-            ))}
+            <Controller
+              name="accident_related.report"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      {...field}
+                      id={`re1`}
+                      value={true}
+                      defaultChecked={field.value === true}
+                    />
+                    <label htmlFor={`re1`} className="font-semibold text-sm">
+                      Yes
+                    </label>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      {...field}
+                      id={`re2`}
+                      value={false}
+                      defaultChecked={field.value === false}
+                    />
+                    <label htmlFor={`re2`} className="font-semibold text-sm">
+                      No
+                    </label>
+                  </div>
+                </>
+              )}
+            />
           </div>
         </div>
         <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
@@ -716,7 +894,10 @@ const RfStepF1 = ({
             Claim Number:
           </label>
           <input
-            type="text"
+            {...register("accident_related.claim_number", {
+              required: true,
+            })}
+            type="number"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
@@ -732,6 +913,9 @@ const RfStepF1 = ({
             Name of local Relative/Friend:
           </label>
           <input
+            {...register("in_case_of_emergency.name_of_local_relative", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -742,6 +926,9 @@ const RfStepF1 = ({
             Relationship to Patient:
           </label>
           <input
+            {...register("in_case_of_emergency.relationship_to_patient", {
+              required: true,
+            })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />

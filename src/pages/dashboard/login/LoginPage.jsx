@@ -3,6 +3,7 @@
 import { useForm } from "react-hook-form";
 import { usePostLoginMutation } from "../../../redux/features/form/formApi";
 import { toast } from "react-toastify";
+import { Spinner } from "@material-tailwind/react";
 
 const LoginPage = () => {
   const [postLogin, { isLoading }] = usePostLoginMutation();
@@ -34,7 +35,7 @@ const LoginPage = () => {
     }
   };
   return (
-    <div className="bg-green-600 hover:bg-green-700 duration-700 h-screen flex items-center justify-center px-3">
+    <div className="bg-[#993132] hover:bg-[#993133] duration-700 h-screen flex items-center justify-center px-3">
       <div className="bg-white w-full max-w-[400px] mx-auto shadow-3xl rounded-xl">
         <div className="bg-white shadow shadow-gray-200 absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full">
           <svg
@@ -82,9 +83,10 @@ const LoginPage = () => {
 
           <button
             type="submit"
-            className="bg-gradient-to-b from-green-600 to-green-700 font-medium hover:bg-green-600 h-10 text-white uppercase  mt-6 md:mt-8 w-full rounded"
+            disabled={isLoading}
+            className="bg-gradient-to-b from-[#55100C] to-[#670b06] font-medium hover:bg-[#55100C] h-10 text-white uppercase  mt-6 md:mt-8 w-full rounded flex justify-center items-center"
           >
-            Login
+            {isLoading ? <Spinner color="white" /> : "Login"}
           </button>
         </form>
       </div>

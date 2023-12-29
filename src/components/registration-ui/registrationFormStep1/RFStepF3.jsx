@@ -38,6 +38,9 @@ const RFStepF3 = ({
             Acknowledge:
           </h1>
           <input
+            {...register("acknowledge_b", {
+              required: true,
+            })}
             type="text"
             className="border-b outline-none h-9 py-0 border-gray-900"
           />
@@ -88,6 +91,9 @@ const RFStepF3 = ({
             Acknowledge:
           </h1>
           <input
+            {...register("acknowledge_c", {
+              required: true,
+            })}
             type="text"
             className="border-b outline-none h-9 py-0 border-gray-900"
           />

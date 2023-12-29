@@ -38,7 +38,7 @@ const RForm1 = ({ step, setStep }) => {
           <h1 className="font-bold leading-[18px] tracking-[0.2px]">Date:</h1>
           <input
             {...register("date", { required: true })}
-            type="text"
+            type="date"
             className="border-b outline-none h-9 py-0 border-gray-900"
           />
         </div>

@@ -14,7 +14,6 @@ const RFStepF2 = ({
       <h1 className="text-center font-bold md:text-xl leading-[22px] tracking-[0.4px] mb-8">
         CONSENTS, TERMS, AND POLICIES
       </h1>
-
       <div className="flex flex-col gap-2">
         <h1 className="text-sm md:text-base font-semibold leading-[18px] tracking-[0.2px]">
           CONSENT TO TREATMENT
@@ -81,14 +80,16 @@ const RFStepF2 = ({
           (832)770-6380 if I have questions or complaints.
         </p>
       </div>
-
-      {/* signeture 1st part */}
+      CONSENTS, TERMS, AND POLICIES
       <div className="flex justify-between items-end flex-wrap gap-4 mt-16">
         <div className="flex items-center gap-1 flex-wrap">
           <h1 className="font-bold leading-[18px] tracking-[0.2px]">
             Acknowledge:
           </h1>
           <input
+            {...register("acknowledge_a", {
+              required: true,
+            })}
             type="text"
             className="border-b outline-none h-9 py-0 border-gray-900"
           />
