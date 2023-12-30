@@ -25,6 +25,10 @@ const formApi = api.injectEndpoints({
         `/patient-registers?page=${page}&&pageSize=${pageSize}`,
       providesTags: ["patient-registers"],
     }),
+    patientRegister: builder.query({
+      query: (id) => `/patient-registers/${id}`,
+      providesTags: ["patient-registers"],
+    }),
   }),
 });
 
@@ -32,4 +36,5 @@ export const {
   usePostPatientRegisterMutation,
   usePostLoginMutation,
   useMyPatientRegistersQuery,
+  usePatientRegisterQuery,
 } = formApi;

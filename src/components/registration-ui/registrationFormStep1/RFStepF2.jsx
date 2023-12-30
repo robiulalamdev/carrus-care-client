@@ -8,6 +8,7 @@ const RFStepF2 = ({
   setValue,
   watch,
   control,
+  show,
 }) => {
   return (
     <div className={`mt-8`}>

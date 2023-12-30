@@ -15,11 +15,22 @@ const useInputPattern = () => {
     e.target.value = e.target.value.replace(/[^0-9+\-]/g, "");
   };
 
+  const getValueDate = (value) => {
+    if (value == null || !(value instanceof Date)) {
+      return "";
+    }
+    const offset = value.getTimezoneOffset();
+    return new Date(value.getTime() - offset * 60 * 1000)
+      .toISOString()
+      .split("T")[0];
+  };
+
   return {
     handleNumber,
     handleNumberAndComma,
     handleAlphabeticInput,
     handlePhoneNumberInput,
+    getValueDate,
   };
 };
 

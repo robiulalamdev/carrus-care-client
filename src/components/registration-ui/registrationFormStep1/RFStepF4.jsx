@@ -8,6 +8,7 @@ const RFStepF4 = ({
   setValue,
   watch,
   control,
+  show,
 }) => {
   return (
     <section className={`mt-[60px]`}>

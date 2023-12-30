@@ -40,6 +40,7 @@ const RFStepF6 = ({
   setValue,
   watch,
   control,
+  show,
 }) => {
   return (
     <div className={`mt-10`}>

@@ -24,6 +24,7 @@ const RfStepF1 = ({
   setValue,
   watch,
   control,
+  show,
 }) => {
   const { handleNumber } = useInputPattern();
   return (
@@ -189,7 +190,7 @@ const RfStepF1 = ({
             {...register("patient_information.birth_date", {
               required: true,
             })}
-            type="date"
+            type={show ? "date" : "text"}
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
@@ -703,7 +704,7 @@ const RfStepF1 = ({
             {...register("accident_related.date_of_accident", {
               required: true,
             })}
-            type="date"
+            type={show ? "date" : "text"}
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>

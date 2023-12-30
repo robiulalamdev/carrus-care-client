@@ -90,29 +90,6 @@ const SignatureInput = ({ img, setValue }) => {
     }, 400);
   };
 
-  const getPen = () => {
-    setCursor("default");
-    setSize("3");
-    setColor("#3B3B3B");
-  };
-
-  const eraseCanvas = () => {
-    setCursor("grab");
-    setSize("20");
-    setColor("#FFFFFF");
-
-    if (!isDrawing) {
-      return;
-    }
-  };
-
-  const downloadImage = (event) => {
-    let link = event.currentTarget;
-    link.setAttribute("download", "canvas.png");
-    let image = canvasRef.current.toDataURL("image/png");
-    link.setAttribute("href", image);
-  };
-
   const uploadImageToImageBB = async () => {
     const canvas = canvasRef.current;
     const base64ImageData = canvas.toDataURL("image/png").split(",")[1];
@@ -144,7 +121,9 @@ const SignatureInput = ({ img, setValue }) => {
 
   return (
     <>
-      <div className="relative w-full max-w-[200px]">
+      <div
+        className={`relative w-full max-w-[200px] ${img ? "hidden" : "block"}`}
+      >
         <canvas
           style={{
             cursor: cursor,
@@ -172,6 +151,7 @@ const SignatureInput = ({ img, setValue }) => {
           </div>
         </div>
       </div>
+      {img && <img src={img} className="w-[150px]" alt="" />}
     </>
   );
 };

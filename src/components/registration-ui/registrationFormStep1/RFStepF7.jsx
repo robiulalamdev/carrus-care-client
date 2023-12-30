@@ -10,6 +10,7 @@ const RFStepF7 = ({
   setValue,
   watch,
   control,
+  show,
 }) => {
   return (
     <div className={`mt-10`}>
@@ -85,7 +86,7 @@ const RFStepF7 = ({
             {...register("patient_signature_date", {
               required: true,
             })}
-            type="date"
+            type={show ? "date" : "text"}
             className="border-b outline-none h-8 w-full py-0 border-gray-900"
           />
           <h1 className="text-gray-950 text-base leading-[22px] tracking-[0.18px] font-medium">

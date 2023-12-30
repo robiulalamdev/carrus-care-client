@@ -10,6 +10,7 @@ const RFStepF5 = ({
   setValue,
   watch,
   control,
+  show,
 }) => {
   return (
     <div className={`mt-10`}>
@@ -101,7 +102,7 @@ const RFStepF5 = ({
                 {...register("acknowledgement_patient_signature_date", {
                   required: true,
                 })}
-                type="date"
+                type={show ? "date" : "text"}
                 className="border-b outline-none h-8 w-full py-0 border-gray-900"
               />
             </div>
@@ -134,7 +135,7 @@ const RFStepF5 = ({
                 {...register("responsible_party_witness_signature_date", {
                   required: true,
                 })}
-                type="date"
+                type={show ? "date" : "text"}
                 className="border-b outline-none h-8 w-full py-0 border-gray-900"
               />
             </div>

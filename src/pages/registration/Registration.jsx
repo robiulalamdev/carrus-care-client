@@ -11,9 +11,9 @@ const Registration = () => {
     <>
       <div className="max-w-[1000px] mx-auto w-full py-8 px-2">
         <Header />
-        <RForm1 step={step} setStep={setStep} />
-        <RForm2 step={step} setStep={setStep} />
-        <RForm3 step={step} setStep={setStep} />
+        <RForm1 step={step} setStep={setStep} show={true} />
+        <RForm2 step={step} setStep={setStep} show={true} />
+        <RForm3 step={step} setStep={setStep} show={true} />
       </div>
     </>
   );

@@ -9,8 +9,9 @@ import SignatureInput from "../../common/SignatureInput";
 import { Spinner } from "@material-tailwind/react";
 import useInputPattern from "../../../lib/hooks/useInputPattern";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
 
-const RForm3 = ({ step, setStep }) => {
+const RForm3 = ({ step, setStep, show, data }) => {
   const [postPatientRegister, { isLoading }] = usePostPatientRegisterMutation();
   const { rForm1, rForm2 } = useSelector((state) => state.form);
   const {
@@ -24,7 +25,7 @@ const RForm3 = ({ step, setStep }) => {
     formState: { errors },
   } = useForm();
   const dispatch = useDispatch();
-  const { handleNumber } = useInputPattern();
+  const { handleNumber, getValueDate } = useInputPattern();
 
   const handleSaveData = async (data) => {
     const formData = {
@@ -47,6 +48,25 @@ const RForm3 = ({ step, setStep }) => {
       toast.error("Form Submit Failed");
     }
   };
+
+  const setNestedValues = (obj) => {
+    for (const key in obj) {
+      const value = obj[key];
+      if (typeof value === "object") {
+        for (const nkey in value) {
+          const nvalue = value[nkey]; // Corrected line
+          setValue(`${key}.${nkey}`, nvalue);
+        }
+      } else {
+        setValue(key, value);
+      }
+    }
+  };
+
+  useEffect(() => {
+    setNestedValues(data);
+  }, [setValue, data]);
+
   return (
     <form
       onSubmit={handleSubmit(handleSaveData)}
@@ -108,7 +128,7 @@ const RForm3 = ({ step, setStep }) => {
                     "patient_information_for_authorization.date_of_birth",
                     { required: true }
                   )}
-                  type="date"
+                  type={show ? "date" : "text"}
                   className="border-b outline-none h-8 text-sm w-full border-gray-900"
                 />
               </div>
@@ -464,7 +484,7 @@ const RForm3 = ({ step, setStep }) => {
                         required: true,
                       }
                     )}
-                    type="date"
+                    type={show ? "date" : "text"}
                     className="border-b outline-none h-8 text-sm w-full border-gray-900"
                   />
                 )}
@@ -482,7 +502,7 @@ const RForm3 = ({ step, setStep }) => {
                         required: true,
                       }
                     )}
-                    type="date"
+                    type={show ? "date" : "text"}
                     className="border-b outline-none h-8 text-sm w-full border-gray-900"
                   />
                 </div>
@@ -938,7 +958,7 @@ const RForm3 = ({ step, setStep }) => {
                     required: true,
                   }
                 )}
-                type="date"
+                type={show ? "date" : "text"}
                 className="border-b outline-none h-8 text-sm w-full max-w-[300px] border-gray-900"
               />
             </div>
@@ -993,7 +1013,7 @@ const RForm3 = ({ step, setStep }) => {
                 {...register("signatures.witness_signature_date", {
                   required: true,
                 })}
-                type="date"
+                type={show ? "date" : "text"}
                 className="border-b outline-none h-8 text-sm w-full max-w-[300px] border-gray-900"
               />
             </div>
@@ -1033,8 +1053,9 @@ const RForm3 = ({ step, setStep }) => {
               <input
                 {...register("signatures.signature_of_minor_date", {
                   required: true,
+                  valueAsDate: true,
                 })}
-                type="date"
+                type={show ? "date" : "text"}
                 className="border-b outline-none h-8 text-sm w-full max-w-[300px] border-gray-900"
               />
             </div>
@@ -1043,7 +1064,7 @@ const RForm3 = ({ step, setStep }) => {
       </section>
 
       <div className="flex justify-center pt-20 pb-3">
-        {step === 3 && (
+        {step === 3 && show && (
           <button
             type="submit"
             className="w-32 h-10 bg-green-600 hover:bg-green-700 duration-150 cursor-pointer text-white text-base leading-[18px] tracking-[0.4px] border-none flex justify-center items-center"

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Button, Card, CardFooter, Typography } from "@material-tailwind/react";
 import { useMyPatientRegistersQuery } from "../../../redux/features/form/formApi";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 const TABLE_HEAD = ["Name", "Phone", "Salutation", "Address", "Date", "Action"];
 
@@ -100,15 +101,15 @@ const RegisterTable = () => {
                     </Typography>
                   </td>
                   <td className={`p-4 border-b border-blue-gray-50`}>
-                    <Typography
-                      as="a"
-                      href="#"
-                      variant="small"
-                      color="blue-gray"
-                      className="font-medium"
-                    >
-                      View
-                    </Typography>
+                    <Link to={`/dashboard/${item?._id}`}>
+                      <Typography
+                        variant="small"
+                        color="blue-gray"
+                        className="font-medium hover:text-blue-600"
+                      >
+                        View
+                      </Typography>
+                    </Link>
                   </td>
                 </tr>
               );

@@ -11,8 +11,9 @@ import {
 import { useDispatch } from "react-redux";
 import { setRForm2 } from "../../../redux/features/form/formSlice";
 import SignatureInput from "../../common/SignatureInput";
+import { useEffect } from "react";
 
-const RForm2 = ({ step, setStep }) => {
+const RForm2 = ({ step, setStep, show, data }) => {
   const {
     handleSubmit,
     register,
@@ -29,6 +30,24 @@ const RForm2 = ({ step, setStep }) => {
       setStep(3);
     }
   };
+
+  const setNestedValues = (obj) => {
+    for (const key in obj) {
+      const value = obj[key];
+      if (typeof value === "object") {
+        for (const nkey in value) {
+          const nvalue = value[nkey]; // Corrected line
+          setValue(`${key}.${nkey}`, nvalue);
+        }
+      } else {
+        setValue(key, value);
+      }
+    }
+  };
+
+  useEffect(() => {
+    setNestedValues(data);
+  }, [setValue, data]);
   return (
     <form
       onSubmit={handleSubmit(handleSecondForm)}
@@ -215,7 +234,7 @@ const RForm2 = ({ step, setStep }) => {
             {...register("patient_statement_signature_date", {
               required: true,
             })}
-            type="date"
+            type={show ? "date" : "text"}
             className="border-b outline-none h-8 w-full py-0 border-gray-900"
           />
           <h1 className="text-gray-950 text-base leading-[22px] tracking-[0.18px] font-medium">
@@ -224,14 +243,16 @@ const RForm2 = ({ step, setStep }) => {
         </div>
       </div>
 
-      <div className="flex justify-center pt-20 pb-3">
-        <button
-          type="submit"
-          className="w-32 h-10 bg-green-600 hover:bg-green-700 duration-150 cursor-pointer text-white text-base leading-[18px] tracking-[0.4px] border-none flex justify-center items-center"
-        >
-          Next
-        </button>
-      </div>
+      {show && (
+        <div className="flex justify-center pt-20 pb-3">
+          <button
+            type="submit"
+            className="w-32 h-10 bg-green-600 hover:bg-green-700 duration-150 cursor-pointer text-white text-base leading-[18px] tracking-[0.4px] border-none flex justify-center items-center"
+          >
+            Next
+          </button>
+        </div>
+      )}
     </form>
   );
 };

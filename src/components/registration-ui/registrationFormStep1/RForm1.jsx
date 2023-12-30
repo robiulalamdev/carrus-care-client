@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import RfStepF1 from "./RfStepF1";
 import RFStepF2 from "./RFStepF2";
@@ -10,8 +10,9 @@ import RFStepF6 from "./RFStepF6";
 import RFStepF7 from "./RFStepF7";
 import { useDispatch } from "react-redux";
 import { setRForm1 } from "../../../redux/features/form/formSlice";
+import moment from "moment";
 
-const RForm1 = ({ step, setStep }) => {
+const RForm1 = ({ step, setStep, show, data }) => {
   const {
     handleSubmit,
     register,
@@ -28,6 +29,33 @@ const RForm1 = ({ step, setStep }) => {
       setStep(2);
     }
   };
+
+  const setNestedValues = (obj) => {
+    for (const key in obj) {
+      const value = obj[key];
+
+      if (typeof value === "object") {
+        for (const nkey in value) {
+          const nvalue = value[nkey];
+          if (nvalue instanceof Date) {
+            setValue(`${key}.${nkey}`, moment(nvalue).format("DD-MM-YYYY"));
+          } else {
+            setValue(`${key}.${nkey}`, nvalue);
+          }
+        }
+      } else {
+        if (value instanceof Date) {
+          setValue(key, moment(value).format("DD-MM-YYYY"));
+        } else {
+          setValue(key, value);
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    setNestedValues(data);
+  }, [setValue, data]);
   return (
     <form
       onSubmit={handleSubmit(handleFirstForm)}
@@ -38,7 +66,7 @@ const RForm1 = ({ step, setStep }) => {
           <h1 className="font-bold leading-[18px] tracking-[0.2px]">Date:</h1>
           <input
             {...register("date", { required: true })}
-            type="date"
+            type={show ? "date" : "text"}
             className="border-b outline-none h-9 py-0 border-gray-900"
           />
         </div>
@@ -61,6 +89,7 @@ const RForm1 = ({ step, setStep }) => {
         setValue={setValue}
         watch={watch}
         control={control}
+        show={show}
       />
       <RFStepF2
         step={step}
@@ -70,6 +99,7 @@ const RForm1 = ({ step, setStep }) => {
         setValue={setValue}
         watch={watch}
         control={control}
+        show={show}
       />
       <RFStepF3
         step={step}
@@ -79,6 +109,7 @@ const RForm1 = ({ step, setStep }) => {
         setValue={setValue}
         watch={watch}
         control={control}
+        show={show}
       />
       <RFStepF4
         step={step}
@@ -88,6 +119,7 @@ const RForm1 = ({ step, setStep }) => {
         setValue={setValue}
         watch={watch}
         control={control}
+        show={show}
       />
       <RFStepF5
         step={step}
@@ -97,6 +129,7 @@ const RForm1 = ({ step, setStep }) => {
         setValue={setValue}
         watch={watch}
         control={control}
+        show={show}
       />
       <RFStepF6
         step={step}
@@ -106,6 +139,7 @@ const RForm1 = ({ step, setStep }) => {
         setValue={setValue}
         watch={watch}
         control={control}
+        show={show}
       />
       <RFStepF7
         step={step}
@@ -115,16 +149,19 @@ const RForm1 = ({ step, setStep }) => {
         setValue={setValue}
         watch={watch}
         control={control}
+        show={show}
       />
 
-      <div className="flex justify-center pt-20 pb-3">
-        <button
-          type="submit"
-          className="w-32 h-10 bg-green-600 hover:bg-green-700 duration-150 cursor-pointer text-white text-base leading-[18px] tracking-[0.4px] border-none flex justify-center items-center"
-        >
-          Next
-        </button>
-      </div>
+      {show && (
+        <div className="flex justify-center pt-20 pb-3">
+          <button
+            type="submit"
+            className="w-32 h-10 bg-green-600 hover:bg-green-700 duration-150 cursor-pointer text-white text-base leading-[18px] tracking-[0.4px] border-none flex justify-center items-center"
+          >
+            Next
+          </button>
+        </div>
+      )}
     </form>
   );
 };
