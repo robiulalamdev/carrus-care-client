@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 
 import { Button, Card, CardFooter, Typography } from "@material-tailwind/react";
 import { useMyPatientRegistersQuery } from "../../../redux/features/form/formApi";
@@ -7,10 +7,29 @@ import moment from "moment";
 const TABLE_HEAD = ["Name", "Phone", "Salutation", "Address", "Date", "Action"];
 
 const RegisterTable = () => {
-  const { data } = useMyPatientRegistersQuery();
-  // console.log(data);
+  const [currentPage, setCurrentPage] = useState(1);
+  const { data, refetch } = useMyPatientRegistersQuery({
+    page: currentPage,
+    pageSize: 10,
+  });
+
+  const handlePreviousClick = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextClick = () => {
+    if (currentPage < data?.pagination?.totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  useEffect(() => {
+    refetch();
+  }, [currentPage]);
   return (
-    <Card className="w-full pt-4 min-h-screen flex flex-col justify-between">
+    <Card className="w-full flex-grow pt-4 h-full flex flex-col justify-between">
       <table className="w-full min-w-max table-auto text-left overflow-scroll">
         <thead className="bg-gray-900 h-fit">
           <tr>
@@ -102,13 +121,13 @@ const RegisterTable = () => {
 
       <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4 h-fit">
         <Typography variant="small" color="blue-gray" className="font-normal">
-          Page 1 of 10
+          Page {data?.pagination?.page} of {data?.pagination?.totalPages}
         </Typography>
         <div className="flex gap-2">
-          <Button variant="outlined" size="sm">
+          <Button variant="outlined" size="sm" onClick={handlePreviousClick}>
             Previous
           </Button>
-          <Button variant="outlined" size="sm">
+          <Button variant="outlined" size="sm" onClick={handleNextClick}>
             Next
           </Button>
         </div>

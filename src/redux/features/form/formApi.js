@@ -21,7 +21,8 @@ const formApi = api.injectEndpoints({
     }),
 
     myPatientRegisters: builder.query({
-      query: () => `/patient-registers`,
+      query: ({ page, pageSize }) =>
+        `/patient-registers?page=${page}&&pageSize=${pageSize}`,
       providesTags: ["patient-registers"],
     }),
   }),

@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { usePostPatientRegisterMutation } from "../../../redux/features/form/formApi";
 import { setRForm1, setRForm2 } from "../../../redux/features/form/formSlice";
 import SignatureInput from "../../common/SignatureInput";
-import { useState } from "react";
 import { Spinner } from "@material-tailwind/react";
+import useInputPattern from "../../../lib/hooks/useInputPattern";
+import { toast } from "react-toastify";
 
 const RForm3 = ({ step, setStep }) => {
   const [postPatientRegister, { isLoading }] = usePostPatientRegisterMutation();
@@ -19,18 +20,17 @@ const RForm3 = ({ step, setStep }) => {
     setValue,
     watch,
     control,
+    reset,
     formState: { errors },
   } = useForm();
   const dispatch = useDispatch();
-  const [reason_for_release_information, setReason_for_release_information] =
-    useState([]);
+  const { handleNumber } = useInputPattern();
 
   const handleSaveData = async (data) => {
     const formData = {
       ...rForm1,
       ...rForm2,
       ...data,
-      reason_for_release_information: reason_for_release_information,
     };
     const options = {
       data: formData,
@@ -39,27 +39,12 @@ const RForm3 = ({ step, setStep }) => {
     if (result?.data?.success) {
       dispatch(setRForm1(null));
       dispatch(setRForm2(null));
+      reset();
+      toast.success("Form Submit Success");
+      window.location.reload();
       setStep(1);
-      alert("Form Submit Success");
     } else {
-      alert("Form Submit Failed");
-    }
-  };
-
-  const handleReason = (input) => {
-    const isExist = reason_for_release_information.find(
-      (value) => value === input
-    );
-    if (isExist) {
-      const remember = reason_for_release_information.filter(
-        (value) => value !== input
-      );
-      setReason_for_release_information(remember);
-    } else {
-      setReason_for_release_information([
-        ...reason_for_release_information,
-        input,
-      ]);
+      toast.error("Form Submit Failed");
     }
   };
   return (
@@ -67,18 +52,6 @@ const RForm3 = ({ step, setStep }) => {
       onSubmit={handleSubmit(handleSaveData)}
       className={`${step === 3 ? "block" : "hidden"}`}
     >
-      <div>
-        <img className="w-56 mx-auto" src={logo} alt="" />
-        <h1 className="text-gray-800 text-sm text-center leading-[18px] tracking-[0.2px] font-medium">
-          8111 W. Grand Parkway S.
-        </h1>
-        <h1 className="text-gray-800 text-sm text-center leading-[18px] tracking-[0.2px] font-medium">
-          Richmond, TX 77407
-        </h1>
-        <h1 className="text-gray-800 text-sm text-center leading-[18px] tracking-[0.2px] font-medium">
-          (832) 770-6380
-        </h1>
-      </div>
       <h1 className="text-center font-bold text-[18px] leading-[22px] tracking-[0.4px] mt-16">
         AUTHORIZATION TO USE OR DISCLOSE PROTECTED HEALTH INFORMATION
       </h1>
@@ -201,6 +174,7 @@ const RForm3 = ({ step, setStep }) => {
                   {...register("patient_information_for_authorization.phone", {
                     required: true,
                   })}
+                  onInput={handleNumber}
                   type="text"
                   className="border-b outline-none h-8 text-sm w-full border-gray-900"
                 />
@@ -319,6 +293,7 @@ const RForm3 = ({ step, setStep }) => {
                       required: true,
                     }
                   )}
+                  onInput={handleNumber}
                   type="text"
                   defaultValue="(832) _770-6380"
                   className="border-b outline-none h-8 text-sm w-full border-gray-900"
@@ -423,6 +398,7 @@ const RForm3 = ({ step, setStep }) => {
                   {...register("information_regarding_person.phone", {
                     required: true,
                   })}
+                  onInput={handleNumber}
                   type="number"
                   className="border-b outline-none h-8 text-sm w-full border-gray-900"
                 />
@@ -626,56 +602,177 @@ const RForm3 = ({ step, setStep }) => {
               <h1 className="font-semibold text-gray-900 text-sm leading-[22px] tracking-[0.2px]">
                 Reason for release of information: (Choose all that Apply)
               </h1>
-              {[
-                "Treatment/Continuing Medical Care",
-                "Personal Use",
-                "Billing or Claims",
-                "Insurance",
-                "Legal Purposes",
-                "Disability Determination",
-                "School",
-                "Employment",
-              ]?.map((value, index) => (
-                <div
-                  onClick={() => handleReason(value)}
-                  className="flex items-center gap-1"
-                  key={index}
-                >
-                  <input
-                    type="checkbox"
-                    checked={reason_for_release_information.includes(value)}
-                    className="cursor-pointer"
-                  />
-                  <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
-                    {value}
-                  </h1>
-                </div>
-              ))}
-
-              <div className="flex items-center gap-1">
-                <div
-                  onClick={() => handleReason("Other")}
-                  className="flex items-center gap-1"
-                >
-                  <input
-                    type="checkbox"
-                    checked={reason_for_release_information.includes("Other")}
-                    className="cursor-pointer"
-                  />
-                  <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
-                    Other <i>(Specify)</i>
-                  </h1>
-                </div>
-                {reason_for_release_information?.includes("Other") && (
-                  <input
-                    {...register("reason_for_release_information.other_value", {
-                      required: true,
-                    })}
-                    type="text"
-                    className="border-b outline-none h-8 text-sm w-full border-gray-900"
-                  />
+              <Controller
+                name="reason_for_release_information.treatment_medical_care"
+                control={control}
+                render={({ field }) => (
+                  <div
+                    onClick={() => {
+                      field.onChange(!field.value);
+                    }}
+                    className="flex items-center gap-1 cursor-pointer"
+                  >
+                    <input type="checkbox" checked={field.value} />
+                    <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                      Treatment/Continuing Medical Care
+                    </h1>
+                  </div>
                 )}
-              </div>
+              />
+              <Controller
+                name="reason_for_release_information.personal_use"
+                control={control}
+                render={({ field }) => (
+                  <div
+                    onClick={() => {
+                      field.onChange(!field.value);
+                    }}
+                    className="flex items-center gap-1 cursor-pointer"
+                  >
+                    <input type="checkbox" checked={field.value} />
+                    <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                      Personal Use
+                    </h1>
+                  </div>
+                )}
+              />
+              <Controller
+                name="reason_for_release_information.billing_or_claims"
+                control={control}
+                render={({ field }) => (
+                  <div
+                    onClick={() => {
+                      field.onChange(!field.value);
+                    }}
+                    className="flex items-center gap-1 cursor-pointer"
+                  >
+                    <input type="checkbox" checked={field.value} />
+                    <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                      Billing or Claims
+                    </h1>
+                  </div>
+                )}
+              />
+              <Controller
+                name="reason_for_release_information.insurance"
+                control={control}
+                render={({ field }) => (
+                  <div
+                    onClick={() => {
+                      field.onChange(!field.value);
+                    }}
+                    className="flex items-center gap-1 cursor-pointer"
+                  >
+                    <input type="checkbox" checked={field.value} />
+                    <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                      Insurance
+                    </h1>
+                  </div>
+                )}
+              />
+              <Controller
+                name="reason_for_release_information.legal_purposes"
+                control={control}
+                render={({ field }) => (
+                  <div
+                    onClick={() => {
+                      field.onChange(!field.value);
+                    }}
+                    className="flex items-center gap-1 cursor-pointer"
+                  >
+                    <input type="checkbox" checked={field.value} />
+                    <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                      Legal Purposes
+                    </h1>
+                  </div>
+                )}
+              />
+              <Controller
+                name="reason_for_release_information.disability_determination"
+                control={control}
+                render={({ field }) => (
+                  <div
+                    onClick={() => {
+                      field.onChange(!field.value);
+                    }}
+                    className="flex items-center gap-1 cursor-pointer"
+                  >
+                    <input type="checkbox" checked={field.value} />
+                    <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                      Disability Determination
+                    </h1>
+                  </div>
+                )}
+              />
+              <Controller
+                name="reason_for_release_information.school"
+                control={control}
+                render={({ field }) => (
+                  <div
+                    onClick={() => {
+                      field.onChange(!field.value);
+                    }}
+                    className="flex items-center gap-1 cursor-pointer"
+                  >
+                    <input type="checkbox" checked={field.value} />
+                    <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                      School
+                    </h1>
+                  </div>
+                )}
+              />
+              <Controller
+                name="reason_for_release_information.employment"
+                control={control}
+                render={({ field }) => (
+                  <div
+                    onClick={() => {
+                      field.onChange(!field.value);
+                    }}
+                    className="flex items-center gap-1 cursor-pointer"
+                  >
+                    <input type="checkbox" checked={field.value} />
+                    <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                      Employment
+                    </h1>
+                  </div>
+                )}
+              />
+              <Controller
+                name="reason_for_release_information.other.status"
+                control={control}
+                render={({ field }) => (
+                  <div className="flex items-center gap-1 cursor-pointer">
+                    <div
+                      onClick={() => {
+                        field.onChange(!field.value);
+                      }}
+                      className="flex items-center gap-1"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={field.value}
+                        className="cursor-pointer"
+                      />
+                      <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                        Other <i>(Specify)</i>
+                      </h1>
+                    </div>
+                    {watch("reason_for_release_information.other.status") && (
+                      <input
+                        {...register(
+                          "reason_for_release_information.other.message",
+                          {
+                            required: true,
+                          }
+                        )}
+                        type="text"
+                        className="border-b outline-none h-8 text-sm w-full border-gray-900"
+                      />
+                    )}
+                  </div>
+                )}
+              />
             </div>
           </div>
         </div>
@@ -716,6 +813,8 @@ const RForm3 = ({ step, setStep }) => {
                   {...register("effective_time_period.month", {
                     required: true,
                   })}
+                  onInput={handleNumber}
+                  maxLength={2}
                   type="number"
                   className="border-b outline-none h-8 text-sm w-full max-w-[100px] border-gray-900"
                 />
@@ -728,6 +827,8 @@ const RForm3 = ({ step, setStep }) => {
                   {...register("effective_time_period.day", {
                     required: true,
                   })}
+                  onInput={handleNumber}
+                  maxLength={2}
                   type="number"
                   className="border-b outline-none h-8 text-sm w-full max-w-[100px] border-gray-900"
                 />
@@ -740,6 +841,8 @@ const RForm3 = ({ step, setStep }) => {
                   {...register("effective_time_period.year", {
                     required: true,
                   })}
+                  onInput={handleNumber}
+                  maxLength={10}
                   type="number"
                   className="border-b outline-none h-8 text-sm w-full max-w-[100px] border-gray-900"
                 />

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Controller } from "react-hook-form";
+import useInputPattern from "../../../lib/hooks/useInputPattern";
 
 const sInsuranceItems = [
   "Aetna",
@@ -24,6 +25,7 @@ const RfStepF1 = ({
   watch,
   control,
 }) => {
+  const { handleNumber } = useInputPattern();
   return (
     <div className={`mt-5`}>
       {/* -------1st part start */}
@@ -37,7 +39,7 @@ const RfStepF1 = ({
           </label>
           <input
             {...register("patient_information.last_name", {
-              required: true,
+              required: false,
             })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
@@ -61,7 +63,7 @@ const RfStepF1 = ({
           </label>
           <input
             {...register("patient_information.middle_name", {
-              required: true,
+              required: false,
             })}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
@@ -174,6 +176,7 @@ const RfStepF1 = ({
             {...register("patient_information.phone_number", {
               required: true,
             })}
+            onInput={handleNumber}
             type="number"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -238,6 +241,7 @@ const RfStepF1 = ({
             {...register("patient_information.pharmacy_phone", {
               required: true,
             })}
+            onInput={handleNumber}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -276,6 +280,7 @@ const RfStepF1 = ({
             {...register("patient_information.primary_phone_number", {
               required: true,
             })}
+            onInput={handleNumber}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -578,6 +583,7 @@ const RfStepF1 = ({
               {...register("insurance_information.subscriber_phone", {
                 required: true,
               })}
+              onInput={handleNumber}
               type="number"
               className="h-8 py-0 border-b border-gray-900 focus:outline-none"
             />
@@ -631,6 +637,7 @@ const RfStepF1 = ({
             {...register("insurance_information.member_id_number", {
               required: true,
             })}
+            onInput={handleNumber}
             type="number"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -643,6 +650,7 @@ const RfStepF1 = ({
             {...register("insurance_information.group_number", {
               required: true,
             })}
+            onInput={handleNumber}
             type="text"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -845,6 +853,7 @@ const RfStepF1 = ({
             {...register("accident_related.policy_number", {
               required: true,
             })}
+            onInput={handleNumber}
             type="number"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
@@ -897,6 +906,7 @@ const RfStepF1 = ({
             {...register("accident_related.claim_number", {
               required: true,
             })}
+            onInput={handleNumber}
             type="number"
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />

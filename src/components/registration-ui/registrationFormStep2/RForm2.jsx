@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Controller, useForm } from "react-hook-form";
-import logo from "../../../assets/brand/logo.png";
+
 import {
   facilityFees,
   facilityFeesRange,
@@ -34,18 +34,6 @@ const RForm2 = ({ step, setStep }) => {
       onSubmit={handleSubmit(handleSecondForm)}
       className={`${step === 2 ? "block" : "hidden"}`}
     >
-      <div>
-        <img className="w-56 mx-auto" src={logo} alt="" />
-        <h1 className="text-gray-800 text-sm text-center leading-[18px] tracking-[0.2px] font-medium">
-          8111 W. Grand Parkway S.
-        </h1>
-        <h1 className="text-gray-800 text-sm text-center leading-[18px] tracking-[0.2px] font-medium">
-          Richmond, TX 77407
-        </h1>
-        <h1 className="text-gray-800 text-sm text-center leading-[18px] tracking-[0.2px] font-medium">
-          (832) 770-6380
-        </h1>
-      </div>
       <div className="mt-10 max-w-[800px] mx-auto">
         <h1 className="text-center font-bold text-[18px] underline leading-[22px] tracking-[0.4px]">
           In accordance with Texas House Bill No. 2041 – <br /> Patient

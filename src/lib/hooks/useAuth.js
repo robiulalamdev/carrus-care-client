@@ -15,13 +15,15 @@ const useAuth = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data?.message === "Forbidden Access") {
             setIsLogged(false);
             setIsLoading(false);
           } else {
-            setIsLogged(true);
-            setUser(data);
+            // console.log(data);
+            if (data?.success) {
+              setIsLogged(true);
+              setUser(data?.user);
+            }
             setIsLoading(false);
           }
         });
