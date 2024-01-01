@@ -4,7 +4,6 @@ import RForm2 from "../../components/registration-ui/registrationFormStep2/RForm
 import RForm3 from "../../components/registration-ui/registrationFormStep3/RForm3";
 import Header from "../../components/shared/Header";
 import ReCAPTCHA from "react-google-recaptcha";
-import { chaptaKey } from "../../lib/api";
 
 const Registration = () => {
   const [step, setStep] = useState(1);
