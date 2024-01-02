@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import SignatureInput from "../../common/SignatureInput";
 import { Controller } from "react-hook-form";
+import DateInput from "../../common/DateInput";
 
 const RFStepF7 = ({
   step,
@@ -10,6 +12,7 @@ const RFStepF7 = ({
   setValue,
   watch,
   control,
+  errors,
   show,
 }) => {
   return (
@@ -82,12 +85,23 @@ const RFStepF7 = ({
           </h1>
         </div>
         <div className="flex flex-col gap-1 max-w-[350px]">
-          <input
+          <Controller
+            name="patient_signature_date"
+            control={control}
+            rules={{ required: "Date is required" }}
+            render={({ field }) => (
+              <DateInput
+                value={field.value}
+                setValue={(value) => {
+                  setValue("patient_signature_date", value);
+                  field.onChange(value);
+                }}
+                error={errors?.patient_signature_date}
+              />
+            )}
             {...register("patient_signature_date", {
               required: true,
             })}
-            type={show ? "date" : "text"}
-            className="border-b outline-none h-8 w-full py-0 border-gray-900"
           />
           <h1 className="text-gray-950 text-base leading-[22px] tracking-[0.18px] font-medium">
             Date

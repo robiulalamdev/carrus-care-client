@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { setRForm2 } from "../../../redux/features/form/formSlice";
 import SignatureInput from "../../common/SignatureInput";
 import { useEffect } from "react";
+import DateInput from "../../common/DateInput";
 
 const RForm2 = ({ step, setStep, show, data }) => {
   const {
@@ -36,7 +37,7 @@ const RForm2 = ({ step, setStep, show, data }) => {
       const value = obj[key];
       if (typeof value === "object") {
         for (const nkey in value) {
-          const nvalue = value[nkey]; // Corrected line
+          const nvalue = value[nkey];
           setValue(`${key}.${nkey}`, nvalue);
         }
       } else {
@@ -230,12 +231,23 @@ const RForm2 = ({ step, setStep, show, data }) => {
           </h1>
         </div>
         <div className="flex flex-col gap-1 max-w-[350px]">
-          <input
+          <Controller
+            name="patient_statement_signature_date"
+            control={control}
+            rules={{ required: "Date is required" }}
+            render={({ field }) => (
+              <DateInput
+                value={field.value}
+                setValue={(value) => {
+                  setValue("patient_statement_signature_date", value);
+                  field.onChange(value);
+                }}
+                error={errors.patient_statement_signature_date}
+              />
+            )}
             {...register("patient_statement_signature_date", {
               required: true,
             })}
-            type={show ? "date" : "text"}
-            className="border-b outline-none h-8 w-full py-0 border-gray-900"
           />
           <h1 className="text-gray-950 text-base leading-[22px] tracking-[0.18px] font-medium">
             Date/Fecha

@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Controller } from "react-hook-form";
 import useInputPattern from "../../../lib/hooks/useInputPattern";
+import DateInput from "../../common/DateInput";
 
 const sInsuranceItems = [
   "Aetna",
@@ -24,6 +26,7 @@ const RfStepF1 = ({
   setValue,
   watch,
   control,
+  errors,
   show,
 }) => {
   const { handleNumber } = useInputPattern();
@@ -72,40 +75,44 @@ const RfStepF1 = ({
         </div>
 
         <div className="p-1 md:p-2 md:border-r border-gray-900 col-span-7 md:col-span-1">
-          <div className="flex items-center gap-1 ">
+          <div className="flex items-center gap-3">
             <Controller
               name="patient_information.salutation"
               control={control}
               defaultValue=""
               render={({ field }) => (
                 <>
-                  <input
-                    type="radio"
-                    {...field}
-                    id="mr"
-                    value="Mr."
-                    defaultChecked={field.value === "Mr."}
-                  />
-                  <label
-                    htmlFor="mr"
-                    className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]"
-                  >
-                    Mr.
-                  </label>
+                  <div className="flex items-center gap-1">
+                    <input
+                      type="radio"
+                      {...field}
+                      id="mr"
+                      value="Mr."
+                      defaultChecked={field.value === "Mr."}
+                    />
+                    <label
+                      htmlFor="mr"
+                      className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]"
+                    >
+                      Mr.
+                    </label>
+                  </div>
 
-                  <input
-                    type="radio"
-                    {...field}
-                    id="mrs"
-                    value="Mrs."
-                    defaultChecked={field.value === "Mrs."}
-                  />
-                  <label
-                    htmlFor="mrs"
-                    className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]"
-                  >
-                    Mrs.
-                  </label>
+                  <div className="flex items-center gap-1">
+                    <input
+                      type="radio"
+                      {...field}
+                      id="mrs"
+                      value="Mrs."
+                      defaultChecked={field.value === "Mrs."}
+                    />
+                    <label
+                      htmlFor="mrs"
+                      className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]"
+                    >
+                      Mrs.
+                    </label>
+                  </div>
                 </>
               )}
               {...register("patient_information.salutation", {
@@ -114,46 +121,52 @@ const RfStepF1 = ({
             />
           </div>
         </div>
-        <div className="p-1 md:p-2 md:border-r border-gray-900">
-          <Controller
-            name="patient_information.salutation"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <>
-                <input
-                  type="radio"
-                  {...field}
-                  id="mr"
-                  value="Miss."
-                  defaultChecked={field.value === "Miss."}
-                />
-                <label
-                  htmlFor="mr"
-                  className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]"
-                >
-                  Miss.
-                </label>
+        <div className="p-1 md:p-2 border-gray-900">
+          <div className="flex gap-3">
+            <Controller
+              name="patient_information.salutation"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <>
+                  <div className="flex gap-1">
+                    <input
+                      type="radio"
+                      {...field}
+                      id="mr"
+                      value="Miss."
+                      defaultChecked={field.value === "Miss."}
+                    />
+                    <label
+                      htmlFor="mr"
+                      className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]"
+                    >
+                      Miss.
+                    </label>
+                  </div>
 
-                <input
-                  type="radio"
-                  {...field}
-                  id="mr"
-                  value="Ms."
-                  defaultChecked={field.value === "Ms."}
-                />
-                <label
-                  htmlFor="mr"
-                  className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]"
-                >
-                  Ms.
-                </label>
-              </>
-            )}
-            {...register("patient_information.salutation", {
-              required: true,
-            })}
-          />
+                  <div className="flex gap-1">
+                    <input
+                      type="radio"
+                      {...field}
+                      id="mr"
+                      value="Ms."
+                      defaultChecked={field.value === "Ms."}
+                    />
+                    <label
+                      htmlFor="mr"
+                      className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]"
+                    >
+                      Ms.
+                    </label>
+                  </div>
+                </>
+              )}
+              {...register("patient_information.salutation", {
+                required: true,
+              })}
+            />
+          </div>
         </div>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-5 border-b border-x border-gray-900 h-fit">
@@ -182,16 +195,28 @@ const RfStepF1 = ({
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Birth Date
           </label>
-          <input
+
+          <Controller
+            name="patient_information.birth_date"
+            control={control}
+            rules={{ required: "Date is required" }}
+            render={({ field }) => (
+              <DateInput
+                value={field.value}
+                setValue={(value) => {
+                  setValue("patient_information.birth_date", value);
+                  field.onChange(value);
+                }}
+                error={errors?.patient_information?.birth_date}
+              />
+            )}
             {...register("patient_information.birth_date", {
               required: true,
             })}
-            type={show ? "date" : "text"}
-            className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
       </div>
@@ -208,7 +233,7 @@ const RfStepF1 = ({
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             City/State/Zip:
           </label>
@@ -247,7 +272,7 @@ const RfStepF1 = ({
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Pharmacy Address:
           </label>
@@ -286,7 +311,7 @@ const RfStepF1 = ({
             className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-gray-900">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Preferred method
           </label>
@@ -352,7 +377,7 @@ const RfStepF1 = ({
       </div>
 
       <div className="grid grid-cols-1 border-b border-x border-gray-900 h-fit">
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900 w-full">
+        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-gray-900 w-full">
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Please tell us how you learned of our service or whom we may thank.
           </label>
@@ -700,12 +725,24 @@ const RfStepF1 = ({
           <label className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]">
             Date of Accident:
           </label>
-          <input
+
+          <Controller
+            name="accident_related.date_of_accident"
+            control={control}
+            rules={{ required: "Date is required" }}
+            render={({ field }) => (
+              <DateInput
+                value={field.value}
+                setValue={(value) => {
+                  setValue("accident_related.date_of_accident", value);
+                  field.onChange(value);
+                }}
+                error={errors?.accident_related?.date_of_accident}
+              />
+            )}
             {...register("accident_related.date_of_accident", {
               required: true,
             })}
-            type={show ? "date" : "text"}
-            className="w-full h-8 border-none focus:border-blue-600 focus:outline-none"
           />
         </div>
         <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 md:border-r border-gray-900 col-span-2">

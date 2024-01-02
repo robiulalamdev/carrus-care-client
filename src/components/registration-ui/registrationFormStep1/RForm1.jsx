@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import RfStepF1 from "./RfStepF1";
 import RFStepF2 from "./RFStepF2";
 import RFStepF3 from "./RFStepF3";
@@ -11,6 +11,7 @@ import RFStepF7 from "./RFStepF7";
 import { useDispatch } from "react-redux";
 import { setRForm1 } from "../../../redux/features/form/formSlice";
 import moment from "moment";
+import DateInput from "../../common/DateInput";
 
 const RForm1 = ({ step, setStep, show, data }) => {
   const {
@@ -33,22 +34,13 @@ const RForm1 = ({ step, setStep, show, data }) => {
   const setNestedValues = (obj) => {
     for (const key in obj) {
       const value = obj[key];
-
       if (typeof value === "object") {
         for (const nkey in value) {
           const nvalue = value[nkey];
-          if (nvalue instanceof Date) {
-            setValue(`${key}.${nkey}`, moment(nvalue).format("DD-MM-YYYY"));
-          } else {
-            setValue(`${key}.${nkey}`, nvalue);
-          }
+          setValue(`${key}.${nkey}`, nvalue);
         }
       } else {
-        if (value instanceof Date) {
-          setValue(key, moment(value).format("DD-MM-YYYY"));
-        } else {
-          setValue(key, value);
-        }
+        setValue(key, value);
       }
     }
   };
@@ -56,6 +48,7 @@ const RForm1 = ({ step, setStep, show, data }) => {
   useEffect(() => {
     setNestedValues(data);
   }, [setValue, data]);
+
   return (
     <form
       onSubmit={handleSubmit(handleFirstForm)}
@@ -64,10 +57,21 @@ const RForm1 = ({ step, setStep, show, data }) => {
       <div className="flex justify-between flex-wrap gap-4 md:gap-0">
         <div className="flex items-center gap-1">
           <h1 className="font-bold leading-[18px] tracking-[0.2px]">Date:</h1>
-          <input
+          <Controller
+            name="date"
+            control={control}
+            rules={{ required: "Date is required" }}
+            render={({ field }) => (
+              <DateInput
+                value={field.value}
+                setValue={(value) => {
+                  setValue("date", value);
+                  field.onChange(value);
+                }}
+                error={errors.date}
+              />
+            )}
             {...register("date", { required: true })}
-            type={show ? "date" : "text"}
-            className="border-b outline-none h-9 py-0 border-gray-900"
           />
         </div>
         <div className="flex items-center gap-1">
@@ -89,6 +93,7 @@ const RForm1 = ({ step, setStep, show, data }) => {
         setValue={setValue}
         watch={watch}
         control={control}
+        errors={errors}
         show={show}
       />
       <RFStepF2
@@ -99,6 +104,7 @@ const RForm1 = ({ step, setStep, show, data }) => {
         setValue={setValue}
         watch={watch}
         control={control}
+        errors={errors}
         show={show}
       />
       <RFStepF3
@@ -109,6 +115,7 @@ const RForm1 = ({ step, setStep, show, data }) => {
         setValue={setValue}
         watch={watch}
         control={control}
+        errors={errors}
         show={show}
       />
       <RFStepF4
@@ -119,6 +126,7 @@ const RForm1 = ({ step, setStep, show, data }) => {
         setValue={setValue}
         watch={watch}
         control={control}
+        errors={errors}
         show={show}
       />
       <RFStepF5
@@ -129,6 +137,7 @@ const RForm1 = ({ step, setStep, show, data }) => {
         setValue={setValue}
         watch={watch}
         control={control}
+        errors={errors}
         show={show}
       />
       <RFStepF6
@@ -139,6 +148,7 @@ const RForm1 = ({ step, setStep, show, data }) => {
         setValue={setValue}
         watch={watch}
         control={control}
+        errors={errors}
         show={show}
       />
       <RFStepF7
@@ -149,6 +159,7 @@ const RForm1 = ({ step, setStep, show, data }) => {
         setValue={setValue}
         watch={watch}
         control={control}
+        errors={errors}
         show={show}
       />
 

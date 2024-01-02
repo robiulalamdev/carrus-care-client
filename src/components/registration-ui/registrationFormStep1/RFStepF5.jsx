@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { Controller } from "react-hook-form";
 import SignatureInput from "../../common/SignatureInput";
+import DateInput from "../../common/DateInput";
 
 const RFStepF5 = ({
   step,
@@ -10,6 +12,7 @@ const RFStepF5 = ({
   setValue,
   watch,
   control,
+  errors,
   show,
 }) => {
   return (
@@ -98,12 +101,24 @@ const RFStepF5 = ({
               <h1 className="text-gray-950 text-base leading-[22px] tracking-[0.18px] font-medium">
                 Date:
               </h1>
-              <input
+
+              <Controller
+                name="acknowledgement_patient_signature_date"
+                control={control}
+                rules={{ required: "Date is required" }}
+                render={({ field }) => (
+                  <DateInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("acknowledgement_patient_signature_date", value);
+                      field.onChange(value);
+                    }}
+                    error={errors?.acknowledgement_patient_signature_date}
+                  />
+                )}
                 {...register("acknowledgement_patient_signature_date", {
                   required: true,
                 })}
-                type={show ? "date" : "text"}
-                className="border-b outline-none h-8 w-full py-0 border-gray-900"
               />
             </div>
           </div>
@@ -131,12 +146,27 @@ const RFStepF5 = ({
               <h1 className="text-gray-950 text-base leading-[22px] tracking-[0.18px] font-medium">
                 Date:
               </h1>
-              <input
+
+              <Controller
+                name="responsible_party_witness_signature_date"
+                control={control}
+                rules={{ required: "Date is required" }}
+                render={({ field }) => (
+                  <DateInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue(
+                        "responsible_party_witness_signature_date",
+                        value
+                      );
+                      field.onChange(value);
+                    }}
+                    error={errors?.responsible_party_witness_signature_date}
+                  />
+                )}
                 {...register("responsible_party_witness_signature_date", {
                   required: true,
                 })}
-                type={show ? "date" : "text"}
-                className="border-b outline-none h-8 w-full py-0 border-gray-900"
               />
             </div>
             <div className="flex items-center gap-1 w-full">

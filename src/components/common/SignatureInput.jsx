@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { iClose, iTick } from "../../utils/icons";
 
 const SignatureInput = ({ img, setValue }) => {
+  const [open, setOpen] = useState(true);
   const [isDrawing, setIsDrawing] = useState(false);
   const [color, setColor] = useState("#3B3B3B");
   const [size, setSize] = useState("3");
@@ -15,7 +17,7 @@ const SignatureInput = ({ img, setValue }) => {
     const canvas = canvasRef.current;
     ctx.current = canvas.getContext("2d");
 
-    canvas.height = 100;
+    canvas.height = 70;
     canvas.width = 300;
 
     const canvasimg = localStorage.getItem("canvasimg");
@@ -82,6 +84,8 @@ const SignatureInput = ({ img, setValue }) => {
     const context = canvas.getContext("2d");
     context.fillStyle = "white";
     context.fillRect(0, 0, canvas.width, canvas.height);
+    setValue("");
+    setOpen(true);
 
     if (timeout.current !== undefined) clearTimeout(timeout.current);
     timeout.current = setTimeout(function () {
@@ -105,6 +109,7 @@ const SignatureInput = ({ img, setValue }) => {
       if (response.data && response.data.data && response.data.data.url) {
         toast.success("Signature Add Success");
         setValue(response.data.data.url);
+        setOpen(false);
       } else {
         alert("Signature Add Failed");
       }
@@ -117,13 +122,9 @@ const SignatureInput = ({ img, setValue }) => {
     clearCanvas();
   }, []);
 
-  //   console.log(img);
-
   return (
-    <>
-      <div
-        className={`relative w-full max-w-[200px] ${img ? "hidden" : "block"}`}
-      >
+    <div className="relative w-full max-w-[200px]">
+      <div className={`relative  ${!open ? "hidden" : "block"}`}>
         <canvas
           style={{
             cursor: cursor,
@@ -139,20 +140,30 @@ const SignatureInput = ({ img, setValue }) => {
           onMouseUp={endPosition}
           ref={canvasRef}
         />
-        <div className="flex px-2 gap-4 w-fit cursor-pointer absolute -top-[25px] -right-[102px] bg-[#993133]">
-          <div onClick={clearCanvas} className=" text-white">
-            X
-          </div>
+      </div>
+      {img && !open && <img src={img} className="w-[150px] " alt="" />}
+
+      <div
+        className={`grid ${
+          open ? "grid-cols-2" : "grid-cols-1"
+        } w-fit cursor-pointer absolute -top-[24px] -right-[102px] bg-[#993133] hover:bg-[#8c3335]`}
+      >
+        <div
+          onClick={clearCanvas}
+          className=" text-white w-7 p-1 h-6 flex justify-center items-center"
+        >
+          {iClose}
+        </div>
+        {open && (
           <div
-            className="btn btn-success cursor-pointer text-white"
+            className="btn btn-success cursor-pointer text-white w-7 p-1 h-6 flex justify-center items-center bg-green-600 hover:bg-green-700"
             onClick={uploadImageToImageBB}
           >
-            Save
+            {iTick}
           </div>
-        </div>
+        )}
       </div>
-      {img && <img src={img} className="w-[150px]" alt="" />}
-    </>
+    </div>
   );
 };
 

@@ -10,6 +10,7 @@ import { Spinner } from "@material-tailwind/react";
 import useInputPattern from "../../../lib/hooks/useInputPattern";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
+import DateInput from "../../common/DateInput";
 
 const RForm3 = ({ step, setStep, show, data }) => {
   const [postPatientRegister, { isLoading }] = usePostPatientRegisterMutation();
@@ -54,7 +55,7 @@ const RForm3 = ({ step, setStep, show, data }) => {
       const value = obj[key];
       if (typeof value === "object") {
         for (const nkey in value) {
-          const nvalue = value[nkey]; // Corrected line
+          const nvalue = value[nkey];
           setValue(`${key}.${nkey}`, nvalue);
         }
       } else {
@@ -123,13 +124,33 @@ const RForm3 = ({ step, setStep, show, data }) => {
                 <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
                   Date of Birth:
                 </h1>
-                <input
+
+                <Controller
+                  name="patient_information_for_authorization.date_of_birth"
+                  control={control}
+                  rules={{ required: "Date is required" }}
+                  render={({ field }) => (
+                    <DateInput
+                      value={field.value}
+                      setValue={(value) => {
+                        setValue(
+                          "patient_information_for_authorization.date_of_birth",
+                          value
+                        );
+                        field.onChange(value);
+                      }}
+                      error={
+                        errors?.patient_information_for_authorization
+                          ?.date_of_birth
+                      }
+                    />
+                  )}
                   {...register(
                     "patient_information_for_authorization.date_of_birth",
-                    { required: true }
+                    {
+                      required: true,
+                    }
                   )}
-                  type={show ? "date" : "text"}
-                  className="border-b outline-none h-8 text-sm w-full border-gray-900"
                 />
               </div>
             </div>
@@ -477,15 +498,31 @@ const RForm3 = ({ step, setStep, show, data }) => {
                   from (insert date)
                 </h1>
                 {watch("specific_information.type") === "medical_record" && (
-                  <input
+                  <Controller
+                    name="specific_information.medical_record_from_date"
+                    control={control}
+                    rules={{ required: "Date is required" }}
+                    render={({ field }) => (
+                      <DateInput
+                        value={field.value}
+                        setValue={(value) => {
+                          setValue(
+                            "specific_information?.medical_record_from_date",
+                            value
+                          );
+                          field.onChange(value);
+                        }}
+                        error={
+                          errors?.specific_information?.medical_record_from_date
+                        }
+                      />
+                    )}
                     {...register(
                       "specific_information.medical_record_from_date",
                       {
                         required: true,
                       }
                     )}
-                    type={show ? "date" : "text"}
-                    className="border-b outline-none h-8 text-sm w-full border-gray-900"
                   />
                 )}
               </div>
@@ -495,15 +532,32 @@ const RForm3 = ({ step, setStep, show, data }) => {
                   <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
                     to (insert date)
                   </h1>
-                  <input
+
+                  <Controller
+                    name="specific_information.medical_record_to_date"
+                    control={control}
+                    rules={{ required: "Date is required" }}
+                    render={({ field }) => (
+                      <DateInput
+                        value={field.value}
+                        setValue={(value) => {
+                          setValue(
+                            "specific_information?.medical_record_to_date",
+                            value
+                          );
+                          field.onChange(value);
+                        }}
+                        error={
+                          errors?.specific_information?.medical_record_to_date
+                        }
+                      />
+                    )}
                     {...register(
-                      "specific_information.medical_record_to_date",
+                      "specific_information?.medical_record_to_date",
                       {
                         required: true,
                       }
                     )}
-                    type={show ? "date" : "text"}
-                    className="border-b outline-none h-8 text-sm w-full border-gray-900"
                   />
                 </div>
               )}
@@ -951,15 +1005,32 @@ const RForm3 = ({ step, setStep, show, data }) => {
               <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
                 Date:
               </h1>
-              <input
+              <Controller
+                name="signatures.patient_representative_signature_date"
+                control={control}
+                rules={{ required: "Date is required" }}
+                render={({ field }) => (
+                  <DateInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue(
+                        "signatures?.patient_representative_signature_date",
+                        value
+                      );
+                      field.onChange(value);
+                    }}
+                    error={
+                      errors.signatures?.patient_representative_signature_date
+                    }
+                    className="h-8 text-sm w-full max-w-[300px]"
+                  />
+                )}
                 {...register(
-                  "signatures.patient_representative_signature_date",
+                  "signatures?.patient_representative_signature_date",
                   {
                     required: true,
                   }
                 )}
-                type={show ? "date" : "text"}
-                className="border-b outline-none h-8 text-sm w-full max-w-[300px] border-gray-900"
               />
             </div>
           </div>
@@ -1009,12 +1080,24 @@ const RForm3 = ({ step, setStep, show, data }) => {
               <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
                 Date:
               </h1>
-              <input
-                {...register("signatures.witness_signature_date", {
+              <Controller
+                name="signatures.witness_signature_date"
+                control={control}
+                rules={{ required: "Date is required" }}
+                render={({ field }) => (
+                  <DateInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("signatures?.witness_signature_date", value);
+                      field.onChange(value);
+                    }}
+                    error={errors.signatures?.witness_signature_date}
+                    className="h-8 text-sm w-full max-w-[300px]"
+                  />
+                )}
+                {...register("signatures?.witness_signature_date", {
                   required: true,
                 })}
-                type={show ? "date" : "text"}
-                className="border-b outline-none h-8 text-sm w-full max-w-[300px] border-gray-900"
               />
             </div>
           </div>
@@ -1050,13 +1133,24 @@ const RForm3 = ({ step, setStep, show, data }) => {
               <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
                 Date:
               </h1>
-              <input
-                {...register("signatures.signature_of_minor_date", {
+              <Controller
+                name="signatures.signature_of_minor_date"
+                control={control}
+                rules={{ required: "Date is required" }}
+                render={({ field }) => (
+                  <DateInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("signatures?.signature_of_minor_date", value);
+                      field.onChange(value);
+                    }}
+                    error={errors.signatures?.signature_of_minor_date}
+                    className="h-8 text-sm w-full max-w-[300px]"
+                  />
+                )}
+                {...register("signatures?.signature_of_minor_date", {
                   required: true,
-                  valueAsDate: true,
                 })}
-                type={show ? "date" : "text"}
-                className="border-b outline-none h-8 text-sm w-full max-w-[300px] border-gray-900"
               />
             </div>
           </div>
