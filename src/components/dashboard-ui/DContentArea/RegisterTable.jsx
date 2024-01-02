@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
 
-import { Button, Card, CardFooter, Typography } from "@material-tailwind/react";
+import {
+  Button,
+  Card,
+  CardFooter,
+  IconButton,
+  Typography,
+} from "@material-tailwind/react";
 import { useMyPatientRegistersQuery } from "../../../redux/features/form/formApi";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import { iPrint, iView } from "../../../utils/icons";
 
 const TABLE_HEAD = ["Name", "Phone", "Salutation", "Address", "Date", "Action"];
 
@@ -101,15 +108,22 @@ const RegisterTable = () => {
                     </Typography>
                   </td>
                   <td className={`p-4 border-b border-blue-gray-50`}>
-                    <Link to={`/dashboard/${item?._id}`}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-medium hover:text-blue-600"
+                    <div className="flex items-center gap-3">
+                      <Link to={`/dashboard/${item?._id}`}>
+                        <IconButton
+                          size="sm"
+                          className="font-medium bg-blue-600"
+                        >
+                          <div className="w-5">{iView}</div>
+                        </IconButton>
+                      </Link>
+                      <IconButton
+                        size="sm"
+                        className="bg-green-600 shadow-none"
                       >
-                        View
-                      </Typography>
-                    </Link>
+                        <div className="w-5">{iPrint}</div>
+                      </IconButton>
+                    </div>
                   </td>
                 </tr>
               );

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 
 const RFStepF3 = ({
@@ -11,7 +12,7 @@ const RFStepF3 = ({
   show,
 }) => {
   return (
-    <div className={``}>
+    <div className={`${step === 3 ? "block" : "hidden"}`}>
       <div className="flex flex-col gap-4 mt-16">
         <h1 className="text-sm md:text-base font-semibold leading-[18px] tracking-[0.2px]">
           ACCIDENTAL BODILY FLUID EXPOSURE TO HEALTHCARE WORKER

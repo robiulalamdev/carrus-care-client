@@ -43,7 +43,7 @@ const RFStepF6 = ({
   show,
 }) => {
   return (
-    <div className={`mt-10`}>
+    <div className={`mt-10 ${step === 6 ? "block" : "hidden"}`}>
       <h1 className="text-center font-bold text-[18px] underline leading-[22px] tracking-[0.4px]">
         PATIENTS’ BILL OF RIGHTS AND RESPONSIBILITIES
       </h1>

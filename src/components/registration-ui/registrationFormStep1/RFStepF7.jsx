@@ -16,7 +16,7 @@ const RFStepF7 = ({
   show,
 }) => {
   return (
-    <div className={`mt-10`}>
+    <div className={`mt-10 ${step === 7 ? "block" : "hidden"}`}>
       <p className="text-justify text-sm text-gray-900">
         The physicians, nurses and the entire staff at Care Plus ER are
         committed to assure you safe and reasonable care. To file or voice a

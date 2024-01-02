@@ -16,7 +16,7 @@ const RFStepF5 = ({
   show,
 }) => {
   return (
-    <div className={`mt-10`}>
+    <div className={`mt-10 ${step === 5 ? "block" : "hidden"}`}>
       <div className="flex flex-col gap-4">
         <h1 className="text-sm md:text-base font-semibold leading-[18px] tracking-[0.2px]">
           NON-COVERED SERVICES

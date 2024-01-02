@@ -11,7 +11,7 @@ const RFStepF4 = ({
   show,
 }) => {
   return (
-    <section className={`mt-[60px]`}>
+    <section className={`mt-[60px] ${step === 4 ? "block" : "hidden"}`}>
       <div className="">
         <div className="grid grid-cols-1 gap-3 mt-2">
           <p className="text-justify text-sm text-gray-900">

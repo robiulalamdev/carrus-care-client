@@ -11,7 +11,7 @@ const RFStepF2 = ({
   show,
 }) => {
   return (
-    <div className={`mt-8`}>
+    <div className={`mt-8 ${step === 2 ? "block" : "hidden"}`}>
       <h1 className="text-center font-bold md:text-xl leading-[22px] tracking-[0.4px] mb-8">
         CONSENTS, TERMS, AND POLICIES
       </h1>

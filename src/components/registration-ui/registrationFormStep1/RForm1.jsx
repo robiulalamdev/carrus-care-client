@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import RfStepF1 from "./RfStepF1";
 import RFStepF2 from "./RFStepF2";
@@ -10,7 +10,6 @@ import RFStepF6 from "./RFStepF6";
 import RFStepF7 from "./RFStepF7";
 import { useDispatch } from "react-redux";
 import { setRForm1 } from "../../../redux/features/form/formSlice";
-import moment from "moment";
 import DateInput from "../../common/DateInput";
 
 const RForm1 = ({ step, setStep, show, data }) => {
@@ -23,11 +22,16 @@ const RForm1 = ({ step, setStep, show, data }) => {
     control,
     formState: { errors },
   } = useForm();
+  const [form1Step, setForm1Step] = useState(1);
   const dispatch = useDispatch();
   const handleFirstForm = (data) => {
     if (data) {
-      dispatch(setRForm1(data));
-      setStep(2);
+      if (form1Step === 7) {
+        dispatch(setRForm1(data));
+        setStep(2);
+      } else {
+        setForm1Step(form1Step + 1);
+      }
     }
   };
 
@@ -85,94 +89,112 @@ const RForm1 = ({ step, setStep, show, data }) => {
           />
         </div>
       </div>
-      <RfStepF1
-        step={step}
-        handleSubmit={handleSubmit}
-        register={register}
-        setError={setError}
-        setValue={setValue}
-        watch={watch}
-        control={control}
-        errors={errors}
-        show={show}
-      />
-      <RFStepF2
-        step={step}
-        handleSubmit={handleSubmit}
-        register={register}
-        setError={setError}
-        setValue={setValue}
-        watch={watch}
-        control={control}
-        errors={errors}
-        show={show}
-      />
-      <RFStepF3
-        step={step}
-        handleSubmit={handleSubmit}
-        register={register}
-        setError={setError}
-        setValue={setValue}
-        watch={watch}
-        control={control}
-        errors={errors}
-        show={show}
-      />
-      <RFStepF4
-        step={step}
-        handleSubmit={handleSubmit}
-        register={register}
-        setError={setError}
-        setValue={setValue}
-        watch={watch}
-        control={control}
-        errors={errors}
-        show={show}
-      />
-      <RFStepF5
-        step={step}
-        handleSubmit={handleSubmit}
-        register={register}
-        setError={setError}
-        setValue={setValue}
-        watch={watch}
-        control={control}
-        errors={errors}
-        show={show}
-      />
-      <RFStepF6
-        step={step}
-        handleSubmit={handleSubmit}
-        register={register}
-        setError={setError}
-        setValue={setValue}
-        watch={watch}
-        control={control}
-        errors={errors}
-        show={show}
-      />
-      <RFStepF7
-        step={step}
-        handleSubmit={handleSubmit}
-        register={register}
-        setError={setError}
-        setValue={setValue}
-        watch={watch}
-        control={control}
-        errors={errors}
-        show={show}
-      />
 
-      {show && (
-        <div className="flex justify-center pt-20 pb-3">
-          <button
-            type="submit"
-            className="w-32 h-10 bg-green-600 hover:bg-green-700 duration-150 cursor-pointer text-white text-base leading-[18px] tracking-[0.4px] border-none flex justify-center items-center"
-          >
-            Next
-          </button>
-        </div>
+      {form1Step === 1 && (
+        <RfStepF1
+          step={form1Step}
+          handleSubmit={handleSubmit}
+          register={register}
+          setError={setError}
+          setValue={setValue}
+          watch={watch}
+          control={control}
+          errors={errors}
+          show={show}
+        />
       )}
+      {form1Step === 2 && (
+        <RFStepF2
+          step={form1Step}
+          handleSubmit={handleSubmit}
+          register={register}
+          setError={setError}
+          setValue={setValue}
+          watch={watch}
+          control={control}
+          errors={errors}
+          show={show}
+        />
+      )}
+
+      {form1Step === 3 && (
+        <RFStepF3
+          step={form1Step}
+          handleSubmit={handleSubmit}
+          register={register}
+          setError={setError}
+          setValue={setValue}
+          watch={watch}
+          control={control}
+          errors={errors}
+          show={show}
+        />
+      )}
+
+      {form1Step === 4 && (
+        <RFStepF4
+          step={form1Step}
+          handleSubmit={handleSubmit}
+          register={register}
+          setError={setError}
+          setValue={setValue}
+          watch={watch}
+          control={control}
+          errors={errors}
+          show={show}
+        />
+      )}
+
+      {form1Step === 5 && (
+        <RFStepF5
+          step={form1Step}
+          handleSubmit={handleSubmit}
+          register={register}
+          setError={setError}
+          setValue={setValue}
+          watch={watch}
+          control={control}
+          errors={errors}
+          show={show}
+        />
+      )}
+
+      {form1Step === 6 && (
+        <RFStepF6
+          step={form1Step}
+          handleSubmit={handleSubmit}
+          register={register}
+          setError={setError}
+          setValue={setValue}
+          watch={watch}
+          control={control}
+          errors={errors}
+          show={show}
+        />
+      )}
+
+      {form1Step === 7 && (
+        <RFStepF7
+          step={form1Step}
+          handleSubmit={handleSubmit}
+          register={register}
+          setError={setError}
+          setValue={setValue}
+          watch={watch}
+          control={control}
+          errors={errors}
+          show={show}
+        />
+      )}
+
+      <div className="flex justify-center pt-20 pb-3">
+        <button
+          type="submit"
+          className="w-32 h-10 bg-green-600 hover:bg-green-700 duration-150 cursor-pointer text-white text-base leading-[18px] tracking-[0.4px] border-none flex justify-center items-center"
+        >
+          Next
+        </button>
+      </div>
     </form>
   );
 };
