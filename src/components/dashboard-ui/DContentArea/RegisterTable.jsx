@@ -40,7 +40,7 @@ const RegisterTable = () => {
   }, [currentPage]);
   return (
     <Card className="w-full flex-grow pt-4 h-full flex flex-col justify-between">
-      {/* <table className="w-full min-w-max table-auto text-left overflow-scroll">
+      <table className="w-full min-w-max table-auto text-left overflow-scroll">
         <thead className="bg-gray-900 h-fit">
           <tr>
             {TABLE_HEAD.map((head) => (
@@ -70,7 +70,7 @@ const RegisterTable = () => {
                       color="blue-gray"
                       className="font-normal"
                     >
-                      {item?.patient_information?.first_name}
+                      {item?.prfTwo?.prfOne?.patient_information?.first_name}
                     </Typography>
                   </td>
                   <td className={`p-4 border-b border-blue-gray-50`}>
@@ -79,7 +79,10 @@ const RegisterTable = () => {
                       color="blue-gray"
                       className="font-normal"
                     >
-                      {item?.patient_information?.primary_phone_number}
+                      {
+                        item?.prfTwo?.prfOne?.patient_information
+                          ?.primary_phone_number
+                      }
                     </Typography>
                   </td>
                   <td className={`p-4 border-b border-blue-gray-50`}>
@@ -88,7 +91,7 @@ const RegisterTable = () => {
                       color="blue-gray"
                       className="font-normal"
                     >
-                      {item?.patient_information?.salutation}
+                      {item?.prfTwo?.prfOne?.patient_information?.salutation}
                     </Typography>
                   </td>
                   <td className={`p-4 border-b border-blue-gray-50`}>
@@ -97,7 +100,10 @@ const RegisterTable = () => {
                       color="blue-gray"
                       className="font-normal"
                     >
-                      {item?.patient_information?.street_address}
+                      {
+                        item?.prfTwo?.prfOne?.patient_information
+                          ?.street_address
+                      }
                     </Typography>
                   </td>
                   <td className={`p-4 border-b border-blue-gray-50`}>
@@ -134,7 +140,7 @@ const RegisterTable = () => {
         ) : (
           <div>Not Found</div>
         )}
-      </table> */}
+      </table>
 
       <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4 h-fit">
         <Typography variant="small" color="blue-gray" className="font-normal">
