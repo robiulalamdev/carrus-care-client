@@ -2,15 +2,6 @@ import { api } from "../../api/apiSlice";
 
 const formApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    postPatientRegister: builder.mutation({
-      query: ({ data }) => ({
-        url: `/patient-registers/create`,
-        method: "POST",
-        body: data,
-      }),
-      invalidatesTags: ["patient-registers"],
-    }),
-
     postLogin: builder.mutation({
       query: ({ data }) => ({
         url: `/users/login`,
@@ -25,16 +16,67 @@ const formApi = api.injectEndpoints({
         `/patient-registers?page=${page}&&pageSize=${pageSize}`,
       providesTags: ["patient-registers"],
     }),
-    patientRegister: builder.query({
-      query: (id) => `/patient-registers/${id}`,
-      providesTags: ["patient-registers"],
+
+    // form one
+    postPROne: builder.mutation({
+      query: ({ data }) => ({
+        url: `/prf-one/create`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["prf-one"],
+    }),
+
+    pROneById: builder.query({
+      query: (id) => `/prf-one/${id}`,
+      providesTags: ["prf-one"],
+    }),
+
+    // form two
+    postPRTwo: builder.mutation({
+      query: ({ data }) => ({
+        url: `/prf-two/create`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["prf-two"],
+    }),
+
+    pRTwoById: builder.query({
+      query: (id) => `/prf-two/${id}`,
+      providesTags: ["prf-two"],
+    }),
+
+    // form three
+    postPRThree: builder.mutation({
+      query: ({ data }) => ({
+        url: `/prf-three/create`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["prf-three"],
+    }),
+
+    pRThreeById: builder.query({
+      query: (id) => `/prf-three/${id}`,
+      providesTags: ["prf-three"],
     }),
   }),
 });
 
 export const {
-  usePostPatientRegisterMutation,
   usePostLoginMutation,
   useMyPatientRegistersQuery,
-  usePatientRegisterQuery,
+
+  // form one
+  usePostPROneMutation,
+  usePROneByIdQuery,
+
+  // form one
+  usePostPRTwoMutation,
+  usePRTwoByIdQuery,
+
+  // form one
+  usePostPRThreeMutation,
+  usePRThreeByIdQuery,
 } = formApi;

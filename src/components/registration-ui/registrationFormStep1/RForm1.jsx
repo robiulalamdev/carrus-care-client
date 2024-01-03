@@ -8,14 +8,13 @@ import RFStepF4 from "./RFStepF4";
 import RFStepF5 from "./RFStepF5";
 import RFStepF6 from "./RFStepF6";
 import RFStepF7 from "./RFStepF7";
-import { useDispatch } from "react-redux";
 import DateInput from "../../common/DateInput";
 import { toast } from "react-toastify";
 import { Spinner } from "@material-tailwind/react";
-import { usePostPatientRegisterMutation } from "../../../redux/features/form/formApi";
+import { usePostPROneMutation } from "../../../redux/features/form/formApi";
 
 const RForm1 = ({ step, setStep, show, data }) => {
-  const [postPatientRegister, { isLoading }] = usePostPatientRegisterMutation();
+  const [postPROne, { isLoading }] = usePostPROneMutation();
   const {
     handleSubmit,
     register,
@@ -34,7 +33,7 @@ const RForm1 = ({ step, setStep, show, data }) => {
         const options = {
           data: data,
         };
-        const result = await postPatientRegister(options);
+        const result = await postPROne(options);
         if (result?.data?.success) {
           reset();
           toast.success("Form Submit Success");

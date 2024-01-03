@@ -1,16 +1,15 @@
 /* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import RFormTwoStep1 from "./RFormTwoStep1";
 import RFormTwoStep2 from "./RFormTwoStep2";
 import RFormTwoStep3 from "./RFormTwoStep3";
 import { Spinner } from "@material-tailwind/react";
-import { usePostPatientRegisterMutation } from "../../../redux/features/form/formApi";
+import { usePostPRTwoMutation } from "../../../redux/features/form/formApi";
 
 const RForm2 = ({ step, setStep, data }) => {
-  const [postPatientRegister, { isLoading }] = usePostPatientRegisterMutation();
+  const [postPRTwo, { isLoading }] = usePostPRTwoMutation();
   const {
     handleSubmit,
     register,
@@ -22,7 +21,6 @@ const RForm2 = ({ step, setStep, data }) => {
     formState: { errors },
   } = useForm();
   const [form2Step, setForm2Step] = useState(1);
-  const dispatch = useDispatch();
 
   const handleSecondForm = async (data) => {
     if (data) {
@@ -30,7 +28,7 @@ const RForm2 = ({ step, setStep, data }) => {
         const options = {
           data: data,
         };
-        const result = await postPatientRegister(options);
+        const result = await postPRTwo(options);
         if (result?.data?.success) {
           reset();
           toast.success("Form Submit Success");

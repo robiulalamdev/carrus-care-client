@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
 import { useForm } from "react-hook-form";
-import { usePostPatientRegisterMutation } from "../../../redux/features/form/formApi";
+import { usePostPRThreeMutation } from "../../../redux/features/form/formApi";
 import { Spinner } from "@material-tailwind/react";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
@@ -9,7 +9,7 @@ import RFormThreeStep1 from "./RFormThreeStep1";
 import RFormThreeStep2 from "./RFormThreeStep2";
 
 const RForm3 = ({ step, setStep, data }) => {
-  const [postPatientRegister, { isLoading }] = usePostPatientRegisterMutation();
+  const [postPRThree, { isLoading }] = usePostPRThreeMutation();
   const {
     handleSubmit,
     register,
@@ -28,7 +28,7 @@ const RForm3 = ({ step, setStep, data }) => {
         const options = {
           data: data,
         };
-        const result = await postPatientRegister(options);
+        const result = await postPRThree(options);
         if (result?.data?.success) {
           reset();
           toast.success("Form Submit Success");
