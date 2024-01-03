@@ -24,12 +24,12 @@ const formApi = api.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["prf-one"],
+      invalidatesTags: ["prf-one", "patient-registers"],
     }),
 
     pROneById: builder.query({
       query: (id) => `/prf-one/${id}`,
-      providesTags: ["prf-one"],
+      providesTags: ["prf-one", "patient-registers"],
     }),
 
     // form two
@@ -39,12 +39,12 @@ const formApi = api.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["prf-two"],
+      invalidatesTags: ["prf-two", "patient-registers"],
     }),
 
     pRTwoById: builder.query({
       query: (id) => `/prf-two/${id}`,
-      providesTags: ["prf-two"],
+      providesTags: ["prf-two", "patient-registers"],
     }),
 
     // form three
@@ -54,12 +54,12 @@ const formApi = api.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["prf-three"],
+      invalidatesTags: ["prf-three", "patient-registers"],
     }),
 
     pRThreeById: builder.query({
       query: (id) => `/prf-three/${id}`,
-      providesTags: ["prf-three"],
+      providesTags: ["prf-three", "patient-registers"],
     }),
   }),
 });

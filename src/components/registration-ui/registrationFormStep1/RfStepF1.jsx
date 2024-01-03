@@ -904,7 +904,7 @@ const RfStepF1 = ({
             <Controller
               name="accident_related.report"
               control={control}
-              defaultValue=""
+              defaultValue="Yes"
               render={({ field }) => (
                 <>
                   <div className="flex items-center gap-2">
@@ -912,8 +912,8 @@ const RfStepF1 = ({
                       type="radio"
                       {...field}
                       id={`re1`}
-                      value={true}
-                      defaultChecked={field.value === true}
+                      value="Yes"
+                      defaultChecked={field.value === "Yes"}
                     />
                     <label htmlFor={`re1`} className="font-semibold text-sm">
                       Yes
@@ -924,8 +924,8 @@ const RfStepF1 = ({
                       type="radio"
                       {...field}
                       id={`re2`}
-                      value={false}
-                      defaultChecked={field.value === false}
+                      value="No"
+                      defaultChecked={field.value === "No"}
                     />
                     <label htmlFor={`re2`} className="font-semibold text-sm">
                       No
@@ -933,6 +933,9 @@ const RfStepF1 = ({
                   </div>
                 </>
               )}
+              {...register("accident_related.report", {
+                required: true,
+              })}
             />
           </div>
         </div>

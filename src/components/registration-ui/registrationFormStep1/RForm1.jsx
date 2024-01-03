@@ -33,6 +33,7 @@ const RForm1 = ({ step, setStep, show, data }) => {
         const options = {
           data: data,
         };
+        console.log(data);
         const result = await postPROne(options);
         if (result?.data?.success) {
           reset();

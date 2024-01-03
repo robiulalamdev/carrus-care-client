@@ -21,6 +21,8 @@ const RegisterTable = () => {
     pageSize: 10,
   });
 
+  console.log(data);
+
   const handlePreviousClick = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -38,7 +40,7 @@ const RegisterTable = () => {
   }, [currentPage]);
   return (
     <Card className="w-full flex-grow pt-4 h-full flex flex-col justify-between">
-      <table className="w-full min-w-max table-auto text-left overflow-scroll">
+      {/* <table className="w-full min-w-max table-auto text-left overflow-scroll">
         <thead className="bg-gray-900 h-fit">
           <tr>
             {TABLE_HEAD.map((head) => (
@@ -132,7 +134,7 @@ const RegisterTable = () => {
         ) : (
           <div>Not Found</div>
         )}
-      </table>
+      </table> */}
 
       <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4 h-fit">
         <Typography variant="small" color="blue-gray" className="font-normal">

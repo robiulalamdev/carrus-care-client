@@ -169,7 +169,7 @@ const RFormThreeStep2 = ({ register, control, setValue, errors }) => {
                     value={field.value}
                     setValue={(value) => {
                       setValue(
-                        "signatures?.patient_representative_signature_date",
+                        "signatures.patient_representative_signature_date",
                         value
                       );
                       field.onChange(value);
@@ -181,7 +181,7 @@ const RFormThreeStep2 = ({ register, control, setValue, errors }) => {
                   />
                 )}
                 {...register(
-                  "signatures?.patient_representative_signature_date",
+                  "signatures.patient_representative_signature_date",
                   {
                     required: true,
                   }
@@ -243,14 +243,14 @@ const RFormThreeStep2 = ({ register, control, setValue, errors }) => {
                   <DateInput
                     value={field.value}
                     setValue={(value) => {
-                      setValue("signatures?.witness_signature_date", value);
+                      setValue("signatures.witness_signature_date", value);
                       field.onChange(value);
                     }}
                     error={errors.signatures?.witness_signature_date}
                     className="h-8 text-sm w-full max-w-[300px]"
                   />
                 )}
-                {...register("signatures?.witness_signature_date", {
+                {...register("signatures.witness_signature_date", {
                   required: true,
                 })}
               />
@@ -296,14 +296,14 @@ const RFormThreeStep2 = ({ register, control, setValue, errors }) => {
                   <DateInput
                     value={field.value}
                     setValue={(value) => {
-                      setValue("signatures?.signature_of_minor_date", value);
+                      setValue("signatures.signature_of_minor_date", value);
                       field.onChange(value);
                     }}
                     error={errors.signatures?.signature_of_minor_date}
                     className="h-8 text-sm w-full max-w-[300px]"
                   />
                 )}
-                {...register("signatures?.signature_of_minor_date", {
+                {...register("signatures.signature_of_minor_date", {
                   required: true,
                 })}
               />
