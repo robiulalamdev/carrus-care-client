@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { iClose, iTick } from "../../utils/icons";
+import { useLocation } from "react-router-dom";
 
 const SignatureInput = ({ img, setValue }) => {
   const [open, setOpen] = useState(true);
@@ -12,6 +13,8 @@ const SignatureInput = ({ img, setValue }) => {
   const ctx = useRef(null);
   const timeout = useRef(null);
   const [cursor, setCursor] = useState("default");
+
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -124,7 +127,15 @@ const SignatureInput = ({ img, setValue }) => {
 
   return (
     <div className="relative w-full max-w-[200px]">
-      <div className={`relative  ${!open ? "hidden" : "block"}`}>
+      <div
+        className={`relative  ${
+          !open
+            ? "hidden"
+            : pathname?.includes("/dashboard")
+            ? "hidden"
+            : "block"
+        }`}
+      >
         <canvas
           style={{
             cursor: cursor,
@@ -142,27 +153,32 @@ const SignatureInput = ({ img, setValue }) => {
         />
       </div>
       {img && !open && <img src={img} className="w-[150px] " alt="" />}
+      {img && pathname?.includes("/dashboard") && (
+        <img src={img} className="w-[150px] " alt="" />
+      )}
 
-      <div
-        className={`grid ${
-          open ? "grid-cols-2" : "grid-cols-1"
-        } w-fit cursor-pointer absolute -top-[24px] -right-[102px] bg-[#993133] hover:bg-[#8c3335]`}
-      >
+      {!pathname?.includes("/dashboard") && (
         <div
-          onClick={clearCanvas}
-          className=" text-white w-7 p-1 h-6 flex justify-center items-center"
+          className={`grid ${
+            open ? "grid-cols-2" : "grid-cols-1"
+          } w-fit cursor-pointer absolute -top-[24px] -right-[102px] bg-[#993133] hover:bg-[#8c3335]`}
         >
-          {iClose}
-        </div>
-        {open && (
           <div
-            className="btn btn-success cursor-pointer text-white w-7 p-1 h-6 flex justify-center items-center bg-green-600 hover:bg-green-700"
-            onClick={uploadImageToImageBB}
+            onClick={clearCanvas}
+            className=" text-white w-7 p-1 h-6 flex justify-center items-center"
           >
-            {iTick}
+            {iClose}
           </div>
-        )}
-      </div>
+          {open && (
+            <div
+              className="btn btn-success cursor-pointer text-white w-7 p-1 h-6 flex justify-center items-center bg-green-600 hover:bg-green-700"
+              onClick={uploadImageToImageBB}
+            >
+              {iTick}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };

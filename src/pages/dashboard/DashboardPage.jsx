@@ -13,6 +13,7 @@ const DashboardPage = () => {
       </div>
     );
   }
+
   return (
     <>
       {isLogged ? (

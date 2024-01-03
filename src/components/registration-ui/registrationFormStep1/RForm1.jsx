@@ -12,6 +12,8 @@ import DateInput from "../../common/DateInput";
 import { toast } from "react-toastify";
 import { Spinner } from "@material-tailwind/react";
 import { usePostPROneMutation } from "../../../redux/features/form/formApi";
+import { useDispatch } from "react-redux";
+import { setPrfId } from "../../../redux/features/form/formSlice";
 
 const RForm1 = ({ step, setStep, show, data }) => {
   const [postPROne, { isLoading }] = usePostPROneMutation();
@@ -26,6 +28,7 @@ const RForm1 = ({ step, setStep, show, data }) => {
     formState: { errors },
   } = useForm();
   const [form1Step, setForm1Step] = useState(1);
+  const dispatch = useDispatch();
 
   const handleFirstForm = async (data) => {
     if (data) {
@@ -33,11 +36,11 @@ const RForm1 = ({ step, setStep, show, data }) => {
         const options = {
           data: data,
         };
-        console.log(data);
         const result = await postPROne(options);
         if (result?.data?.success) {
           reset();
           toast.success("Form Submit Success");
+          dispatch(setPrfId(result?.data?.data?._id));
           setStep(2);
         } else {
           toast.error("Form Submit Failed");
@@ -64,12 +67,20 @@ const RForm1 = ({ step, setStep, show, data }) => {
 
   useEffect(() => {
     setNestedValues(data);
+    if (data) {
+      var form = document.getElementById("myform");
+      var elements = form.elements;
+      for (var i = 0, len = elements.length; i < len; ++i) {
+        elements[i].readOnly = true;
+      }
+    }
   }, [setValue, data]);
 
   return (
     <form
       onSubmit={handleSubmit(handleFirstForm)}
       className={`${step === 1 ? "block" : "hidden"}`}
+      id="myform"
     >
       <div className="flex justify-between flex-wrap gap-4 md:gap-0">
         <div className="flex items-center gap-1">

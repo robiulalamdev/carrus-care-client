@@ -31,7 +31,7 @@ const RfStepF1 = ({
 }) => {
   const { handleNumber } = useInputPattern();
   return (
-    <div className={`mt-5 ${step === 1 ? "block" : "hidden"}`}>
+    <div className={`mt-5`}>
       {/* -------1st part start */}
       <div className="bg-gray-900 text-white text-center py-1">
         <h1>PATIENT INFORMATION</h1>

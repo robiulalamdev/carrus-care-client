@@ -7,9 +7,11 @@ import RFormTwoStep2 from "./RFormTwoStep2";
 import RFormTwoStep3 from "./RFormTwoStep3";
 import { Spinner } from "@material-tailwind/react";
 import { usePostPRTwoMutation } from "../../../redux/features/form/formApi";
+import { useSelector } from "react-redux";
 
 const RForm2 = ({ step, setStep, data }) => {
   const [postPRTwo, { isLoading }] = usePostPRTwoMutation();
+  const { prfId } = useSelector((state) => state.form);
   const {
     handleSubmit,
     register,
@@ -26,7 +28,7 @@ const RForm2 = ({ step, setStep, data }) => {
     if (data) {
       if (form2Step >= 3) {
         const options = {
-          data: data,
+          data: { ...data, prfOne: prfId },
         };
         const result = await postPRTwo(options);
         if (result?.data?.success) {
@@ -58,11 +60,19 @@ const RForm2 = ({ step, setStep, data }) => {
 
   useEffect(() => {
     setNestedValues(data);
+    if (data) {
+      var form = document.getElementById("myform");
+      var elements = form.elements;
+      for (var i = 0, len = elements.length; i < len; ++i) {
+        elements[i].readOnly = true;
+      }
+    }
   }, [setValue, data]);
   return (
     <form
       onSubmit={handleSubmit(handleSecondForm)}
       className={`${step === 2 ? "block" : "hidden"}`}
+      id="myform"
     >
       {form2Step === 1 && <RFormTwoStep1 />}
       {form2Step === 2 && <RFormTwoStep2 />}

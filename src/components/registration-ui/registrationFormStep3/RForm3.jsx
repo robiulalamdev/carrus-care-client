@@ -7,9 +7,11 @@ import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import RFormThreeStep1 from "./RFormThreeStep1";
 import RFormThreeStep2 from "./RFormThreeStep2";
+import { useSelector } from "react-redux";
 
 const RForm3 = ({ step, setStep, data }) => {
   const [postPRThree, { isLoading }] = usePostPRThreeMutation();
+  const { prfId } = useSelector((state) => state.form);
   const {
     handleSubmit,
     register,
@@ -26,7 +28,7 @@ const RForm3 = ({ step, setStep, data }) => {
     if (data) {
       if (form3Step >= 2) {
         const options = {
-          data: data,
+          data: { ...data, prfOne: prfId },
         };
         const result = await postPRThree(options);
         if (result?.data?.success) {

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   rForm1: null,
   rForm2: null,
+  prfId: "",
 };
 
 const formSlice = createSlice({
@@ -15,9 +16,12 @@ const formSlice = createSlice({
     setRForm2: (state, action) => {
       state.rForm2 = action.payload;
     },
+    setPrfId: (state, action) => {
+      state.prfId = action.payload;
+    },
   },
 });
 
-export const { setRForm1, setRForm2 } = formSlice.actions;
+export const { setRForm1, setRForm2, setPrfId } = formSlice.actions;
 
 export default formSlice.reducer;
