@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import RfStepF1 from "./RfStepF1";
 import RFStepF2 from "./RFStepF2";
@@ -9,26 +9,39 @@ import RFStepF5 from "./RFStepF5";
 import RFStepF6 from "./RFStepF6";
 import RFStepF7 from "./RFStepF7";
 import { useDispatch } from "react-redux";
-import { setRForm1 } from "../../../redux/features/form/formSlice";
 import DateInput from "../../common/DateInput";
+import { toast } from "react-toastify";
+import { Spinner } from "@material-tailwind/react";
+import { usePostPatientRegisterMutation } from "../../../redux/features/form/formApi";
 
 const RForm1 = ({ step, setStep, show, data }) => {
+  const [postPatientRegister, { isLoading }] = usePostPatientRegisterMutation();
   const {
     handleSubmit,
     register,
     setError,
     setValue,
     watch,
+    reset,
     control,
     formState: { errors },
   } = useForm();
   const [form1Step, setForm1Step] = useState(1);
-  const dispatch = useDispatch();
-  const handleFirstForm = (data) => {
+
+  const handleFirstForm = async (data) => {
     if (data) {
-      if (form1Step === 7) {
-        dispatch(setRForm1(data));
-        setStep(2);
+      if (form1Step >= 7) {
+        const options = {
+          data: data,
+        };
+        const result = await postPatientRegister(options);
+        if (result?.data?.success) {
+          reset();
+          toast.success("Form Submit Success");
+          setStep(2);
+        } else {
+          toast.error("Form Submit Failed");
+        }
       } else {
         setForm1Step(form1Step + 1);
       }
@@ -192,7 +205,11 @@ const RForm1 = ({ step, setStep, show, data }) => {
           type="submit"
           className="w-32 h-10 bg-green-600 hover:bg-green-700 duration-150 cursor-pointer text-white text-base leading-[18px] tracking-[0.4px] border-none flex justify-center items-center"
         >
-          Next
+          {isLoading ? (
+            <Spinner color="white" />
+          ) : (
+            <>{form1Step >= 7 ? "Submit" : "Next"}</>
+          )}
         </button>
       </div>
     </form>

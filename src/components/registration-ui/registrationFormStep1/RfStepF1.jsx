@@ -319,19 +319,19 @@ const RfStepF1 = ({
             <Controller
               name="patient_information.preferred_method"
               control={control}
-              defaultValue=""
+              defaultValue="Phone"
               render={({ field }) => (
                 <>
                   <div className="flex items-center gap-2">
                     <input
                       type="radio"
                       {...field}
-                      id="pm"
+                      id="pm1"
                       value="Phone"
                       defaultChecked={field.value === "Phone"}
                     />
                     <label
-                      htmlFor="pm"
+                      htmlFor="pm1"
                       className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]"
                     >
                       Phone
@@ -342,12 +342,12 @@ const RfStepF1 = ({
                     <input
                       type="radio"
                       {...field}
-                      id="pm"
+                      id="pm2"
                       value="Work"
                       defaultChecked={field.value === "Work"}
                     />
                     <label
-                      htmlFor="pm"
+                      htmlFor="pm2"
                       className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]"
                     >
                       Work
@@ -358,12 +358,12 @@ const RfStepF1 = ({
                     <input
                       type="radio"
                       {...field}
-                      id="pm"
+                      id="pm3"
                       value="Other"
                       defaultChecked={field.value === "Other"}
                     />
                     <label
-                      htmlFor="pm"
+                      htmlFor="pm3"
                       className="text-gray-950 font-medium text-base leading-[22px] tracking-[0.18px]"
                     >
                       Other
@@ -428,7 +428,7 @@ const RfStepF1 = ({
             <Controller
               name="patient_information.service"
               control={control}
-              defaultValue=""
+              defaultValue="Media"
               render={({ field }) => (
                 <>
                   <div className="flex items-center gap-2">

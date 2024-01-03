@@ -5,7 +5,7 @@ import RForm3 from "../../components/registration-ui/registrationFormStep3/RForm
 import Header from "../../components/shared/Header";
 
 const Registration = () => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(3);
   return (
     <>
       <Header />
