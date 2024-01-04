@@ -1,0 +1,21 @@
+.form_header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form_header .date_label {
+  text-align: left;
+  font-weight: 700;
+  color: black;
+}
+
+.label_value {
+  font-size: 14px;
+}
+
+.flex_container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 40px;
+}

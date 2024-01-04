@@ -45,6 +45,7 @@ const RFStepF5 = ({
             {...register("acknowledge_f", {
               required: true,
             })}
+            required
             type="text"
             className="border-b outline-none h-9 py-0 border-gray-900"
           />
@@ -119,6 +120,7 @@ const RFStepF5 = ({
                 {...register("acknowledgement_patient_signature_date", {
                   required: true,
                 })}
+                required
               />
             </div>
           </div>
@@ -167,6 +169,7 @@ const RFStepF5 = ({
                 {...register("responsible_party_witness_signature_date", {
                   required: true,
                 })}
+                required
               />
             </div>
             <div className="flex items-center gap-1 w-full">
@@ -177,6 +180,7 @@ const RFStepF5 = ({
                 {...register("relationship_to_patient", {
                   required: true,
                 })}
+                required
                 type="text"
                 className="border-b outline-none h-8 w-full py-0 border-gray-900"
               />

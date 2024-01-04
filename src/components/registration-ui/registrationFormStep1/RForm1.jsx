@@ -99,6 +99,7 @@ const RForm1 = ({ step, setStep, show, data }) => {
                 error={errors.date}
               />
             )}
+            required
             {...register("date", { required: true })}
           />
         </div>

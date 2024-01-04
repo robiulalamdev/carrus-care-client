@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Dialog } from "@material-tailwind/react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import RfStepF1 from "../../../registration-ui/registrationFormStep1/RfStepF1";
 import { useForm } from "react-hook-form";
 import RFStepF2 from "../../../registration-ui/registrationFormStep1/RFStepF2";
@@ -14,6 +14,7 @@ import RFormTwoStep2 from "../../../registration-ui/registrationFormStep2/RFormT
 import RFormTwoStep3 from "../../../registration-ui/registrationFormStep2/RFormTwoStep3";
 import RFormThreeStep1 from "../../../registration-ui/registrationFormStep3/RFormThreeStep1";
 import RFormThreeStep2 from "../../../registration-ui/registrationFormStep3/RFormThreeStep2";
+
 const ViewRegisterInfo = ({
   prfData,
   isClose,
@@ -57,6 +58,7 @@ const ViewRegisterInfo = ({
       }
     }
   }, [prfData]);
+
   return (
     <>
       <Dialog
@@ -66,10 +68,10 @@ const ViewRegisterInfo = ({
           mount: { scale: 1, y: 0 },
           unmount: { scale: 0.9, y: -100 },
         }}
-        className="max-w-[1000px] mx-auto w-full"
+        className=" mx-auto w-full text-current max-h-screen overflow-y-auto"
         size="xl"
       >
-        <form className="overflow-y-auto max-h-screen p-2 pb-16" id="myform">
+        <form className=" max-w-[1200px] mx-auto p-2 pb-16" id="myform">
           {isPrfOne && (
             <div>
               <RfStepF1
@@ -151,7 +153,6 @@ const ViewRegisterInfo = ({
               />
             </div>
           )}
-
           {isPrfTwo && (
             <div>
               <RFormTwoStep1 />

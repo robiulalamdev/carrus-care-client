@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+/* eslint-disable no-unused-vars */
+import { useEffect, useRef, useState } from "react";
 
 import {
   Button,
@@ -12,9 +13,12 @@ import {
 } from "@material-tailwind/react";
 import { useMyPatientRegistersQuery } from "../../../redux/features/form/formApi";
 import moment from "moment";
-import { Link } from "react-router-dom";
-import { iDownload, iPrint, iView } from "../../../utils/icons";
+import { iDownload, iView } from "../../../utils/icons";
 import ViewRegisterInfo from "./RegisterTable-ui/ViewRegisterInfo";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+import PdfMain from "./RegisterTable-ui/pdf-ui/PdfMain";
+import PdfFOne from "./RegisterTable-ui/pdf-ui/PdfFOne";
 
 const TABLE_HEAD = ["Name", "Phone", "Salutation", "Address", "Date", "Action"];
 const viewItems = [
@@ -52,6 +56,8 @@ const RegisterTable = () => {
   const [isPrfThree, setIsPrfThree] = useState(false);
   const [prfData, setPrfData] = useState(null);
 
+  const [formData, setFormData] = useState(null);
+
   const handleView = (data, view) => {
     if (view === "F1") {
       setIsPrfOne(true);
@@ -79,7 +85,8 @@ const RegisterTable = () => {
 
   return (
     <>
-      <Card className="w-full flex-grow pt-4 h-full flex flex-col justify-between">
+      {/* <PdfFOne data={data?.data[0].prfOneData} /> */}
+      <Card className="w-full max-w-[1200px] mx-auto flex-grow pt-4 mb-4 h-full flex flex-col justify-between">
         <table className="w-full min-w-max table-auto text-left overflow-scroll">
           <thead className="bg-gray-900 h-fit">
             <tr>
@@ -103,7 +110,7 @@ const RegisterTable = () => {
             <tbody className="max-h-full flex-grow">
               {data?.data?.map((item, index) => {
                 return (
-                  <tr key={index} className="h-fit">
+                  <tr key={index} className="h-fit even:bg-blue-gray-50/50">
                     <td className={`p-4 border-b border-blue-gray-50`}>
                       <Typography
                         variant="small"
@@ -182,7 +189,12 @@ const RegisterTable = () => {
                           size="sm"
                           className="bg-green-600 shadow-none"
                         >
-                          <div className="w-5">{iDownload}</div>
+                          <div
+                            onClick={() => setFormData(item)}
+                            className="w-5"
+                          >
+                            {iDownload}
+                          </div>
                         </IconButton>
                       </div>
                     </td>
@@ -217,6 +229,7 @@ const RegisterTable = () => {
         isPrfTwo={isPrfTwo}
         isPrfThree={isPrfThree}
       />
+      <PdfMain data={formData} setData={setFormData} />
     </>
   );
 };

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from "react";
 import SignatureInput from "../../common/SignatureInput";
@@ -102,6 +103,7 @@ const RFStepF7 = ({
             {...register("patient_signature_date", {
               required: true,
             })}
+            required
           />
           <h1 className="text-gray-950 text-base leading-[22px] tracking-[0.18px] font-medium">
             Date

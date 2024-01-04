@@ -50,6 +50,7 @@ const RFStepF4 = ({
               {...register("acknowledge_d", {
                 required: true,
               })}
+              required
               type="text"
               className="border-b outline-none h-9 py-0 border-gray-900"
             />
@@ -104,6 +105,7 @@ const RFStepF4 = ({
               {...register("acknowledge_e", {
                 required: true,
               })}
+              required
               type="text"
               className="border-b outline-none h-9 py-0 border-gray-900"
             />
