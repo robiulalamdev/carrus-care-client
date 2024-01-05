@@ -4,9 +4,13 @@ import { Controller } from "react-hook-form";
 import DateInput from "../../common/DateInput";
 import useInputPattern from "../../../lib/hooks/useInputPattern";
 import { rfInput_label_class } from "../../../lib/constants";
+import { useEffect } from "react";
 
 const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
   const { handleNumber } = useInputPattern();
+  useEffect(() => {
+    setValue("patient_information_for_authorization.full_name", "...");
+  }, []);
   return (
     <>
       <h1 className="text-center font-bold text-[18px] leading-[22px] tracking-[0.4px] mt-16">
@@ -39,6 +43,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                   { required: true }
                 )}
                 type="text"
+                required
                 className="border-b outline-none h-8 text-sm w-full border-gray-900"
               />
             </div>
@@ -50,7 +55,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 <input
                   {...register(
                     "patient_information_for_authorization.other_name",
-                    { required: false }
+                    { required: false } // old
                   )}
                   type="text"
                   className="border-b outline-none h-8 text-sm w-full border-gray-900"
@@ -64,7 +69,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 <Controller
                   name="patient_information_for_authorization.date_of_birth"
                   control={control}
-                  rules={{ required: "Date is required" }}
+                  // rules={{ required: "Date is required" }}
                   render={({ field }) => (
                     <DateInput
                       value={field.value}
@@ -84,7 +89,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                   {...register(
                     "patient_information_for_authorization.date_of_birth",
                     {
-                      required: true,
+                      required: false,
                     }
                   )}
                 />
@@ -99,7 +104,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 <input
                   {...register(
                     "patient_information_for_authorization.address",
-                    { required: true }
+                    { required: false }
                   )}
                   type="text"
                   className="border-b outline-none h-8 text-sm w-full border-gray-900"
@@ -109,7 +114,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 <h1 className={`${rfInput_label_class} text-nowrap`}>City:</h1>
                 <input
                   {...register("patient_information_for_authorization.city", {
-                    required: true,
+                    required: false,
                   })}
                   type="text"
                   className="border-b outline-none h-8 text-sm w-full border-gray-900"
@@ -119,7 +124,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 <h1 className={`${rfInput_label_class} text-nowrap`}>State:</h1>
                 <input
                   {...register("patient_information_for_authorization.state", {
-                    required: true,
+                    required: false,
                   })}
                   type="text"
                   className="border-b outline-none h-8 text-sm w-full max-w-[100px] border-gray-900"
@@ -131,7 +136,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 </h1>
                 <input
                   {...register("patient_information_for_authorization.zip", {
-                    required: true,
+                    required: false,
                   })}
                   type="text"
                   className="border-b outline-none h-8 text-sm w-full max-w-[100px] border-gray-900"
@@ -143,7 +148,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 <h1 className={`${rfInput_label_class} text-nowrap`}>Phone:</h1>
                 <input
                   {...register("patient_information_for_authorization.phone", {
-                    required: true,
+                    required: false,
                   })}
                   onInput={handleNumber}
                   type="text"
@@ -156,7 +161,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 </h1>
                 <input
                   {...register("patient_information_for_authorization.email", {
-                    required: false,
+                    required: false, // old
                   })}
                   type="text"
                   className="border-b outline-none h-8 text-sm w-full border-gray-900"
@@ -177,7 +182,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
               <h1 className={`${rfInput_label_class} text-nowrap`}>Name:</h1>
               <input
                 {...register("health_care_entity_authorized_information.name", {
-                  required: true,
+                  required: false,
                 })}
                 type="text"
                 className="border-b outline-none h-8 text-sm w-full border-gray-900"
@@ -192,7 +197,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                   {...register(
                     "health_care_entity_authorized_information.address",
                     {
-                      required: true,
+                      required: false,
                     }
                   )}
                   type="text"
@@ -206,7 +211,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                   {...register(
                     "health_care_entity_authorized_information.city",
                     {
-                      required: true,
+                      required: false,
                     }
                   )}
                   type="text"
@@ -220,7 +225,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                   {...register(
                     "health_care_entity_authorized_information.state",
                     {
-                      required: true,
+                      required: false,
                     }
                   )}
                   type="text"
@@ -236,7 +241,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                   {...register(
                     "health_care_entity_authorized_information.zip_code",
                     {
-                      required: true,
+                      required: false,
                     }
                   )}
                   type="text"
@@ -253,7 +258,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                   {...register(
                     "health_care_entity_authorized_information.phone",
                     {
-                      required: true,
+                      required: false,
                     }
                   )}
                   onInput={handleNumber}
@@ -268,7 +273,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                   {...register(
                     "health_care_entity_authorized_information.fax",
                     {
-                      required: true,
+                      required: false,
                     }
                   )}
                   type="text"
@@ -291,7 +296,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
               <h1 className={`${rfInput_label_class} text-nowrap`}>Name:</h1>
               <input
                 {...register("information_regarding_person.name", {
-                  required: true,
+                  required: false,
                 })}
                 type="text"
                 className="border-b outline-none h-8 text-sm w-full border-gray-900"
@@ -304,7 +309,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 </h1>
                 <input
                   {...register("information_regarding_person.address", {
-                    required: true,
+                    required: false,
                   })}
                   type="text"
                   className="border-b outline-none h-8 text-sm w-full border-gray-900"
@@ -314,7 +319,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 <h1 className={`${rfInput_label_class} text-nowrap`}>City:</h1>
                 <input
                   {...register("information_regarding_person.city", {
-                    required: true,
+                    required: false,
                   })}
                   type="text"
                   className="border-b outline-none h-8 text-sm w-full border-gray-900"
@@ -324,7 +329,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 <h1 className={`${rfInput_label_class} text-nowrap`}>State:</h1>
                 <input
                   {...register("information_regarding_person.state", {
-                    required: true,
+                    required: false,
                   })}
                   type="text"
                   className="border-b outline-none h-8 text-sm w-full max-w-[100px] border-gray-900"
@@ -336,7 +341,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 </h1>
                 <input
                   {...register("information_regarding_person.zip_code", {
-                    required: true,
+                    required: false,
                   })}
                   type="text"
                   className="border-b outline-none h-8 text-sm w-full max-w-[100px] border-gray-900"
@@ -349,7 +354,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 <h1 className={`${rfInput_label_class} text-nowrap`}>Phone:</h1>
                 <input
                   {...register("information_regarding_person.phone", {
-                    required: true,
+                    required: false,
                   })}
                   onInput={handleNumber}
                   type="number"
@@ -360,7 +365,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 <h1 className={`${rfInput_label_class} text-nowrap`}>Fax:</h1>
                 <input
                   {...register("information_regarding_person.fax", {
-                    required: true,
+                    required: false,
                   })}
                   type="text"
                   className="border-b outline-none h-8 text-sm w-full border-gray-900"
@@ -400,7 +405,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                     </>
                   )}
                   {...register("specific_information.type", {
-                    required: true,
+                    required: false,
                   })}
                 />
 
@@ -411,7 +416,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                   <Controller
                     name="specific_information.medical_record_from_date"
                     control={control}
-                    rules={{ required: "Date is required" }}
+                    // rules={{ required: "Date is required" }}
                     render={({ field }) => (
                       <DateInput
                         value={field.value}
@@ -430,7 +435,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                     {...register(
                       "specific_information.medical_record_from_date",
                       {
-                        required: true,
+                        required: false,
                       }
                     )}
                   />
@@ -446,7 +451,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                   <Controller
                     name="specific_information.medical_record_to_date"
                     control={control}
-                    rules={{ required: "Date is required" }}
+                    // rules={{ required: "Date is required" }}
                     render={({ field }) => (
                       <DateInput
                         value={field.value}
@@ -465,7 +470,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                     {...register(
                       "specific_information?.medical_record_to_date",
                       {
-                        required: true,
+                        required: false,
                       }
                     )}
                   />
@@ -503,7 +508,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                     {watch("specific_information.type") === "Other" && (
                       <input
                         {...register("specific_information.other_value", {
-                          required: true,
+                          required: false,
                         })}
                         type="text"
                         className="border-b outline-none h-8 text-sm w-full border-gray-900"
@@ -512,7 +517,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                   </>
                 )}
                 {...register("specific_information.type", {
-                  required: true,
+                  required: false,
                 })}
               />
             </div>
@@ -533,7 +538,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                     {...register(
                       "include.drug_alcohol_or_substance_abuse_record",
                       {
-                        required: true,
+                        required: false,
                       }
                     )}
                     type="text"
@@ -546,7 +551,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 <div className="flex items-center gap-1 flex-wrap md:flex-nowrap">
                   <input
                     {...register("include.mental_health_record", {
-                      required: true,
+                      required: false,
                     })}
                     type="text"
                     className="border-b outline-none h-8 text-sm w-full md:max-w-[200px] border-gray-900"
@@ -558,7 +563,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 <div className="flex items-center gap-1 flex-wrap md:flex-nowrap">
                   <input
                     {...register("include.hiv_aids_information", {
-                      required: true,
+                      required: false,
                     })}
                     type="text"
                     className="border-b outline-none h-8 text-sm w-full md:max-w-[200px] border-gray-900"
@@ -571,7 +576,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 <div className="flex items-center gap-1 flex-wrap md:flex-nowrap">
                   <input
                     {...register("include.genetic_information", {
-                      required: true,
+                      required: false,
                     })}
                     type="text"
                     className="border-b outline-none h-8 text-sm w-full md:max-w-[200px] border-gray-900"
@@ -747,7 +752,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                         {...register(
                           "reason_for_release_information.other.message",
                           {
-                            required: true,
+                            required: false,
                           }
                         )}
                         type="text"

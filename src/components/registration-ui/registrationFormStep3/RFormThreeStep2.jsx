@@ -40,7 +40,7 @@ const RFormThreeStep2 = ({ register, control, setValue, errors }) => {
                 </h1>
                 <input
                   {...register("effective_time_period.month", {
-                    required: true,
+                    required: false,
                   })}
                   onInput={handleNumber}
                   maxLength={2}
@@ -54,7 +54,7 @@ const RFormThreeStep2 = ({ register, control, setValue, errors }) => {
                 </h1>
                 <input
                   {...register("effective_time_period.day", {
-                    required: true,
+                    required: false,
                   })}
                   onInput={handleNumber}
                   maxLength={2}
@@ -68,7 +68,7 @@ const RFormThreeStep2 = ({ register, control, setValue, errors }) => {
                 </h1>
                 <input
                   {...register("effective_time_period.year", {
-                    required: true,
+                    required: false,
                   })}
                   onInput={handleNumber}
                   maxLength={10}
@@ -141,7 +141,7 @@ const RFormThreeStep2 = ({ register, control, setValue, errors }) => {
               <Controller
                 name="signatures.patient_representative_signature"
                 control={control}
-                rules={{ required: "Signature is required" }}
+                // rules={{ required: "Signature is required" }}
                 render={({ field }) => (
                   <SignatureInput
                     img={field.value}
@@ -163,7 +163,7 @@ const RFormThreeStep2 = ({ register, control, setValue, errors }) => {
               <Controller
                 name="signatures.patient_representative_signature_date"
                 control={control}
-                rules={{ required: "Date is required" }}
+                // rules={{ required: "Date is required" }}
                 render={({ field }) => (
                   <DateInput
                     value={field.value}
@@ -183,7 +183,7 @@ const RFormThreeStep2 = ({ register, control, setValue, errors }) => {
                 {...register(
                   "signatures.patient_representative_signature_date",
                   {
-                    required: true,
+                    required: false,
                   }
                 )}
               />
@@ -196,7 +196,7 @@ const RFormThreeStep2 = ({ register, control, setValue, errors }) => {
             <Controller
               name="signatures.legal_representative_relationship_to_patient_signature"
               control={control}
-              rules={{ required: "Signature is required" }}
+              // rules={{ required: "Signature is required" }}
               render={({ field }) => (
                 <SignatureInput
                   img={field.value}
@@ -219,7 +219,7 @@ const RFormThreeStep2 = ({ register, control, setValue, errors }) => {
               <Controller
                 name="signatures.witness_signature"
                 control={control}
-                rules={{ required: false }}
+                rules={{ required: false }} // old
                 render={({ field }) => (
                   <SignatureInput
                     img={field.value}
@@ -238,7 +238,7 @@ const RFormThreeStep2 = ({ register, control, setValue, errors }) => {
               <Controller
                 name="signatures.witness_signature_date"
                 control={control}
-                rules={{ required: "Date is required" }}
+                // rules={{ required: "Date is required" }}
                 render={({ field }) => (
                   <DateInput
                     value={field.value}
@@ -251,7 +251,7 @@ const RFormThreeStep2 = ({ register, control, setValue, errors }) => {
                   />
                 )}
                 {...register("signatures.witness_signature_date", {
-                  required: true,
+                  required: false,
                 })}
               />
             </div>
@@ -272,7 +272,7 @@ const RFormThreeStep2 = ({ register, control, setValue, errors }) => {
               <Controller
                 name="signatures.signature_of_minor"
                 control={control}
-                rules={{ required: false }}
+                rules={{ required: false }} // old
                 render={({ field }) => (
                   <SignatureInput
                     img={field.value}
@@ -291,7 +291,7 @@ const RFormThreeStep2 = ({ register, control, setValue, errors }) => {
               <Controller
                 name="signatures.signature_of_minor_date"
                 control={control}
-                rules={{ required: "Date is required" }}
+                // rules={{ required: "Date is required" }}
                 render={({ field }) => (
                   <DateInput
                     value={field.value}
@@ -304,7 +304,7 @@ const RFormThreeStep2 = ({ register, control, setValue, errors }) => {
                   />
                 )}
                 {...register("signatures.signature_of_minor_date", {
-                  required: true,
+                  required: false,
                 })}
               />
             </div>

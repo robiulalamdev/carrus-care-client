@@ -87,7 +87,7 @@ const RFormTwoStep3 = ({ setValue, control, errors, register }) => {
           <Controller
             name="patient_statement_signature"
             control={control}
-            rules={{ required: "Signature is required" }}
+            // rules={{ required: "Signature is required" }}
             render={({ field }) => (
               <SignatureInput
                 img={field.value}

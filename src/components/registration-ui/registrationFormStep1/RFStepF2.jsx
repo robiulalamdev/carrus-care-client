@@ -89,9 +89,9 @@ const RFStepF2 = ({
           </h1>
           <input
             {...register("acknowledge_a", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             type="text"
             className="border-b outline-none h-9 py-0 border-gray-900"
           />

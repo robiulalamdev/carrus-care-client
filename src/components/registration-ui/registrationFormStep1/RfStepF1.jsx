@@ -44,7 +44,7 @@ const RfStepF1 = ({
           </label>
           <input
             {...register("patient_information.last_name", {
-              required: false,
+              required: false, // old
             })}
             type="text"
             className={`${rfInput_class}`}
@@ -54,10 +54,10 @@ const RfStepF1 = ({
           <label className={`${rfInput_label_class}`}>First</label>
           <input
             {...register("patient_information.first_name", {
-              required: true,
+              required: false,
             })}
             type="text"
-            required
+            // required
             className={`${rfInput_class}`}
           />
         </div>
@@ -65,7 +65,7 @@ const RfStepF1 = ({
           <label className={`${rfInput_label_class}`}>Middle</label>
           <input
             {...register("patient_information.middle_name", {
-              required: false,
+              required: false, // old
             })}
             type="text"
             className={`${rfInput_class}`}
@@ -101,9 +101,9 @@ const RfStepF1 = ({
                 </>
               )}
               {...register("patient_information.salutation", {
-                required: true,
+                required: false,
               })}
-              required
+              // required
             />
           </div>
         </div>
@@ -136,9 +136,9 @@ const RfStepF1 = ({
                 </>
               )}
               {...register("patient_information.salutation", {
-                required: true,
+                required: false,
               })}
-              required
+              // required
             />
           </div>
         </div>
@@ -150,10 +150,10 @@ const RfStepF1 = ({
           </label>
           <input
             {...register("patient_information.social_security_no", {
-              required: true,
+              required: false,
             })}
             type="text"
-            required
+            // required
             className={`${rfInput_class}`}
           />
         </div>
@@ -161,11 +161,11 @@ const RfStepF1 = ({
           <label className={`${rfInput_label_class}`}>Phone Number:</label>
           <input
             {...register("patient_information.phone_number", {
-              required: true,
+              required: false,
             })}
             onInput={handleNumber}
             type="number"
-            required
+            // required
             className={`${rfInput_class}`}
           />
         </div>
@@ -175,7 +175,7 @@ const RfStepF1 = ({
           <Controller
             name="patient_information.birth_date"
             control={control}
-            rules={{ required: "Date is required" }}
+            // rules={{ required: "Date is required" }}
             render={({ field }) => (
               <DateInput
                 value={field.value}
@@ -187,9 +187,9 @@ const RfStepF1 = ({
               />
             )}
             {...register("patient_information.birth_date", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
           />
         </div>
       </div>
@@ -198,9 +198,9 @@ const RfStepF1 = ({
           <label className={`${rfInput_label_class}`}>Street Address:</label>
           <input
             {...register("patient_information.street_address", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             type="text"
             className={`${rfInput_class}`}
           />
@@ -209,9 +209,9 @@ const RfStepF1 = ({
           <label className={`${rfInput_label_class}`}>City/State/Zip:</label>
           <input
             {...register("patient_information.city_state_zip", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             type="text"
             className={`${rfInput_class}`}
           />
@@ -222,9 +222,9 @@ const RfStepF1 = ({
           <label className={`${rfInput_label_class}`}>Preferred Pharmacy</label>
           <input
             {...register("patient_information.preferred_pharmacy", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             type="text"
             className={`${rfInput_class}`}
           />
@@ -233,9 +233,9 @@ const RfStepF1 = ({
           <label className={`${rfInput_label_class}`}>Pharmacy Phone:</label>
           <input
             {...register("patient_information.pharmacy_phone", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             onInput={handleNumber}
             type="text"
             className={`${rfInput_class}`}
@@ -245,9 +245,9 @@ const RfStepF1 = ({
           <label className={`${rfInput_label_class}`}>Pharmacy Address:</label>
           <input
             {...register("patient_information.pharmacy_address", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             type="text"
             className={`${rfInput_class}`}
           />
@@ -260,9 +260,9 @@ const RfStepF1 = ({
           </label>
           <input
             {...register("patient_information.primary_care_physician", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             type="text"
             className={`${rfInput_class}`}
           />
@@ -271,9 +271,9 @@ const RfStepF1 = ({
           <label className={`${rfInput_label_class}`}>Phone Number:</label>
           <input
             {...register("patient_information.primary_phone_number", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             onInput={handleNumber}
             type="text"
             className={`${rfInput_class}`}
@@ -330,9 +330,9 @@ const RfStepF1 = ({
               <span>Doctor’s Office:</span>
               <input
                 {...register("patient_information.Doctor_Office", {
-                  required: true,
+                  required: false,
                 })}
-                required
+                // required
                 type="text"
                 className="h-8 py-0 border-b border-darkPrimary focus:outline-none"
               />
@@ -341,9 +341,9 @@ const RfStepF1 = ({
               <span>Employer:</span>
               <input
                 {...register("patient_information.employer", {
-                  required: true,
+                  required: false,
                 })}
-                required
+                // required
                 type="text"
                 className="h-8 py-0 border-b border-darkPrimary focus:outline-none"
               />
@@ -352,9 +352,9 @@ const RfStepF1 = ({
               <span>Law Firm:</span>
               <input
                 {...register("patient_information.law_firm", {
-                  required: true,
+                  required: false,
                 })}
-                required
+                // required
                 type="text"
                 className="h-8 py-0 border-b border-darkPrimary focus:outline-none"
               />
@@ -363,9 +363,9 @@ const RfStepF1 = ({
               <span>Friend/Family Member:</span>
               <input
                 {...register("patient_information.family_member", {
-                  required: true,
+                  required: false,
                 })}
-                required
+                // required
                 type="text"
                 className="h-8 py-0 border-b border-darkPrimary focus:outline-none"
               />
@@ -424,7 +424,7 @@ const RfStepF1 = ({
                     {watch("patient_information.service") === "Other" && (
                       <input
                         {...register("patient_information.other_service", {
-                          required: true,
+                          required: false,
                         })}
                         type="text"
                         className="h-8 py-0 border-b border-darkPrimary focus:outline-none"
@@ -454,7 +454,7 @@ const RfStepF1 = ({
             <Controller
               name="insurance_information.auto_accident"
               control={control}
-              defaultValue="Yes"
+              defaultValue=""
               render={({ field }) => (
                 <>
                   <CheckInput
@@ -513,9 +513,9 @@ const RfStepF1 = ({
             {watch("insurance_information.primary_insurance") === "Other" && (
               <input
                 {...register("insurance_information.other_primary_insurance", {
-                  required:
-                    watch("insurance_information.primary_insurance") ===
-                    "Other",
+                  required: false,
+                  // watch("insurance_information.primary_insurance") ===
+                  // "Other",
                 })}
                 type="text"
                 className="h-8 py-0 border-b border-darkPrimary focus:outline-none"
@@ -528,9 +528,9 @@ const RfStepF1 = ({
             </span>
             <input
               {...register("insurance_information.subscriber_phone", {
-                required: true,
+                required: false,
               })}
-              required
+              // required
               onInput={handleNumber}
               type="number"
               className="h-8 py-0 border-b border-darkPrimary focus:outline-none"
@@ -545,9 +545,9 @@ const RfStepF1 = ({
           </label>
           <input
             {...register("insurance_information.subscriber_last_name", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             type="text"
             className={`${rfInput_class}`}
           />
@@ -556,9 +556,9 @@ const RfStepF1 = ({
           <label className={`${rfInput_label_class}`}>First:</label>
           <input
             {...register("insurance_information.subscriber_first_name", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             type="text"
             className={`${rfInput_class}`}
           />
@@ -569,9 +569,9 @@ const RfStepF1 = ({
           </label>
           <input
             {...register("insurance_information.subscriber_social_security", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             type="text"
             className={`${rfInput_class}`}
           />
@@ -582,9 +582,9 @@ const RfStepF1 = ({
           <label className={`${rfInput_label_class}`}>Member ID Number:</label>
           <input
             {...register("insurance_information.member_id_number", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             onInput={handleNumber}
             type="number"
             className={`${rfInput_class}`}
@@ -594,9 +594,9 @@ const RfStepF1 = ({
           <label className={`${rfInput_label_class}`}>Group Number:</label>
           <input
             {...register("insurance_information.group_number", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             onInput={handleNumber}
             type="text"
             className={`${rfInput_class}`}
@@ -645,7 +645,7 @@ const RfStepF1 = ({
           <Controller
             name="accident_related.date_of_accident"
             control={control}
-            rules={{ required: "Date is required" }}
+            // rules={{ required: "Date is required" }}
             render={({ field }) => (
               <DateInput
                 value={field.value}
@@ -657,7 +657,7 @@ const RfStepF1 = ({
               />
             )}
             {...register("accident_related.date_of_accident", {
-              required: true,
+              required: false,
             })}
           />
         </div>
@@ -731,9 +731,9 @@ const RfStepF1 = ({
           </label>
           <input
             {...register("accident_related.name_of_worker", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             type="text"
             className={`${rfInput_class}`}
           />
@@ -744,9 +744,9 @@ const RfStepF1 = ({
           <label className={`${rfInput_label_class}`}>Company Address:</label>
           <input
             {...register("accident_related.company_address", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             type="text"
             className={`${rfInput_class}`}
           />
@@ -755,9 +755,9 @@ const RfStepF1 = ({
           <label className={`${rfInput_label_class}`}>City/State/Zip:</label>
           <input
             {...register("accident_related.city_state_zip", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             type="text"
             className={`${rfInput_class}`}
           />
@@ -768,9 +768,9 @@ const RfStepF1 = ({
           <label className={`${rfInput_label_class}`}>Name of Insured:</label>
           <input
             {...register("accident_related.name_of_insured", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             type="text"
             className={`${rfInput_class}`}
           />
@@ -779,9 +779,9 @@ const RfStepF1 = ({
           <label className={`${rfInput_label_class}`}>Adjuster Name:</label>
           <input
             {...register("accident_related.adjuster_name", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             type="text"
             className={`${rfInput_class}`}
           />
@@ -792,9 +792,9 @@ const RfStepF1 = ({
           <label className={`${rfInput_label_class}`}>Policy Number:</label>
           <input
             {...register("accident_related.policy_number", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             onInput={handleNumber}
             type="number"
             className={`${rfInput_class}`}
@@ -828,7 +828,7 @@ const RfStepF1 = ({
                 </>
               )}
               {...register("accident_related.report", {
-                required: true,
+                required: false,
               })}
             />
           </div>
@@ -837,9 +837,9 @@ const RfStepF1 = ({
           <label className={`${rfInput_label_class}`}>Claim Number:</label>
           <input
             {...register("accident_related.claim_number", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             onInput={handleNumber}
             type="number"
             className={`${rfInput_class}`}
@@ -858,9 +858,9 @@ const RfStepF1 = ({
           </label>
           <input
             {...register("in_case_of_emergency.name_of_local_relative", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             type="text"
             className={`${rfInput_class}`}
           />
@@ -872,9 +872,9 @@ const RfStepF1 = ({
           </label>
           <input
             {...register("in_case_of_emergency.relationship_to_patient", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             type="text"
             className={`${rfInput_class}`}
           />

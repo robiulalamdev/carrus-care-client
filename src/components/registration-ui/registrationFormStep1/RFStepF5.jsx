@@ -43,9 +43,9 @@ const RFStepF5 = ({
           </h1>
           <input
             {...register("acknowledge_f", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
             type="text"
             className="border-b outline-none h-9 py-0 border-gray-900"
           />
@@ -83,7 +83,7 @@ const RFStepF5 = ({
               <Controller
                 name="acknowledgement_patient_signature"
                 control={control}
-                rules={{ required: "Signature is required" }}
+                // rules={{ required: "Signature is required" }}
                 render={({ field }) => (
                   <SignatureInput
                     img={field.value}
@@ -106,7 +106,7 @@ const RFStepF5 = ({
               <Controller
                 name="acknowledgement_patient_signature_date"
                 control={control}
-                rules={{ required: "Date is required" }}
+                // rules={{ required: "Date is required" }}
                 render={({ field }) => (
                   <DateInput
                     value={field.value}
@@ -118,9 +118,9 @@ const RFStepF5 = ({
                   />
                 )}
                 {...register("acknowledgement_patient_signature_date", {
-                  required: true,
+                  required: false,
                 })}
-                required
+                // required
               />
             </div>
           </div>
@@ -129,7 +129,7 @@ const RFStepF5 = ({
               <Controller
                 name="responsible_party_witness_signature"
                 control={control}
-                rules={{ required: "Signature is required" }}
+                // rules={{ required: "Signature is required" }}
                 render={({ field }) => (
                   <SignatureInput
                     img={field.value}
@@ -152,7 +152,7 @@ const RFStepF5 = ({
               <Controller
                 name="responsible_party_witness_signature_date"
                 control={control}
-                rules={{ required: "Date is required" }}
+                // rules={{ required: "Date is required" }}
                 render={({ field }) => (
                   <DateInput
                     value={field.value}
@@ -167,9 +167,9 @@ const RFStepF5 = ({
                   />
                 )}
                 {...register("responsible_party_witness_signature_date", {
-                  required: true,
+                  required: false,
                 })}
-                required
+                // required
               />
             </div>
             <div className="flex items-center gap-1 w-full">
@@ -178,9 +178,9 @@ const RFStepF5 = ({
               </h1>
               <input
                 {...register("relationship_to_patient", {
-                  required: true,
+                  required: false,
                 })}
-                required
+                // required
                 type="text"
                 className="border-b outline-none h-8 w-full py-0 border-gray-900"
               />

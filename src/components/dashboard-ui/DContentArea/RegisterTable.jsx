@@ -19,6 +19,7 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import PdfMain from "./RegisterTable-ui/pdf-ui/PdfMain";
 import PdfFOne from "./RegisterTable-ui/pdf-ui/PdfFOne";
+import { ScaleLoader } from "react-spinners";
 
 const TABLE_HEAD = ["Name", "Phone", "Salutation", "Address", "Date", "Action"];
 const viewItems = [
@@ -30,7 +31,7 @@ const viewItems = [
 
 const RegisterTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const { data, refetch } = useMyPatientRegistersQuery({
+  const { data, refetch, isLoading } = useMyPatientRegistersQuery({
     page: currentPage,
     pageSize: 10,
   });
@@ -87,125 +88,136 @@ const RegisterTable = () => {
     <>
       {/* <PdfFOne data={data?.data[0].prfOneData} /> */}
       <Card className="w-full max-w-[1200px] mx-auto flex-grow pt-1 mb-4 h-full flex flex-col justify-between text-current">
-        <table className="w-full min-w-max table-auto text-left overflow-scroll">
-          <thead className="bg-primary h-fit text-center">
-            <tr>
-              {TABLE_HEAD.map((head) => (
-                <th
-                  key={head}
-                  className="border-b border-blue-gray-100 text-white p-4"
-                >
-                  <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="font-normal leading-none text-white"
+        {isLoading ? (
+          <div className="flex justify-center items-center">
+            <ScaleLoader color="#36d7b7" />
+          </div>
+        ) : (
+          <table className="w-full min-w-max table-auto text-left overflow-scroll">
+            <thead className="bg-primary h-fit text-center">
+              <tr>
+                {TABLE_HEAD.map((head) => (
+                  <th
+                    key={head}
+                    className="border-b border-blue-gray-100 text-white p-4"
                   >
-                    {head}
-                  </Typography>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          {data?.data?.length > 0 ? (
-            <tbody className="max-h-full flex-grow text-center">
-              {data?.data?.map((item, index) => {
-                return (
-                  <tr key={index} className="h-fit even:bg-blue-gray-50/50">
-                    <td className={`p-4 border-b border-blue-gray-50`}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {item?.prfOneData?.patient_information?.first_name}
-                      </Typography>
-                    </td>
-                    <td className={`p-4 border-b border-blue-gray-50`}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {
-                          item?.prfOneData?.patient_information
-                            ?.primary_phone_number
-                        }
-                      </Typography>
-                    </td>
-                    <td className={`p-4 border-b border-blue-gray-50`}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {item?.prfOneData?.patient_information?.salutation}
-                      </Typography>
-                    </td>
-                    <td className={`p-4 border-b border-blue-gray-50`}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {item?.prfOneData?.patient_information?.street_address}
-                      </Typography>
-                    </td>
-                    <td className={`p-4 border-b border-blue-gray-50`}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {moment(item?.prfOneData?.createdAt).format(
-                          "DD MMM YYYY"
-                        )}
-                      </Typography>
-                    </td>
-                    <td className={`p-4 border-b border-blue-gray-50`}>
-                      <div className="flex items-center justify-center gap-3">
-                        <Popover>
-                          <PopoverHandler>
-                            <IconButton
-                              size="sm"
-                              className="font-medium bg-blue-600 rounded"
-                            >
-                              <div className="w-5">{iView}</div>
-                            </IconButton>
-                          </PopoverHandler>
-                          <PopoverContent className="w-32 h-fit p-1 grid grid-cols-1">
-                            {viewItems?.map((vi, i) => (
-                              <Button
-                                onClick={() => handleView(item, vi.value)}
-                                key={i}
-                                className="w-full h-10 rounded-none shadow-none hover:bg-blue-gray-800"
-                              >
-                                {vi.name}
-                              </Button>
-                            ))}
-                          </PopoverContent>
-                        </Popover>
-
-                        <IconButton
-                          size="sm"
-                          className="bg-primary shadow-none rounded"
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal leading-none text-white"
+                    >
+                      {head}
+                    </Typography>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            {data?.data?.length < 0 ? (
+              <tbody className="max-h-full flex-grow text-center">
+                {data?.data?.map((item, index) => {
+                  return (
+                    <tr key={index} className="h-fit even:bg-blue-gray-50/50">
+                      <td className={`p-4 border-b border-blue-gray-50`}>
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal"
                         >
-                          <div
-                            onClick={() => setFormData(item)}
-                            className="w-5"
+                          {item?.prfOneData?.patient_information?.first_name}
+                        </Typography>
+                      </td>
+                      <td className={`p-4 border-b border-blue-gray-50`}>
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal"
+                        >
+                          {
+                            item?.prfOneData?.patient_information
+                              ?.primary_phone_number
+                          }
+                        </Typography>
+                      </td>
+                      <td className={`p-4 border-b border-blue-gray-50`}>
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal"
+                        >
+                          {item?.prfOneData?.patient_information?.salutation}
+                        </Typography>
+                      </td>
+                      <td className={`p-4 border-b border-blue-gray-50`}>
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal"
+                        >
+                          {
+                            item?.prfOneData?.patient_information
+                              ?.street_address
+                          }
+                        </Typography>
+                      </td>
+                      <td className={`p-4 border-b border-blue-gray-50`}>
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal"
+                        >
+                          {moment(item?.prfOneData?.createdAt).format(
+                            "DD MMM YYYY"
+                          )}
+                        </Typography>
+                      </td>
+                      <td className={`p-4 border-b border-blue-gray-50`}>
+                        <div className="flex items-center justify-center gap-3">
+                          <Popover>
+                            <PopoverHandler>
+                              <IconButton
+                                size="sm"
+                                className="font-medium bg-blue-600 rounded"
+                              >
+                                <div className="w-5">{iView}</div>
+                              </IconButton>
+                            </PopoverHandler>
+                            <PopoverContent className="w-32 h-fit p-1 grid grid-cols-1">
+                              {viewItems?.map((vi, i) => (
+                                <Button
+                                  onClick={() => handleView(item, vi.value)}
+                                  key={i}
+                                  className="w-full h-10 rounded-none shadow-none hover:bg-blue-gray-800"
+                                >
+                                  {vi.name}
+                                </Button>
+                              ))}
+                            </PopoverContent>
+                          </Popover>
+
+                          <IconButton
+                            size="sm"
+                            className="bg-primary shadow-none rounded"
                           >
-                            {iDownload}
-                          </div>
-                        </IconButton>
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          ) : (
-            <div>Not Found</div>
-          )}
-        </table>
+                            <div
+                              onClick={() => setFormData(item)}
+                              className="w-5"
+                            >
+                              {iDownload}
+                            </div>
+                          </IconButton>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            ) : (
+              <div className="flex justify-center items-center w-full">
+                <h1>Not Found</h1>
+              </div>
+            )}
+          </table>
+        )}
 
         <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4 h-fit">
           <Typography variant="small" color="blue-gray" className="font-normal">

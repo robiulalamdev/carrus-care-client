@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import RFormThreeStep1 from "./RFormThreeStep1";
 import RFormThreeStep2 from "./RFormThreeStep2";
 import { useSelector } from "react-redux";
+import FormSuccessModal from "../../common/FormSuccessModal";
 
 const RForm3 = ({ step, setStep, data }) => {
   const [postPRThree, { isLoading }] = usePostPRThreeMutation();
@@ -23,6 +24,7 @@ const RForm3 = ({ step, setStep, data }) => {
     formState: { errors },
   } = useForm();
   const [form3Step, setForm3Step] = useState(1);
+  const [open, setOpen] = useState(false);
 
   const handleSaveData = async (data) => {
     if (data) {
@@ -33,9 +35,10 @@ const RForm3 = ({ step, setStep, data }) => {
         const result = await postPRThree(options);
         if (result?.data?.success) {
           reset();
+          setOpen(true);
           toast.success("Form Submit Success");
-          setStep(1);
-          window.location.reload();
+          // setStep(1);
+          // window.location.reload();
         } else {
           toast.error("Form Submit Failed");
         }
@@ -63,43 +66,52 @@ const RForm3 = ({ step, setStep, data }) => {
     setNestedValues(data);
   }, [setValue, data]);
 
-  return (
-    <form
-      onSubmit={handleSubmit(handleSaveData)}
-      className={`${step === 3 ? "block" : "hidden"}`}
-    >
-      {form3Step === 1 && (
-        <RFormThreeStep1
-          register={register}
-          watch={watch}
-          control={control}
-          setValue={setValue}
-          errors={errors}
-        />
-      )}
-      {form3Step === 2 && (
-        <RFormThreeStep2
-          register={register}
-          watch={watch}
-          control={control}
-          setValue={setValue}
-          errors={errors}
-        />
-      )}
+  const handleClose = () => {
+    setOpen(false);
+    window.location.reload();
+    setStep(1);
+  };
 
-      <div className="flex justify-center pt-10 pb-20">
-        <button
-          type="submit"
-          className="w-32 h-10 bg-primary hover:bg-hp duration-150 cursor-pointer text-white text-base leading-[18px] tracking-[0.4px] border-none flex justify-center items-center"
-        >
-          {isLoading ? (
-            <Spinner color="white" />
-          ) : (
-            <>{form3Step >= 2 ? "Submit" : "Next"}</>
-          )}
-        </button>
-      </div>
-    </form>
+  return (
+    <>
+      <form
+        onSubmit={handleSubmit(handleSaveData)}
+        className={`${step === 3 ? "block" : "hidden"}`}
+      >
+        {form3Step === 1 && (
+          <RFormThreeStep1
+            register={register}
+            watch={watch}
+            control={control}
+            setValue={setValue}
+            errors={errors}
+          />
+        )}
+        {form3Step === 2 && (
+          <RFormThreeStep2
+            register={register}
+            watch={watch}
+            control={control}
+            setValue={setValue}
+            errors={errors}
+          />
+        )}
+
+        <div className="flex justify-center pt-10 pb-20">
+          <button
+            type="submit"
+            className="w-32 h-10 bg-primary hover:bg-hp duration-150 cursor-pointer text-white text-base leading-[18px] tracking-[0.4px] border-none flex justify-center items-center"
+          >
+            {isLoading ? (
+              <Spinner color="white" />
+            ) : (
+              <>{form3Step >= 2 ? "Submit" : "Next"}</>
+            )}
+          </button>
+        </div>
+      </form>
+      <FormSuccessModal open={open} handleClose={handleClose} />
+    </>
   );
 };
 

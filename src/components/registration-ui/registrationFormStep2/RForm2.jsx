@@ -8,6 +8,7 @@ import RFormTwoStep3 from "./RFormTwoStep3";
 import { Spinner } from "@material-tailwind/react";
 import { usePostPRTwoMutation } from "../../../redux/features/form/formApi";
 import { useSelector } from "react-redux";
+import NextModal from "../../common/NextModal";
 
 const RForm2 = ({ step, setStep, data }) => {
   const [postPRTwo, { isLoading }] = usePostPRTwoMutation();
@@ -23,6 +24,7 @@ const RForm2 = ({ step, setStep, data }) => {
     formState: { errors },
   } = useForm();
   const [form2Step, setForm2Step] = useState(1);
+  const [open, setOpen] = useState(false);
 
   const handleSecondForm = async (data) => {
     if (data) {
@@ -33,8 +35,9 @@ const RForm2 = ({ step, setStep, data }) => {
         const result = await postPRTwo(options);
         if (result?.data?.success) {
           reset();
+          setOpen(true);
           toast.success("Form Submit Success");
-          setStep(3);
+          // setStep(3);
         } else {
           toast.error("Form Submit Failed");
         }
@@ -68,36 +71,53 @@ const RForm2 = ({ step, setStep, data }) => {
       }
     }
   }, [setValue, data]);
-  return (
-    <form
-      onSubmit={handleSubmit(handleSecondForm)}
-      className={`${step === 2 ? "block" : "hidden"}`}
-      id="myform"
-    >
-      {form2Step === 1 && <RFormTwoStep1 />}
-      {form2Step === 2 && <RFormTwoStep2 />}
-      {form2Step === 3 && (
-        <RFormTwoStep3
-          setValue={setValue}
-          control={control}
-          errors={errors}
-          register={register}
-        />
-      )}
 
-      <div className="flex justify-center pt-10 pb-20">
-        <button
-          type="submit"
-          className="w-32 h-10 bg-primary hover:bg-hp duration-150 cursor-pointer text-white text-base leading-[18px] tracking-[0.4px] border-none flex justify-center items-center"
-        >
-          {isLoading ? (
-            <Spinner color="white" />
-          ) : (
-            <>{form2Step >= 3 ? "Submit" : "Next"}</>
-          )}
-        </button>
-      </div>
-    </form>
+  const handleClose = () => {
+    setStep(1);
+    setOpen(false);
+  };
+  const handleNext = () => {
+    setOpen(false);
+    setStep(3);
+  };
+
+  return (
+    <>
+      <form
+        onSubmit={handleSubmit(handleSecondForm)}
+        className={`${step === 2 ? "block" : "hidden"}`}
+        id="myform"
+      >
+        {form2Step === 1 && <RFormTwoStep1 />}
+        {form2Step === 2 && <RFormTwoStep2 />}
+        {form2Step === 3 && (
+          <RFormTwoStep3
+            setValue={setValue}
+            control={control}
+            errors={errors}
+            register={register}
+          />
+        )}
+
+        <div className="flex justify-center pt-10 pb-20">
+          <button
+            type="submit"
+            className="w-32 h-10 bg-primary hover:bg-hp duration-150 cursor-pointer text-white text-base leading-[18px] tracking-[0.4px] border-none flex justify-center items-center"
+          >
+            {isLoading ? (
+              <Spinner color="white" />
+            ) : (
+              <>{form2Step >= 3 ? "Submit" : "Next"}</>
+            )}
+          </button>
+        </div>
+      </form>
+      <NextModal
+        open={open}
+        handleClose={handleClose}
+        handleNext={handleNext}
+      />
+    </>
   );
 };
 

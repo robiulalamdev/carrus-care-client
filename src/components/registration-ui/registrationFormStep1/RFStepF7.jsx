@@ -70,7 +70,7 @@ const RFStepF7 = ({
           <Controller
             name="patient_signature"
             control={control}
-            rules={{ required: "Signature is required" }}
+            // rules={{ required: "Signature is required" }}
             render={({ field }) => (
               <SignatureInput
                 img={field.value}
@@ -89,7 +89,7 @@ const RFStepF7 = ({
           <Controller
             name="patient_signature_date"
             control={control}
-            rules={{ required: "Date is required" }}
+            // rules={{ required: "Date is required" }}
             render={({ field }) => (
               <DateInput
                 value={field.value}
@@ -101,9 +101,9 @@ const RFStepF7 = ({
               />
             )}
             {...register("patient_signature_date", {
-              required: true,
+              required: false,
             })}
-            required
+            // required
           />
           <h1 className="text-gray-950 text-base leading-[22px] tracking-[0.18px] font-medium">
             Date
