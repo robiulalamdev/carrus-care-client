@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
 import { Controller } from "react-hook-form";
 import useInputPattern from "../../../lib/hooks/useInputPattern";
 import DateInput from "../../common/DateInput";
 import { rfInput_class, rfInput_label_class } from "../../../lib/constants";
+import CheckInput from "../../common/CheckInput";
 
 const sInsuranceItems = [
   "Aetna",
@@ -80,31 +80,24 @@ const RfStepF1 = ({
               defaultValue=""
               render={({ field }) => (
                 <>
-                  <div className="flex items-center gap-1">
-                    <input
-                      type="radio"
-                      {...field}
-                      id="mr"
-                      value="Mr."
-                      defaultChecked={field.value === "Mr."}
-                    />
-                    <label htmlFor="mr" className={`${rfInput_label_class}`}>
-                      Mr.
-                    </label>
-                  </div>
-
-                  <div className="flex items-center gap-1">
-                    <input
-                      type="radio"
-                      {...field}
-                      id="mrs"
-                      value="Mrs."
-                      defaultChecked={field.value === "Mrs."}
-                    />
-                    <label htmlFor="mrs" className={`${rfInput_label_class}`}>
-                      Mrs.
-                    </label>
-                  </div>
+                  <CheckInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("patient_information.salutation", value);
+                      field.onChange(value);
+                    }}
+                    label="Mr."
+                    error={errors?.patient_information?.salutation}
+                  />
+                  <CheckInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("patient_information.salutation", value);
+                      field.onChange(value);
+                    }}
+                    label="Mrs."
+                    error={errors?.patient_information?.salutation}
+                  />
                 </>
               )}
               {...register("patient_information.salutation", {
@@ -122,31 +115,24 @@ const RfStepF1 = ({
               defaultValue=""
               render={({ field }) => (
                 <>
-                  <div className="flex gap-1">
-                    <input
-                      type="radio"
-                      {...field}
-                      id="mr"
-                      value="Miss."
-                      defaultChecked={field.value === "Miss."}
-                    />
-                    <label htmlFor="mr" className={`${rfInput_label_class}`}>
-                      Miss.
-                    </label>
-                  </div>
-
-                  <div className="flex gap-1">
-                    <input
-                      type="radio"
-                      {...field}
-                      id="mr"
-                      value="Ms."
-                      defaultChecked={field.value === "Ms."}
-                    />
-                    <label htmlFor="mr" className={`${rfInput_label_class}`}>
-                      Ms.
-                    </label>
-                  </div>
+                  <CheckInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("patient_information.salutation", value);
+                      field.onChange(value);
+                    }}
+                    label="Miss."
+                    error={errors?.patient_information?.salutation}
+                  />
+                  <CheckInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("patient_information.salutation", value);
+                      field.onChange(value);
+                    }}
+                    label="Ms."
+                    error={errors?.patient_information?.salutation}
+                  />
                 </>
               )}
               {...register("patient_information.salutation", {
@@ -302,44 +288,31 @@ const RfStepF1 = ({
               defaultValue="Phone"
               render={({ field }) => (
                 <>
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      {...field}
-                      id="pm1"
-                      value="Phone"
-                      defaultChecked={field.value === "Phone"}
-                    />
-                    <label htmlFor="pm1" className={`${rfInput_label_class}`}>
-                      Phone
-                    </label>
-                  </div>
+                  <CheckInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("patient_information.preferred_method", value);
+                      field.onChange(value);
+                    }}
+                    label="Phone"
+                  />
 
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      {...field}
-                      id="pm2"
-                      value="Work"
-                      defaultChecked={field.value === "Work"}
-                    />
-                    <label htmlFor="pm2" className={`${rfInput_label_class}`}>
-                      Work
-                    </label>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      {...field}
-                      id="pm3"
-                      value="Other"
-                      defaultChecked={field.value === "Other"}
-                    />
-                    <label htmlFor="pm3" className={`${rfInput_label_class}`}>
-                      Other
-                    </label>
-                  </div>
+                  <CheckInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("patient_information.preferred_method", value);
+                      field.onChange(value);
+                    }}
+                    label="Work"
+                  />
+                  <CheckInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("patient_information.preferred_method", value);
+                      field.onChange(value);
+                    }}
+                    label="Other"
+                  />
                 </>
               )}
             />
@@ -406,67 +379,48 @@ const RfStepF1 = ({
               defaultValue="Media"
               render={({ field }) => (
                 <>
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      {...field}
-                      id="s1"
-                      value="Media"
-                      defaultChecked={field.value === "Media"}
-                    />
-                    <label htmlFor="s1" className="font-semibold text-sm">
-                      Media
-                    </label>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      {...field}
-                      id="s2"
-                      value="Returning"
-                      defaultChecked={field.value === "Returning"}
-                    />
-                    <label htmlFor="s2" className="font-semibold text-sm">
-                      Returning
-                    </label>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      {...field}
-                      id="s3"
-                      value="Patient"
-                      defaultChecked={field.value === "Patient"}
-                    />
-                    <label htmlFor="s3" className="font-semibold text-sm">
-                      Patient
-                    </label>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      {...field}
-                      id="s4"
-                      value="Pharmacy"
-                      defaultChecked={field.value === "Pharmacy"}
-                    />
-                    <label htmlFor="s4" className="font-semibold text-sm">
-                      Pharmacy
-                    </label>
-                  </div>
+                  <CheckInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("patient_information.service", value);
+                      field.onChange(value);
+                    }}
+                    label="Media"
+                  />
+                  <CheckInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("patient_information.service", value);
+                      field.onChange(value);
+                    }}
+                    label="Returning"
+                  />
+                  <CheckInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("patient_information.service", value);
+                      field.onChange(value);
+                    }}
+                    label="Patient"
+                  />
+                  <CheckInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("patient_information.service", value);
+                      field.onChange(value);
+                    }}
+                    label="Pharmacy"
+                  />
+
                   <div className="flex items-end gap-1">
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="radio"
-                        {...field}
-                        id="s5"
-                        value="Other"
-                        defaultChecked={field.value === "Other"}
-                      />
-                      <label htmlFor="s5" className="font-semibold text-sm">
-                        Other:
-                      </label>
-                    </div>
+                    <CheckInput
+                      value={field.value}
+                      setValue={(value) => {
+                        setValue("patient_information.service", value);
+                        field.onChange(value);
+                      }}
+                      label="Other"
+                    />
                     {watch("patient_information.service") === "Other" && (
                       <input
                         {...register("patient_information.other_service", {
@@ -500,33 +454,25 @@ const RfStepF1 = ({
             <Controller
               name="insurance_information.auto_accident"
               control={control}
-              defaultValue=""
+              defaultValue="Yes"
               render={({ field }) => (
                 <>
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      {...field}
-                      id="agree1"
-                      value={true}
-                      defaultChecked={field.value === true}
-                    />
-                    <label htmlFor="agree1" className="font-semibold text-sm">
-                      Yes
-                    </label>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      {...field}
-                      id="agree2"
-                      value={false}
-                      defaultChecked={field.value === false}
-                    />
-                    <label htmlFor="agree2" className="font-semibold text-sm">
-                      No
-                    </label>
-                  </div>
+                  <CheckInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("insurance_information.auto_accident", value);
+                      field.onChange(value);
+                    }}
+                    label="Yes"
+                  />
+                  <CheckInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("insurance_information.auto_accident", value);
+                      field.onChange(value);
+                    }}
+                    label="No"
+                  />
                 </>
               )}
             />
@@ -546,19 +492,19 @@ const RfStepF1 = ({
               defaultValue="Aetna"
               render={({ field }) => (
                 <>
-                  {sInsuranceItems.map((value, index) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <input
-                        type="radio"
-                        {...field}
-                        id={index}
-                        value={value}
-                        defaultChecked={field.value === value}
-                      />
-                      <label htmlFor={index} className="font-semibold text-sm">
-                        {value}
-                      </label>
-                    </div>
+                  {sInsuranceItems.map((iValue, index) => (
+                    <CheckInput
+                      key={index}
+                      value={field.value}
+                      setValue={(value) => {
+                        setValue(
+                          "insurance_information.primary_insurance",
+                          value
+                        );
+                        field.onChange(value);
+                      }}
+                      label={iValue}
+                    />
                   ))}
                 </>
               )}
@@ -667,22 +613,19 @@ const RfStepF1 = ({
               defaultValue=""
               render={({ field }) => (
                 <>
-                  {members.map((value, index) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <input
-                        type="radio"
-                        {...field}
-                        id={`prs${index}`}
-                        value={value}
-                        defaultChecked={field.value === value}
-                      />
-                      <label
-                        htmlFor={`prs${index}`}
-                        className="font-semibold text-sm"
-                      >
-                        {value}
-                      </label>
-                    </div>
+                  {members.map((iValue, index) => (
+                    <CheckInput
+                      key={index}
+                      value={field.value}
+                      setValue={(value) => {
+                        setValue(
+                          "insurance_information.patient_relationship_subscriber",
+                          value
+                        );
+                        field.onChange(value);
+                      }}
+                      label={iValue}
+                    />
                   ))}
                 </>
               )}
@@ -727,22 +670,19 @@ const RfStepF1 = ({
               defaultValue=""
               render={({ field }) => (
                 <>
-                  {["Work", "Auto"].map((value, index) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <input
-                        type="radio"
-                        {...field}
-                        id={`toa${index}`}
-                        value={value}
-                        defaultChecked={field.value === value}
-                      />
-                      <label
-                        htmlFor={`toa${index}`}
-                        className="font-semibold text-sm"
-                      >
-                        {value}
-                      </label>
-                    </div>
+                  {["Work", "Auto"].map((iValue, index) => (
+                    <CheckInput
+                      key={index}
+                      value={field.value}
+                      setValue={(value) => {
+                        setValue(
+                          "insurance_information.patient_relationship_subscriber",
+                          value
+                        );
+                        field.onChange(value);
+                      }}
+                      label={iValue}
+                    />
                   ))}
                 </>
               )}
@@ -762,22 +702,19 @@ const RfStepF1 = ({
                 render={({ field }) => (
                   <>
                     {["Driver", "Passenger", "Pedestrian", "Cyclist"].map(
-                      (value, index) => (
-                        <div key={index} className="flex items-center gap-2">
-                          <input
-                            type="radio"
-                            {...field}
-                            id={`ia${index}`}
-                            value={value}
-                            defaultChecked={field.value === value}
-                          />
-                          <label
-                            htmlFor={`ia${index}`}
-                            className="font-semibold text-sm"
-                          >
-                            {value}
-                          </label>
-                        </div>
+                      (iValue, index) => (
+                        <CheckInput
+                          key={index}
+                          value={field.value}
+                          setValue={(value) => {
+                            setValue(
+                              "accident_related.involvement_in_accident",
+                              value
+                            );
+                            field.onChange(value);
+                          }}
+                          label={iValue}
+                        />
                       )
                     )}
                   </>
@@ -872,30 +809,22 @@ const RfStepF1 = ({
               defaultValue="Yes"
               render={({ field }) => (
                 <>
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      {...field}
-                      id={`re1`}
-                      value="Yes"
-                      defaultChecked={field.value === "Yes"}
-                    />
-                    <label htmlFor={`re1`} className="font-semibold text-sm">
-                      Yes
-                    </label>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      {...field}
-                      id={`re2`}
-                      value="No"
-                      defaultChecked={field.value === "No"}
-                    />
-                    <label htmlFor={`re2`} className="font-semibold text-sm">
-                      No
-                    </label>
-                  </div>
+                  <CheckInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("accident_related.report", value);
+                      field.onChange(value);
+                    }}
+                    label="Yes"
+                  />
+                  <CheckInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("accident_related.report", value);
+                      field.onChange(value);
+                    }}
+                    label="No"
+                  />
                 </>
               )}
               {...register("accident_related.report", {

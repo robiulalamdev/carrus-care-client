@@ -34,6 +34,8 @@ const RForm3 = ({ step, setStep, data }) => {
         if (result?.data?.success) {
           reset();
           toast.success("Form Submit Success");
+          setStep(1);
+          window.location.reload();
         } else {
           toast.error("Form Submit Failed");
         }
@@ -85,10 +87,10 @@ const RForm3 = ({ step, setStep, data }) => {
         />
       )}
 
-      <div className="flex justify-center pt-20 pb-3">
+      <div className="flex justify-center pt-10 pb-20">
         <button
           type="submit"
-          className="w-32 h-10 bg-green-600 hover:bg-green-700 duration-150 cursor-pointer text-white text-base leading-[18px] tracking-[0.4px] border-none flex justify-center items-center"
+          className="w-32 h-10 bg-primary hover:bg-hp duration-150 cursor-pointer text-white text-base leading-[18px] tracking-[0.4px] border-none flex justify-center items-center"
         >
           {isLoading ? (
             <Spinner color="white" />

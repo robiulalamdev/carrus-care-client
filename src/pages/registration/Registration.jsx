@@ -9,8 +9,8 @@ const Registration = () => {
   return (
     <>
       <Header />
-      <div className="w-full min-h-screen">
-        <div className="max-w-[1400px] mx-auto w-full py-8 px-2">
+      <div className="w-full min-h-screen py-8">
+        <div className="max-w-[1400px] mx-auto w-full pt-8 px-2 md:px-8 md:shadow md:rounded-md">
           <RForm1 step={step} setStep={setStep} show={true} />
           <RForm2 step={step} setStep={setStep} show={true} />
           <RForm3 step={step} setStep={setStep} show={true} />

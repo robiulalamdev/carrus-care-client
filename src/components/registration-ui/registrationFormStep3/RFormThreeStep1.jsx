@@ -3,6 +3,7 @@
 import { Controller } from "react-hook-form";
 import DateInput from "../../common/DateInput";
 import useInputPattern from "../../../lib/hooks/useInputPattern";
+import { rfInput_label_class } from "../../../lib/constants";
 
 const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
   const { handleNumber } = useInputPattern();
@@ -29,7 +30,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
 
           <div className="grid grid-cols-1 gap-2">
             <div className="flex items-center gap-1">
-              <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+              <h1 className={`${rfInput_label_class} text-nowrap`}>
                 Full Name:
               </h1>
               <input
@@ -43,7 +44,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
             </div>
             <div className="flex flex-wrap items-start gap-2">
               <div className="flex items-center gap-1 flex-grow">
-                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                <h1 className={`${rfInput_label_class} text-nowrap`}>
                   Other Name(s) Used:
                 </h1>
                 <input
@@ -56,7 +57,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 />
               </div>
               <div className="flex items-center gap-1">
-                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                <h1 className={`${rfInput_label_class} text-nowrap`}>
                   Date of Birth:
                 </h1>
 
@@ -92,7 +93,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
 
             <div className="flex flex-wrap items-start gap-2">
               <div className="flex items-center gap-1 flex-grow">
-                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                <h1 className={`${rfInput_label_class} text-nowrap`}>
                   Address:
                 </h1>
                 <input
@@ -105,9 +106,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 />
               </div>
               <div className="flex items-center gap-1">
-                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
-                  City:
-                </h1>
+                <h1 className={`${rfInput_label_class} text-nowrap`}>City:</h1>
                 <input
                   {...register("patient_information_for_authorization.city", {
                     required: true,
@@ -117,9 +116,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 />
               </div>
               <div className="flex items-center gap-1">
-                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
-                  State:
-                </h1>
+                <h1 className={`${rfInput_label_class} text-nowrap`}>State:</h1>
                 <input
                   {...register("patient_information_for_authorization.state", {
                     required: true,
@@ -129,7 +126,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 />
               </div>
               <div className="flex items-center gap-1">
-                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                <h1 className={`${rfInput_label_class} text-nowrap`}>
                   Zip Code:
                 </h1>
                 <input
@@ -143,9 +140,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
             </div>
             <div className="flex justify-between flex-wrap items-start gap-2 w-full">
               <div className="flex items-center gap-1 flex-grow">
-                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
-                  Phone:
-                </h1>
+                <h1 className={`${rfInput_label_class} text-nowrap`}>Phone:</h1>
                 <input
                   {...register("patient_information_for_authorization.phone", {
                     required: true,
@@ -156,7 +151,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 />
               </div>
               <div className="flex items-center gap-1 flex-grow">
-                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                <h1 className={`${rfInput_label_class} text-nowrap`}>
                   Email: (Optional):
                 </h1>
                 <input
@@ -179,9 +174,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
           </h1>
           <div className="grid grid-cols-1 gap-2">
             <div className="flex items-center md:gap-1 flex-wrap md:flex-nowrap">
-              <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
-                Name:
-              </h1>
+              <h1 className={`${rfInput_label_class} text-nowrap`}>Name:</h1>
               <input
                 {...register("health_care_entity_authorized_information.name", {
                   required: true,
@@ -192,7 +185,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
             </div>
             <div className="flex flex-wrap items-start gap-2">
               <div className="flex items-center gap-1 flex-grow">
-                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                <h1 className={`${rfInput_label_class} text-nowrap`}>
                   Address:
                 </h1>
                 <input
@@ -208,9 +201,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 />
               </div>
               <div className="flex items-center gap-1">
-                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
-                  City:
-                </h1>
+                <h1 className={`${rfInput_label_class} text-nowrap`}>City:</h1>
                 <input
                   {...register(
                     "health_care_entity_authorized_information.city",
@@ -224,9 +215,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 />
               </div>
               <div className="flex items-center gap-1">
-                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
-                  State:
-                </h1>
+                <h1 className={`${rfInput_label_class} text-nowrap`}>State:</h1>
                 <input
                   {...register(
                     "health_care_entity_authorized_information.state",
@@ -240,7 +229,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 />
               </div>
               <div className="flex items-center gap-1">
-                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                <h1 className={`${rfInput_label_class} text-nowrap`}>
                   Zip Code:
                 </h1>
                 <input
@@ -259,9 +248,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
 
             <div className="flex justify-between flex-wrap items-start gap-2 w-full">
               <div className="flex items-center gap-1 flex-grow">
-                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
-                  Phone:
-                </h1>
+                <h1 className={`${rfInput_label_class} text-nowrap`}>Phone:</h1>
                 <input
                   {...register(
                     "health_care_entity_authorized_information.phone",
@@ -276,9 +263,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 />
               </div>
               <div className="flex items-center gap-1 flex-grow">
-                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
-                  Fax:
-                </h1>
+                <h1 className={`${rfInput_label_class} text-nowrap`}>Fax:</h1>
                 <input
                   {...register(
                     "health_care_entity_authorized_information.fax",
@@ -303,9 +288,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
           </h1>
           <div className="grid grid-cols-1 gap-2">
             <div className="flex items-center gap-1">
-              <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
-                Name:
-              </h1>
+              <h1 className={`${rfInput_label_class} text-nowrap`}>Name:</h1>
               <input
                 {...register("information_regarding_person.name", {
                   required: true,
@@ -316,7 +299,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
             </div>
             <div className="flex flex-wrap items-start gap-2">
               <div className="flex items-center gap-1 flex-grow">
-                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                <h1 className={`${rfInput_label_class} text-nowrap`}>
                   Address:
                 </h1>
                 <input
@@ -328,9 +311,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 />
               </div>
               <div className="flex items-center gap-1">
-                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
-                  City:
-                </h1>
+                <h1 className={`${rfInput_label_class} text-nowrap`}>City:</h1>
                 <input
                   {...register("information_regarding_person.city", {
                     required: true,
@@ -340,9 +321,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 />
               </div>
               <div className="flex items-center gap-1">
-                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
-                  State:
-                </h1>
+                <h1 className={`${rfInput_label_class} text-nowrap`}>State:</h1>
                 <input
                   {...register("information_regarding_person.state", {
                     required: true,
@@ -352,7 +331,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 />
               </div>
               <div className="flex items-center gap-1">
-                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                <h1 className={`${rfInput_label_class} text-nowrap`}>
                   Zip Code:
                 </h1>
                 <input
@@ -367,9 +346,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
 
             <div className="flex justify-between flex-wrap items-start gap-2 w-full">
               <div className="flex items-center gap-1 flex-grow">
-                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
-                  Phone:
-                </h1>
+                <h1 className={`${rfInput_label_class} text-nowrap`}>Phone:</h1>
                 <input
                   {...register("information_regarding_person.phone", {
                     required: true,
@@ -380,9 +357,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                 />
               </div>
               <div className="flex items-center gap-1 flex-grow">
-                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
-                  Fax:
-                </h1>
+                <h1 className={`${rfInput_label_class} text-nowrap`}>Fax:</h1>
                 <input
                   {...register("information_regarding_person.fax", {
                     required: true,
@@ -418,7 +393,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                       />
                       <label
                         htmlFor="Other"
-                        className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap"
+                        className={`${rfInput_label_class} text-nowrap`}
                       >
                         Medical Record
                       </label>
@@ -429,7 +404,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                   })}
                 />
 
-                <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                <h1 className={`${rfInput_label_class} text-nowrap`}>
                   from (insert date)
                 </h1>
                 {watch("specific_information.type") === "medical_record" && (
@@ -464,7 +439,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
 
               {watch("specific_information.type") === "medical_record" && (
                 <div className="flex items-center md:gap-1 flex-wrap md:flex-nowrap">
-                  <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                  <h1 className={`${rfInput_label_class} text-nowrap`}>
                     to (insert date)
                   </h1>
 
@@ -521,7 +496,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                     />
                     <label
                       htmlFor="Other"
-                      className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap"
+                      className={`${rfInput_label_class} text-nowrap`}
                     >
                       Other
                     </label>
@@ -622,7 +597,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                     className="flex items-center gap-1 cursor-pointer"
                   >
                     <input type="checkbox" checked={field.value} />
-                    <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                    <h1 className={`${rfInput_label_class} text-nowrap`}>
                       Treatment/Continuing Medical Care
                     </h1>
                   </div>
@@ -639,7 +614,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                     className="flex items-center gap-1 cursor-pointer"
                   >
                     <input type="checkbox" checked={field.value} />
-                    <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                    <h1 className={`${rfInput_label_class} text-nowrap`}>
                       Personal Use
                     </h1>
                   </div>
@@ -656,7 +631,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                     className="flex items-center gap-1 cursor-pointer"
                   >
                     <input type="checkbox" checked={field.value} />
-                    <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                    <h1 className={`${rfInput_label_class} text-nowrap`}>
                       Billing or Claims
                     </h1>
                   </div>
@@ -673,7 +648,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                     className="flex items-center gap-1 cursor-pointer"
                   >
                     <input type="checkbox" checked={field.value} />
-                    <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                    <h1 className={`${rfInput_label_class} text-nowrap`}>
                       Insurance
                     </h1>
                   </div>
@@ -690,7 +665,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                     className="flex items-center gap-1 cursor-pointer"
                   >
                     <input type="checkbox" checked={field.value} />
-                    <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                    <h1 className={`${rfInput_label_class} text-nowrap`}>
                       Legal Purposes
                     </h1>
                   </div>
@@ -707,7 +682,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                     className="flex items-center gap-1 cursor-pointer"
                   >
                     <input type="checkbox" checked={field.value} />
-                    <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                    <h1 className={`${rfInput_label_class} text-nowrap`}>
                       Disability Determination
                     </h1>
                   </div>
@@ -724,7 +699,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                     className="flex items-center gap-1 cursor-pointer"
                   >
                     <input type="checkbox" checked={field.value} />
-                    <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                    <h1 className={`${rfInput_label_class} text-nowrap`}>
                       School
                     </h1>
                   </div>
@@ -741,7 +716,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                     className="flex items-center gap-1 cursor-pointer"
                   >
                     <input type="checkbox" checked={field.value} />
-                    <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                    <h1 className={`${rfInput_label_class} text-nowrap`}>
                       Employment
                     </h1>
                   </div>
@@ -763,7 +738,7 @@ const RFormThreeStep1 = ({ register, watch, control, setValue, errors }) => {
                         checked={field.value}
                         className="cursor-pointer"
                       />
-                      <h1 className="text-gray-950 text-sm leading-[22px] tracking-[0.2px] font-medium text-nowrap">
+                      <h1 className={`${rfInput_label_class} text-nowrap`}>
                         Other <i>(Specify)</i>
                       </h1>
                     </div>

@@ -8,6 +8,7 @@ export default withMT({
   theme: {
     colors: {
       primary: "#993132",
+      hp: "#c14548",
       darkPrimary: "#341912",
     },
     extend: {},
