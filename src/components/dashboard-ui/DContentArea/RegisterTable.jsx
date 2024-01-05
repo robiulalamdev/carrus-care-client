@@ -86,14 +86,14 @@ const RegisterTable = () => {
   return (
     <>
       {/* <PdfFOne data={data?.data[0].prfOneData} /> */}
-      <Card className="w-full max-w-[1200px] mx-auto flex-grow pt-4 mb-4 h-full flex flex-col justify-between">
+      <Card className="w-full max-w-[1200px] mx-auto flex-grow pt-1 mb-4 h-full flex flex-col justify-between text-current">
         <table className="w-full min-w-max table-auto text-left overflow-scroll">
-          <thead className="bg-gray-900 h-fit">
+          <thead className="bg-primary h-fit text-center">
             <tr>
               {TABLE_HEAD.map((head) => (
                 <th
                   key={head}
-                  className="border-b border-blue-gray-100 bg-gray-900 text-white p-4"
+                  className="border-b border-blue-gray-100 text-white p-4"
                 >
                   <Typography
                     variant="small"
@@ -107,7 +107,7 @@ const RegisterTable = () => {
             </tr>
           </thead>
           {data?.data?.length > 0 ? (
-            <tbody className="max-h-full flex-grow">
+            <tbody className="max-h-full flex-grow text-center">
               {data?.data?.map((item, index) => {
                 return (
                   <tr key={index} className="h-fit even:bg-blue-gray-50/50">
@@ -162,12 +162,12 @@ const RegisterTable = () => {
                       </Typography>
                     </td>
                     <td className={`p-4 border-b border-blue-gray-50`}>
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center justify-center gap-3">
                         <Popover>
                           <PopoverHandler>
                             <IconButton
                               size="sm"
-                              className="font-medium bg-blue-600"
+                              className="font-medium bg-blue-600 rounded"
                             >
                               <div className="w-5">{iView}</div>
                             </IconButton>
@@ -187,7 +187,7 @@ const RegisterTable = () => {
 
                         <IconButton
                           size="sm"
-                          className="bg-green-600 shadow-none"
+                          className="bg-primary shadow-none rounded"
                         >
                           <div
                             onClick={() => setFormData(item)}
@@ -212,10 +212,18 @@ const RegisterTable = () => {
             Page {data?.pagination?.page} of {data?.pagination?.totalPages}
           </Typography>
           <div className="flex gap-2">
-            <Button variant="outlined" size="sm" onClick={handlePreviousClick}>
+            <Button
+              className="bg-primary text-white rounded"
+              size="sm"
+              onClick={handlePreviousClick}
+            >
               Previous
             </Button>
-            <Button variant="outlined" size="sm" onClick={handleNextClick}>
+            <Button
+              className={`bg-primary text-white rounded`}
+              size="sm"
+              onClick={handleNextClick}
+            >
               Next
             </Button>
           </div>

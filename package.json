@@ -24,6 +24,7 @@
     "react-hook-form": "^7.49.2",
     "react-redux": "^9.0.4",
     "react-router-dom": "^6.21.1",
+    "react-spinners": "^0.13.8",
     "react-to-pdf": "^1.0.1",
     "react-toastify": "^9.1.3"
   },
