@@ -90,6 +90,10 @@ const RForm1 = ({ step, setStep, show, data }) => {
     setStep(2);
   };
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [form1Step]);
+
   return (
     <>
       <form

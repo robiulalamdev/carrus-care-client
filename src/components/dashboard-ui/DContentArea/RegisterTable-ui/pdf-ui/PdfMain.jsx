@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import PdfFOne from "./PdfFOne";
 import PdfFTwo from "./PdfFTwo";
@@ -24,7 +25,7 @@ import logo from "../../../../../assets/brand/logo.png";
 import { RingLoader } from "react-spinners";
 import DateInput from "../../../../common/DateInput";
 
-const PdfMain = ({ data, setData }) => {
+const PdfMain = ({ data, setData, printOrder }) => {
   const fr1 = useRef();
   const fr2 = useRef();
   const fr3 = useRef();
@@ -38,13 +39,12 @@ const PdfMain = ({ data, setData }) => {
   const fr11 = useRef();
   const fr12 = useRef();
 
-  const refs = [fr1, fr2, fr3, fr4, fr5, fr6, fr7, fr8, fr9, fr10, fr11, fr12];
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleDownloadPdf = async () => {
+  const handleDownloadPdf = async (refs, total) => {
     setIsLoading(true);
     const pdf = new jsPDF();
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < total; i++) {
       const ref = refs[i];
       const element = ref.current;
       const canvas = await html2canvas(element);
@@ -54,7 +54,7 @@ const PdfMain = ({ data, setData }) => {
       const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width;
 
       pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
-      if (i < 12 - 1) {
+      if (i < total - 1) {
         pdf.addPage();
       }
     }
@@ -98,7 +98,18 @@ const PdfMain = ({ data, setData }) => {
         elements[i].readOnly = true;
       }
     }
-    handleDownloadPdf();
+    if (printOrder === "F1") {
+      handleDownloadPdf([fr1, fr2, fr3, fr4, fr5, fr6, fr7], 7);
+    } else if (printOrder === "F2") {
+      handleDownloadPdf([fr8, fr9, fr10], 3);
+    } else if (printOrder === "F3") {
+      handleDownloadPdf([fr11, fr12], 2);
+    } else if (printOrder === "All") {
+      handleDownloadPdf(
+        [fr1, fr2, fr3, fr4, fr5, fr6, fr7, fr8, fr9, fr10, fr11, fr12],
+        12
+      );
+    }
   }, [data]);
 
   return (

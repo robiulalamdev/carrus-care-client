@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RForm1 from "../../components/registration-ui/registrationFormStep1/RForm1";
 import RForm2 from "../../components/registration-ui/registrationFormStep2/RForm2";
 import RForm3 from "../../components/registration-ui/registrationFormStep3/RForm3";
@@ -6,6 +6,10 @@ import Header from "../../components/shared/Header";
 
 const Registration = () => {
   const [step, setStep] = useState(1);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [step]);
   return (
     <>
       <Header />
