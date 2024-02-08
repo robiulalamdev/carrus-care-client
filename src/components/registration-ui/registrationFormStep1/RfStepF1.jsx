@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { Controller } from "react-hook-form";
 import useInputPattern from "../../../lib/hooks/useInputPattern";
@@ -17,7 +18,7 @@ const sInsuranceItems = [
   "Other",
 ];
 
-const members = ["Self", "Spouse"];
+const members = ["Self", "Spouse", "Child", "Other"];
 
 const RfStepF1 = ({
   step,
@@ -61,7 +62,7 @@ const RfStepF1 = ({
             className={`${rfInput_class}`}
           />
         </div>
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary">
+        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary ">
           <label className={`${rfInput_label_class}`}>Middle</label>
           <input
             {...register("patient_information.middle_name", {
@@ -72,10 +73,11 @@ const RfStepF1 = ({
           />
         </div>
 
-        <div className="p-1 md:p-2 md:border-r border-darkPrimary col-span-7 md:col-span-1">
-          <div className="flex items-center gap-3">
+        <div className="p-1 md:p-2 border-darkPrimary col-span-7 md:col-span-2">
+          <label className={`${rfInput_label_class}`}>Martial Status</label>
+          <div className="flex items-center gap-3 flex-wrap">
             <Controller
-              name="patient_information.salutation"
+              name="patient_information.martial_status"
               control={control}
               defaultValue=""
               render={({ field }) => (
@@ -83,59 +85,55 @@ const RfStepF1 = ({
                   <CheckInput
                     value={field.value}
                     setValue={(value) => {
-                      setValue("patient_information.salutation", value);
+                      setValue("patient_information.martial_status", value);
                       field.onChange(value);
                     }}
-                    label="Mr."
-                    error={errors?.patient_information?.salutation}
+                    label="Married"
+                    error={errors?.patient_information?.martial_status}
                   />
+
                   <CheckInput
                     value={field.value}
                     setValue={(value) => {
-                      setValue("patient_information.salutation", value);
+                      setValue("patient_information.martial_status", value);
                       field.onChange(value);
                     }}
-                    label="Mrs."
-                    error={errors?.patient_information?.salutation}
+                    label="Single"
+                    error={errors?.patient_information?.martial_status}
+                  />
+
+                  <CheckInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("patient_information.martial_status", value);
+                      field.onChange(value);
+                    }}
+                    label="Divorced"
+                    error={errors?.patient_information?.martial_status}
+                  />
+
+                  <CheckInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("patient_information.martial_status", value);
+                      field.onChange(value);
+                    }}
+                    label="Separated"
+                    error={errors?.patient_information?.martial_status}
+                  />
+
+                  <CheckInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("patient_information.martial_status", value);
+                      field.onChange(value);
+                    }}
+                    label="Widowed"
+                    error={errors?.patient_information?.martial_status}
                   />
                 </>
               )}
-              {...register("patient_information.salutation", {
-                required: false,
-              })}
-              // required
-            />
-          </div>
-        </div>
-        <div className="p-1 md:p-2 border-darkPrimary">
-          <div className="flex gap-3">
-            <Controller
-              name="patient_information.salutation"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <>
-                  <CheckInput
-                    value={field.value}
-                    setValue={(value) => {
-                      setValue("patient_information.salutation", value);
-                      field.onChange(value);
-                    }}
-                    label="Miss."
-                    error={errors?.patient_information?.salutation}
-                  />
-                  <CheckInput
-                    value={field.value}
-                    setValue={(value) => {
-                      setValue("patient_information.salutation", value);
-                      field.onChange(value);
-                    }}
-                    label="Ms."
-                    error={errors?.patient_information?.salutation}
-                  />
-                </>
-              )}
-              {...register("patient_information.salutation", {
+              {...register("patient_information.martial_status", {
                 required: false,
               })}
               // required
@@ -143,6 +141,7 @@ const RfStepF1 = ({
           </div>
         </div>
       </div>
+
       <div className="grid grid-cols-2 md:grid-cols-5 border-b border-x border-darkPrimary h-fit">
         <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary col-span-2">
           <label className={`${rfInput_label_class}`}>
@@ -577,8 +576,8 @@ const RfStepF1 = ({
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-5 border-b border-x border-darkPrimary h-fit">
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary col-span-2">
+      <div className="grid col-span-1 md:grid-cols-7 border-b border-x border-darkPrimary h-fit">
+        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary w-full col-span-2">
           <label className={`${rfInput_label_class}`}>Member ID Number:</label>
           <input
             {...register("insurance_information.member_id_number", {
@@ -590,7 +589,7 @@ const RfStepF1 = ({
             className={`${rfInput_class}`}
           />
         </div>
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary col-span-2">
+        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary w-full col-span-2">
           <label className={`${rfInput_label_class}`}>Group Number:</label>
           <input
             {...register("insurance_information.group_number", {
@@ -602,11 +601,11 @@ const RfStepF1 = ({
             className={`${rfInput_class}`}
           />
         </div>
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary">
+        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary w-full col-span-3">
           <label className={`${rfInput_label_class}`}>
             Patient’s relationship to subscriber:
           </label>
-          <div className="flex flex-wrap md:gap-4 cursor-pointer">
+          <div className="flex items-center flex-wrap gap-4 cursor-pointer">
             <Controller
               name="insurance_information.patient_relationship_subscriber"
               control={control}
@@ -630,6 +629,21 @@ const RfStepF1 = ({
                 </>
               )}
             />
+            {watch("insurance_information.patient_relationship_subscriber") ===
+              "Other" && (
+              <input
+                {...register(
+                  "insurance_information.patient_relationship_subscriber_other",
+                  {
+                    required: false,
+                    // watch("insurance_information.patient_relationship_subscriber") ===
+                    // "Other",
+                  }
+                )}
+                type="text"
+                className="h-8 py-0 border-b border-darkPrimary focus:outline-none"
+              />
+            )}
           </div>
         </div>
       </div>
@@ -663,7 +677,7 @@ const RfStepF1 = ({
         </div>
         <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary col-span-2">
           <label className={`${rfInput_label_class}`}>Type of Accident:</label>
-          <div className="flex flex-wrap md:gap-4 cursor-pointer">
+          <div className="flex flex-wrap gap-4 cursor-pointer">
             <Controller
               name="accident_related.type_of_accident"
               control={control}
@@ -694,7 +708,7 @@ const RfStepF1 = ({
             <label className={`${rfInput_label_class}`}>
               If auto, involvement in accident:
             </label>
-            <div className="flex flex-wrap md:gap-4 cursor-pointer">
+            <div className="flex flex-wrap gap-4 cursor-pointer">
               <Controller
                 name="accident_related.involvement_in_accident"
                 control={control}
@@ -724,19 +738,41 @@ const RfStepF1 = ({
           </div>
         )}
       </div>
-      <div className="grid grid-cols-1 border-b border-x border-darkPrimary h-fit">
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary col-span-1">
-          <label className={`${rfInput_label_class}`}>
-            Name of Worker’s Comp Insurance Company or Auto Insurance:
-          </label>
-          <input
-            {...register("accident_related.name_of_worker", {
-              required: false,
-            })}
-            // required
-            type="text"
-            className={`${rfInput_class}`}
-          />
+      <div className="w-full border-b border-x border-darkPrimary h-fit">
+        <div className="items-start gap-2 grid grid-cols-1 md:grid-cols-4">
+          <div className="flex flex-col p-1 md:p-2 md:col-span-2">
+            <label className={`${rfInput_label_class}`}>
+              Name of Worker’s Comp Insurance Company or Auto Insurance:
+            </label>
+            <input
+              {...register("accident_related.name_of_worker", {
+                required: false,
+              })}
+              // required
+              type="text"
+              className={`${rfInput_class}`}
+            />
+          </div>
+          <div className="flex flex-col p-1 md:p-2 md:col-span-1">
+            <label className={`${rfInput_label_class}`}>Phone Number</label>
+            <input
+              {...register("accident_related.insurance_phone_number", {
+                required: false,
+              })}
+              type="text"
+              className={`${rfInput_class}`}
+            />
+          </div>
+          <div className="flex flex-col p-1 md:p-2 md:col-span-1">
+            <label className={`${rfInput_label_class}`}>Fax Number</label>
+            <input
+              {...register("accident_related.insurance_fax_number", {
+                required: false,
+              })}
+              type="text"
+              className={`${rfInput_class}`}
+            />
+          </div>
         </div>
       </div>
       <div className="grid grid-cols-2 border-b border-x border-darkPrimary h-fit">
@@ -851,7 +887,7 @@ const RfStepF1 = ({
       <div className="bg-darkPrimary text-white text-center py-1">
         <h1>IN CASE OF EMERGENCY</h1>
       </div>
-      <div className="grid md:grid-cols-2 border-b border-x border-darkPrimary h-fit">
+      <div className="grid md:grid-cols-3 border-b border-x border-darkPrimary h-fit">
         <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary">
           <label className={`${rfInput_label_class}`}>
             Name of local Relative/Friend:
@@ -872,6 +908,17 @@ const RfStepF1 = ({
           </label>
           <input
             {...register("in_case_of_emergency.relationship_to_patient", {
+              required: false,
+            })}
+            // required
+            type="text"
+            className={`${rfInput_class}`}
+          />
+        </div>
+        <div className="flex flex-col p-1 md:p-2 ">
+          <label className={`${rfInput_label_class}`}>Phone Number</label>
+          <input
+            {...register("in_case_of_emergency.phone_number", {
               required: false,
             })}
             // required

@@ -20,7 +20,7 @@ const DateInput = ({ value, setValue, error, className }) => {
         onChange={(date) => setValue(date)}
         isClearable
         showTimeSelect={false}
-        dateFormat="dd/MM/yyyy"
+        dateFormat="MM/dd/yyyy"
         className={`bg-gray-100 border-b outline-none focus:outline-none h-9 py-0 border-gray-900 w-full ${
           className && className
         } ${error && "border-b border-red-600"}`}
