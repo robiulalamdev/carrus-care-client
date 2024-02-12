@@ -18,7 +18,14 @@ import ViewRegisterInfo from "./RegisterTable-ui/ViewRegisterInfo";
 import PdfMain from "./RegisterTable-ui/pdf-ui/PdfMain";
 import { ScaleLoader } from "react-spinners";
 
-const TABLE_HEAD = ["Name", "Phone", "Salutation", "Address", "Date", "Action"];
+const TABLE_HEAD = [
+  "Name",
+  "Phone",
+  "Martial Status",
+  "Address",
+  "Date",
+  "Action",
+];
 const viewItems = [
   { id: 1, name: "Form 1", value: "F1" },
   { id: 2, name: "Form 2", value: "F2" },
@@ -145,7 +152,7 @@ const RegisterTable = () => {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {item?.prfOneData?.patient_information?.salutation}
+                        {item?.prfOneData?.patient_information?.martial_status}
                       </Typography>
                     </td>
                     <td className={`p-4 border-b border-blue-gray-50`}>

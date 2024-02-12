@@ -5,6 +5,8 @@ import useInputPattern from "../../../lib/hooks/useInputPattern";
 import DateInput from "../../common/DateInput";
 import { rfInput_class, rfInput_label_class } from "../../../lib/constants";
 import CheckInput from "../../common/CheckInput";
+import { iUpload } from "../../../lib/icons";
+import useViewImage from "../../../lib/hooks/useViewImage";
 
 const sInsuranceItems = [
   "Aetna",
@@ -30,35 +32,58 @@ const RfStepF1 = ({
   control,
   errors,
   show,
+  handlePictureFile,
+  pictureFile,
+  pictureRef,
+
+  // front and back
+  handleFrontPictureFile,
+  handleBackPictureFile,
+  frontPictureFile,
+  backPictureFile,
+  frontPictureRef,
+  backPictureRef,
 }) => {
   const { handleNumber } = useInputPattern();
+  const { viewImg } = useViewImage();
+
   return (
     <div className={`mt-5`}>
       {/* -------1st part start */}
       <div className="bg-darkPrimary text-white text-center py-1">
         <h1>PATIENT INFORMATION</h1>
       </div>
+
       <div className="grid grid-cols-1 md:grid-cols-7 border-b border-x border-darkPrimary h-fit">
         <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary col-span-7 md:col-span-2">
           <label className={`${rfInput_label_class}`}>
-            Patient’s Last Name:
+            Patient’s Last Name:{" "}
+            <span className="text-red-600 font-semibold text-sm">
+              (Required*)
+            </span>
           </label>
           <input
             {...register("patient_information.last_name", {
-              required: false, // old
+              required: true,
             })}
             type="text"
+            required
             className={`${rfInput_class}`}
           />
         </div>
         <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary col-span-7 md:col-span-2">
-          <label className={`${rfInput_label_class}`}>First</label>
+          <label className={`${rfInput_label_class}`}>
+            First{" "}
+            <span className="text-red-600 font-semibold text-sm">
+              (Required*)
+            </span>
+          </label>
           <input
             {...register("patient_information.first_name", {
-              required: false,
+              required: true,
             })}
             type="text"
-            // required
+            required
             className={`${rfInput_class}`}
           />
         </div>
@@ -141,6 +166,38 @@ const RfStepF1 = ({
           </div>
         </div>
       </div>
+      <div className="grid grid-cols-1 md:grid-cols-7 border-b border-x border-darkPrimary h-fit">
+        <div className="p-1 md:p-2 border-darkPrimary col-span-7 md:col-span-3">
+          <label className={`${rfInput_label_class}`}>
+            Upload a Picture of their State ID/Passport underneath{" "}
+            <span className="text-red-600 font-semibold text-sm">
+              (Required*)
+            </span>
+          </label>
+          <div className="bg-gray-100 w-[100px] h-[100px] rounded relative cursor-pointer flex justify-center items-center">
+            {watch("patient_information.picture") || pictureFile ? (
+              <img
+                src={viewImg(
+                  watch("patient_information.picture") || pictureFile
+                )}
+                alt=""
+                className="w-full h-full object-contain"
+              />
+            ) : (
+              <div>{iUpload}</div>
+            )}
+            <input
+              ref={pictureRef}
+              onChange={(e) => handlePictureFile(e.target.files[0])}
+              type="file"
+              required
+              accept=".png, .jpg, .jpeg"
+              multiple={false}
+              className="w-full h-full absolute opacity-0 cursor-pointer"
+            />
+          </div>
+        </div>
+      </div>
 
       <div className="grid grid-cols-2 md:grid-cols-5 border-b border-x border-darkPrimary h-fit">
         <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary col-span-2">
@@ -157,24 +214,34 @@ const RfStepF1 = ({
           />
         </div>
         <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary col-span-2">
-          <label className={`${rfInput_label_class}`}>Phone Number:</label>
+          <label className={`${rfInput_label_class}`}>
+            Phone Number:{" "}
+            <span className="text-red-600 font-semibold text-sm">
+              (Required*)
+            </span>
+          </label>
           <input
             {...register("patient_information.phone_number", {
-              required: false,
+              required: true,
             })}
             onInput={handleNumber}
             type="number"
-            // required
+            required
             className={`${rfInput_class}`}
           />
         </div>
         <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-darkPrimary">
-          <label className={`${rfInput_label_class}`}>Birth Date</label>
+          <label className={`${rfInput_label_class}`}>
+            Date Of Birth{" "}
+            <span className="text-red-600 font-semibold text-sm">
+              (Required*)
+            </span>
+          </label>
 
           <Controller
             name="patient_information.birth_date"
             control={control}
-            // rules={{ required: "Date is required" }}
+            rules={{ required: "Date is required" }}
             render={({ field }) => (
               <DateInput
                 value={field.value}
@@ -186,20 +253,25 @@ const RfStepF1 = ({
               />
             )}
             {...register("patient_information.birth_date", {
-              required: false,
+              required: true,
             })}
-            // required
+            required
           />
         </div>
       </div>
       <div className="grid md:grid-cols-2 border-b border-x border-darkPrimary h-fit">
         <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary">
-          <label className={`${rfInput_label_class}`}>Street Address:</label>
+          <label className={`${rfInput_label_class}`}>
+            Street Address:{" "}
+            <span className="text-red-600 font-semibold text-sm">
+              (Required*)
+            </span>
+          </label>
           <input
             {...register("patient_information.street_address", {
-              required: false,
+              required: true,
             })}
-            // required
+            required
             type="text"
             className={`${rfInput_class}`}
           />
@@ -218,35 +290,50 @@ const RfStepF1 = ({
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 border-b border-x border-darkPrimary h-fit">
         <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary">
-          <label className={`${rfInput_label_class}`}>Preferred Pharmacy</label>
+          <label className={`${rfInput_label_class}`}>
+            Preferred Pharmacy{" "}
+            <span className="text-red-600 font-semibold text-sm">
+              (Required*)
+            </span>
+          </label>
           <input
             {...register("patient_information.preferred_pharmacy", {
-              required: false,
+              required: true,
             })}
-            // required
+            required
             type="text"
             className={`${rfInput_class}`}
           />
         </div>
         <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary">
-          <label className={`${rfInput_label_class}`}>Pharmacy Phone:</label>
+          <label className={`${rfInput_label_class}`}>
+            Pharmacy Phone:{" "}
+            <span className="text-red-600 font-semibold text-sm">
+              (Required*)
+            </span>
+          </label>
           <input
             {...register("patient_information.pharmacy_phone", {
-              required: false,
+              required: true,
             })}
-            // required
+            required
             onInput={handleNumber}
             type="text"
             className={`${rfInput_class}`}
           />
         </div>
         <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-darkPrimary">
-          <label className={`${rfInput_label_class}`}>Pharmacy Address:</label>
+          <label className={`${rfInput_label_class}`}>
+            Pharmacy Address:{" "}
+            <span className="text-red-600 font-semibold text-sm">
+              (Required*)
+            </span>
+          </label>
           <input
             {...register("patient_information.pharmacy_address", {
-              required: false,
+              required: true,
             })}
-            // required
+            required
             type="text"
             className={`${rfInput_class}`}
           />
@@ -267,12 +354,17 @@ const RfStepF1 = ({
           />
         </div>
         <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary">
-          <label className={`${rfInput_label_class}`}>Phone Number:</label>
+          <label className={`${rfInput_label_class}`}>
+            Phone Number:{" "}
+            <span className="text-red-600 font-semibold text-sm">
+              (Required*)
+            </span>
+          </label>
           <input
             {...register("patient_information.primary_phone_number", {
-              required: false,
+              required: true,
             })}
-            // required
+            required
             onInput={handleNumber}
             type="text"
             className={`${rfInput_class}`}
@@ -447,36 +539,114 @@ const RfStepF1 = ({
         </h1>
       </div>
       <div className="border-b border-x border-darkPrimary min-h-9 flex gap-3 items-center p-2">
-        <div className="text-gray-950 font-medium text-base flex gap-4 items-center flex-wrap">
-          Is this visit due to a work or auto accident?
-          <div className="flex items-center gap-3">
-            <Controller
-              name="insurance_information.auto_accident"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <>
-                  <CheckInput
-                    value={field.value}
-                    setValue={(value) => {
-                      setValue("insurance_information.auto_accident", value);
-                      field.onChange(value);
-                    }}
-                    label="Yes"
-                  />
-                  <CheckInput
-                    value={field.value}
-                    setValue={(value) => {
-                      setValue("insurance_information.auto_accident", value);
-                      field.onChange(value);
-                    }}
-                    label="No"
-                  />
-                </>
-              )}
-            />
+        <div>
+          <div className="text-gray-950 font-medium text-base flex gap-4 items-center flex-wrap">
+            Is this visit due to a work or auto accident?
+            <div className="flex items-center gap-3">
+              <Controller
+                name="insurance_information.auto_accident"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <>
+                    <CheckInput
+                      value={field.value}
+                      setValue={(value) => {
+                        setValue("insurance_information.auto_accident", value);
+                        field.onChange(value);
+                      }}
+                      label="Yes"
+                    />
+                    <CheckInput
+                      value={field.value}
+                      setValue={(value) => {
+                        setValue("insurance_information.auto_accident", value);
+                        field.onChange(value);
+                      }}
+                      label="No"
+                    />
+                  </>
+                )}
+              />
+            </div>
+            <h1>If yes, continue to accident related section</h1>
           </div>
-          <h1>If yes, continue to accident related section</h1>
+          {watch("insurance_information.auto_accident") === "Yes" && (
+            <div className=" border-darkPrimary col-span-7 md:col-span-3">
+              <label className={`${rfInput_label_class}`}>
+                Upload a Picture of Insurance Card Front/Back underneath{" "}
+                <span className="text-red-600 font-semibold text-sm">
+                  (Required*)
+                </span>
+              </label>
+              <div className="flex items-start gap-3">
+                <div className="w-fit flex flex-col items-center">
+                  <div className="bg-gray-100 w-[100px] h-[100px] rounded relative cursor-pointer flex justify-center items-center">
+                    {watch("insurance_information.front_picture") ||
+                    frontPictureFile ? (
+                      <img
+                        src={viewImg(
+                          watch("insurance_information.front_picture") ||
+                            frontPictureFile
+                        )}
+                        alt=""
+                        className="w-full h-full object-contain"
+                      />
+                    ) : (
+                      <div>{iUpload}</div>
+                    )}
+                    <input
+                      ref={frontPictureRef}
+                      onChange={(e) =>
+                        handleFrontPictureFile(e.target.files[0])
+                      }
+                      type="file"
+                      required
+                      accept=".png, .jpg, .jpeg"
+                      multiple={false}
+                      className="w-full h-full absolute opacity-0 cursor-pointer"
+                    />
+                  </div>
+                  <label
+                    className={`${rfInput_label_class} text-center text-xs font-semibold`}
+                  >
+                    Front
+                  </label>
+                </div>
+                <div className="w-fit flex flex-col items-center">
+                  <div className="bg-gray-100 w-[100px] h-[100px] rounded relative cursor-pointer flex justify-center items-center">
+                    {watch("insurance_information.back_picture") ||
+                    backPictureFile ? (
+                      <img
+                        src={viewImg(
+                          watch("insurance_information.back_picture") ||
+                            backPictureFile
+                        )}
+                        alt=""
+                        className="w-full h-full object-contain"
+                      />
+                    ) : (
+                      <div>{iUpload}</div>
+                    )}
+                    <input
+                      ref={backPictureRef}
+                      onChange={(e) => handleBackPictureFile(e.target.files[0])}
+                      type="file"
+                      required
+                      accept=".png, .jpg, .jpeg"
+                      multiple={false}
+                      className="w-full h-full absolute opacity-0 cursor-pointer"
+                    />
+                  </div>
+                  <label
+                    className={`${rfInput_label_class} text-center text-xs font-semibold`}
+                  >
+                    Back
+                  </label>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <div className="border-b border-x border-darkPrimary h-fit">

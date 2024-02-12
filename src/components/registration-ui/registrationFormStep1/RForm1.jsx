@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import RfStepF1 from "./RfStepF1";
 import RFStepF2 from "./RFStepF2";
@@ -32,12 +32,60 @@ const RForm1 = ({ step, setStep, show, data }) => {
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
+  const [pictureFile, setPictureFile] = useState(null);
+  const [frontPictureFile, setFrontPictureFile] = useState(null);
+  const [backPictureFile, setBackPictureFile] = useState(null);
+
+  const pictureRef = useRef();
+  const frontPictureRef = useRef();
+  const backPictureRef = useRef();
+
+  const handlePictureFile = (file) => {
+    if (file) {
+      setPictureFile(file);
+    } else {
+      pictureRef.current.value = null;
+    }
+  };
+
+  const handleFrontPictureFile = (file) => {
+    if (file) {
+      setFrontPictureFile(file);
+    } else {
+      frontPictureRef.current.value = null;
+    }
+  };
+
+  const handleBackPictureFile = (file) => {
+    if (file) {
+      setBackPictureFile(file);
+    } else {
+      backPictureRef.current.value = null;
+    }
+  };
 
   const handleFirstForm = async (data) => {
+    if (!pictureFile) {
+      pictureRef.current.focus();
+      return;
+    }
+    if (!frontPictureFile) {
+      frontPictureRef.current.focus();
+      return;
+    }
+    if (!backPictureFile) {
+      backPictureRef.current.focus();
+      return;
+    }
     if (data) {
       if (form1Step >= 7) {
+        const formData = new FormData();
+        formData.append("picture", pictureFile);
+        formData.append("front_picture", frontPictureFile);
+        formData.append("back_picture", backPictureFile);
+        formData.append("storeData", JSON.stringify(data));
         const options = {
-          data: data,
+          data: formData,
         };
         const result = await postPROne(options);
         if (result?.data?.success) {
@@ -91,6 +139,7 @@ const RForm1 = ({ step, setStep, show, data }) => {
   };
 
   useEffect(() => {
+    setValue("insurance_information.auto_accident", "Yes");
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [form1Step]);
 
@@ -146,6 +195,18 @@ const RForm1 = ({ step, setStep, show, data }) => {
             control={control}
             errors={errors}
             show={show}
+            handlePictureFile={handlePictureFile}
+            pictureFile={pictureFile}
+            pictureRef={pictureRef}
+            // front and back
+            handleFrontPictureFile={handleFrontPictureFile}
+            handleBackPictureFile={handleBackPictureFile}
+            // files
+            frontPictureFile={frontPictureFile}
+            backPictureFile={backPictureFile}
+            // refs
+            frontPictureRef={frontPictureRef}
+            backPictureRef={backPictureRef}
           />
         )}
         {form1Step === 2 && (
