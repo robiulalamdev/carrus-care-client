@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import DatePicker from "react-datepicker";
 import { useLocation } from "react-router-dom";
 
-const DateInput = ({ value, setValue, error, className }) => {
+const DateInput = ({ value, setValue, error, className, required = false }) => {
   const dateRef = useRef();
   const { pathname } = useLocation();
 
@@ -28,7 +28,7 @@ const DateInput = ({ value, setValue, error, className }) => {
       />
       <input
         type="number"
-        required={value ? false : true}
+        required={required && !value}
         className="opacity-0 absolute left-0 w-full h-full -z-10"
       />
     </div>

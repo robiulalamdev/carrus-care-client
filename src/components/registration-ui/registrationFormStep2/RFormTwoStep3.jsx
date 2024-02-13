@@ -115,6 +115,7 @@ const RFormTwoStep3 = ({ setValue, control, errors, register }) => {
                   field.onChange(value);
                 }}
                 error={errors.patient_statement_signature_date}
+                required={true}
               />
             )}
             {...register("patient_statement_signature_date", {

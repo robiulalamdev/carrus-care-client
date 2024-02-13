@@ -165,10 +165,11 @@ const RForm1 = ({ step, setStep, show, data }) => {
                     field.onChange(value);
                   }}
                   error={errors.date}
+                  required={true}
                 />
               )}
               required
-              {...register("date", { required: false })}
+              {...register("date", { required: true })}
             />
           </div>
           <div className="flex items-center gap-1">

@@ -239,6 +239,7 @@ const RfStepF1 = ({
                   field.onChange(value);
                 }}
                 error={errors?.patient_information?.birth_date}
+                required={true}
               />
             )}
             {...register("patient_information.birth_date", {
