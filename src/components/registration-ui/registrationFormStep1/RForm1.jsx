@@ -294,6 +294,9 @@ const RForm1 = ({ step, setStep, show, data }) => {
           />
         )}
 
+        <i className="text-xs text-red-600 font-semibold">
+          *** Remember, fields marked with * must be filled.
+        </i>
         <div className="flex justify-center pt-10 pb-20">
           <button
             type="submit"
