@@ -47,6 +47,8 @@ const RfStepF1 = ({
   const { handleNumber } = useInputPattern();
   const { viewImg } = useViewImage();
 
+  // console.log(errors);
+
   return (
     <div className={`mt-5`}>
       {/* -------1st part start */}
@@ -164,7 +166,7 @@ const RfStepF1 = ({
       <div className="grid grid-cols-1 md:grid-cols-7 border-b border-x border-darkPrimary h-fit">
         <div className="p-1 md:p-2 border-darkPrimary col-span-7 md:col-span-3">
           <label className={`${rfInput_label_class}`}>
-            Upload a Picture of their State ID/Passport underneath
+            Upload a Government Issued ID
             <span className="text-red-600 font-semibold text-xl">*</span>
           </label>
           <div className="bg-gray-100 w-[100px] h-[100px] rounded relative cursor-pointer flex justify-center items-center">
@@ -554,7 +556,7 @@ const RfStepF1 = ({
           {watch("insurance_information.auto_accident") === "Yes" && (
             <div className=" border-darkPrimary col-span-7 md:col-span-3">
               <label className={`${rfInput_label_class}`}>
-                Upload a Picture of Insurance Card Front/Back underneath
+                Upload a Picture of Insurance Card Front and Back
                 <span className="text-red-600 font-semibold text-xl">*</span>
               </label>
               <div className="flex items-start gap-3">
@@ -579,7 +581,9 @@ const RfStepF1 = ({
                         handleFrontPictureFile(e.target.files[0])
                       }
                       type="file"
-                      required
+                      required={
+                        watch("insurance_information.auto_accident") === "Yes"
+                      }
                       accept=".png, .jpg, .jpeg"
                       multiple={false}
                       className="w-full h-full absolute opacity-0 cursor-pointer"
@@ -610,7 +614,9 @@ const RfStepF1 = ({
                       ref={backPictureRef}
                       onChange={(e) => handleBackPictureFile(e.target.files[0])}
                       type="file"
-                      required
+                      required={
+                        watch("insurance_information.auto_accident") === "Yes"
+                      }
                       accept=".png, .jpg, .jpeg"
                       multiple={false}
                       className="w-full h-full absolute opacity-0 cursor-pointer"
