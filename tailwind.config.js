@@ -7,9 +7,9 @@ export default withMT({
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     colors: {
-      primary: "#993132",
-      hp: "#c14548",
-      darkPrimary: "#341912",
+      primary: "#1D4FD8",
+      hp: "#1E3FAF",
+      darkPrimary: "#1D4FD8",
     },
     extend: {},
   },

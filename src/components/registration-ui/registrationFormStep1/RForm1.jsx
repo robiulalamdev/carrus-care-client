@@ -145,9 +145,12 @@ const RForm1 = ({ step, setStep, show, data }) => {
   };
 
   useEffect(() => {
-    setValue("insurance_information.auto_accident", "Yes");
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [form1Step]);
+
+  useEffect(() => {
+    setValue("insurance_information.auto_accident", "Yes");
+  }, []);
 
   return (
     <>

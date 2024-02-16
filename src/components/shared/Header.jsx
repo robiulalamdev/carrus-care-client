@@ -9,7 +9,7 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <div className="bg-[#55100C] bg-opacity-75 h-10 w-full">
+      <div className="bg-primary bg-opacity-75 h-10 w-full">
         <div className="max-w-[1400px] h-full mx-auto flex justify-end items-center gap-8 px-2">
           <h1 className="text-sm text-gray-300">(832) 770-6380</h1>
           <div className="text-white flex justify-end items-center gap-2">
