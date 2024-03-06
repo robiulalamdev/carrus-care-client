@@ -69,20 +69,20 @@ const RForm1 = ({ step, setStep, show, data }) => {
       pictureRef.current.focus();
       return;
     }
-    if (
-      !frontPictureFile &&
-      watch("insurance_information.auto_accident") === "Yes"
-    ) {
-      frontPictureRef.current.focus();
-      return;
-    }
-    if (
-      !backPictureFile &&
-      watch("insurance_information.auto_accident") === "Yes"
-    ) {
-      backPictureRef.current.focus();
-      return;
-    }
+    // if (
+    //   !frontPictureFile &&
+    //   watch("insurance_information.auto_accident") === "Yes"
+    // ) {
+    //   frontPictureRef.current.focus();
+    //   return;
+    // }
+    // if (
+    //   !backPictureFile &&
+    //   watch("insurance_information.auto_accident") === "Yes"
+    // ) {
+    //   backPictureRef.current.focus();
+    //   return;
+    // }
     if (data) {
       if (form1Step >= 7) {
         const formData = new FormData();

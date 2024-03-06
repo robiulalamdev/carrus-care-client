@@ -164,7 +164,7 @@ const RfStepF1 = ({
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-7 border-b border-x border-darkPrimary h-fit">
-        <div className="p-1 md:p-2 border-darkPrimary col-span-7 md:col-span-3">
+        <div className="p-1 md:p-2 border-darkPrimary col-span-2">
           <label className={`${rfInput_label_class}`}>
             Upload a Government Issued ID
             <span className="text-red-600 font-semibold text-xl">*</span>
@@ -189,6 +189,63 @@ const RfStepF1 = ({
               accept=".png, .jpg, .jpeg"
               multiple={false}
               className="w-full h-full absolute opacity-0 cursor-pointer"
+            />
+          </div>
+        </div>
+        <div className="p-1 md:p-2 border-darkPrimary col-span-5">
+          <label className={`${rfInput_label_class}`}>Gender</label>
+          <div className="flex items-center gap-3 flex-wrap">
+            <Controller
+              name="patient_information.gender"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <>
+                  <CheckInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("patient_information.gender", value);
+                      field.onChange(value);
+                    }}
+                    label="Male"
+                    error={errors?.patient_information?.gender}
+                  />
+
+                  <CheckInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("patient_information.gender", value);
+                      field.onChange(value);
+                    }}
+                    label="Female"
+                    error={errors?.patient_information?.gender}
+                  />
+
+                  <CheckInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("patient_information.gender", value);
+                      field.onChange(value);
+                    }}
+                    label="Prefer not to specify"
+                    error={errors?.patient_information?.gender}
+                  />
+
+                  <CheckInput
+                    value={field.value}
+                    setValue={(value) => {
+                      setValue("patient_information.gender", value);
+                      field.onChange(value);
+                    }}
+                    label="other"
+                    error={errors?.patient_information?.gender}
+                  />
+                </>
+              )}
+              {...register("patient_information.gender", {
+                required: false,
+              })}
+              // required
             />
           </div>
         </div>
@@ -553,84 +610,80 @@ const RfStepF1 = ({
             </div>
             <h1>If yes, continue to accident related section</h1>
           </div>
-          {watch("insurance_information.auto_accident") === "Yes" && (
-            <div className=" border-darkPrimary col-span-7 md:col-span-3">
-              <label className={`${rfInput_label_class}`}>
-                Upload a Picture of Insurance Card Front and Back
-                <span className="text-red-600 font-semibold text-xl">*</span>
-              </label>
-              <div className="flex items-start gap-3">
-                <div className="w-fit flex flex-col items-center">
-                  <div className="bg-gray-100 w-[100px] h-[100px] rounded relative cursor-pointer flex justify-center items-center">
-                    {watch("insurance_information.front_picture") ||
-                    frontPictureFile ? (
-                      <img
-                        src={viewImg(
-                          watch("insurance_information.front_picture") ||
-                            frontPictureFile
-                        )}
-                        alt=""
-                        className="w-full h-full object-contain"
-                      />
-                    ) : (
-                      <div>{iUpload}</div>
-                    )}
-                    <input
-                      ref={frontPictureRef}
-                      onChange={(e) =>
-                        handleFrontPictureFile(e.target.files[0])
-                      }
-                      type="file"
-                      required={
-                        watch("insurance_information.auto_accident") === "Yes"
-                      }
-                      accept=".png, .jpg, .jpeg"
-                      multiple={false}
-                      className="w-full h-full absolute opacity-0 cursor-pointer"
+          <div className=" border-darkPrimary col-span-7 md:col-span-3">
+            <label className={`${rfInput_label_class}`}>
+              Upload a Picture of Insurance Card Front and Back
+              <span className="text-red-600 font-semibold text-xl">*</span>
+            </label>
+            <div className="flex items-start gap-3">
+              <div className="w-fit flex flex-col items-center">
+                <div className="bg-gray-100 w-[100px] h-[100px] rounded relative cursor-pointer flex justify-center items-center">
+                  {watch("insurance_information.front_picture") ||
+                  frontPictureFile ? (
+                    <img
+                      src={viewImg(
+                        watch("insurance_information.front_picture") ||
+                          frontPictureFile
+                      )}
+                      alt=""
+                      className="w-full h-full object-contain"
                     />
-                  </div>
-                  <label
-                    className={`${rfInput_label_class} text-center text-xs font-semibold`}
-                  >
-                    Front
-                  </label>
+                  ) : (
+                    <div>{iUpload}</div>
+                  )}
+                  <input
+                    ref={frontPictureRef}
+                    onChange={(e) => handleFrontPictureFile(e.target.files[0])}
+                    type="file"
+                    required={
+                      watch("insurance_information.auto_accident") === "Yes"
+                    }
+                    accept=".png, .jpg, .jpeg"
+                    multiple={false}
+                    className="w-full h-full absolute opacity-0 cursor-pointer"
+                  />
                 </div>
-                <div className="w-fit flex flex-col items-center">
-                  <div className="bg-gray-100 w-[100px] h-[100px] rounded relative cursor-pointer flex justify-center items-center">
-                    {watch("insurance_information.back_picture") ||
-                    backPictureFile ? (
-                      <img
-                        src={viewImg(
-                          watch("insurance_information.back_picture") ||
-                            backPictureFile
-                        )}
-                        alt=""
-                        className="w-full h-full object-contain"
-                      />
-                    ) : (
-                      <div>{iUpload}</div>
-                    )}
-                    <input
-                      ref={backPictureRef}
-                      onChange={(e) => handleBackPictureFile(e.target.files[0])}
-                      type="file"
-                      required={
-                        watch("insurance_information.auto_accident") === "Yes"
-                      }
-                      accept=".png, .jpg, .jpeg"
-                      multiple={false}
-                      className="w-full h-full absolute opacity-0 cursor-pointer"
+                <label
+                  className={`${rfInput_label_class} text-center text-xs font-semibold`}
+                >
+                  Front
+                </label>
+              </div>
+              <div className="w-fit flex flex-col items-center">
+                <div className="bg-gray-100 w-[100px] h-[100px] rounded relative cursor-pointer flex justify-center items-center">
+                  {watch("insurance_information.back_picture") ||
+                  backPictureFile ? (
+                    <img
+                      src={viewImg(
+                        watch("insurance_information.back_picture") ||
+                          backPictureFile
+                      )}
+                      alt=""
+                      className="w-full h-full object-contain"
                     />
-                  </div>
-                  <label
-                    className={`${rfInput_label_class} text-center text-xs font-semibold`}
-                  >
-                    Back
-                  </label>
+                  ) : (
+                    <div>{iUpload}</div>
+                  )}
+                  <input
+                    ref={backPictureRef}
+                    onChange={(e) => handleBackPictureFile(e.target.files[0])}
+                    type="file"
+                    required={
+                      watch("insurance_information.auto_accident") === "Yes"
+                    }
+                    accept=".png, .jpg, .jpeg"
+                    multiple={false}
+                    className="w-full h-full absolute opacity-0 cursor-pointer"
+                  />
                 </div>
+                <label
+                  className={`${rfInput_label_class} text-center text-xs font-semibold`}
+                >
+                  Back
+                </label>
               </div>
             </div>
-          )}
+          </div>
         </div>
       </div>
       <div className="border-b border-x border-darkPrimary h-fit">
