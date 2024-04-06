@@ -14,6 +14,8 @@ import RFormTwoStep2 from "../../../registration-ui/registrationFormStep2/RFormT
 import RFormTwoStep3 from "../../../registration-ui/registrationFormStep2/RFormTwoStep3";
 import RFormThreeStep1 from "../../../registration-ui/registrationFormStep3/RFormThreeStep1";
 import RFormThreeStep2 from "../../../registration-ui/registrationFormStep3/RFormThreeStep2";
+import DateInput from "../../../common/DateInput";
+import { Controller } from "react-hook-form";
 
 const ViewRegisterInfo = ({
   prfData,
@@ -74,6 +76,42 @@ const ViewRegisterInfo = ({
         <form className=" max-w-[1200px] mx-auto p-2 pb-16" id="myform">
           {isPrfOne && (
             <div>
+              <div className="flex justify-between flex-wrap gap-4 md:gap-0">
+                <div className="flex items-center gap-1">
+                  <h1 className="font-bold leading-[18px] tracking-[0.2px]">
+                    Date:
+                  </h1>
+                  <Controller
+                    name="date"
+                    control={control}
+                    // rules={{ required: "Date is required" }}
+                    render={({ field }) => (
+                      <DateInput
+                        value={field.value}
+                        setValue={(value) => {
+                          setValue("date", value);
+                          field.onChange(value);
+                        }}
+                        error={errors.date}
+                        required={true}
+                      />
+                    )}
+                    required
+                    {...register("date", { required: true })}
+                  />
+                </div>
+                <div className="flex items-center gap-1">
+                  <h1 className="font-bold leading-[18px] tracking-[0.2px]">
+                    Reason for Visit:
+                  </h1>
+                  <input
+                    {...register("reason_for_visit", { required: true })}
+                    type="text"
+                    className="border-b outline-none h-9 py-0 border-gray-900"
+                    required
+                  />
+                </div>
+              </div>
               <RfStepF1
                 step={1}
                 handleSubmit={handleSubmit}

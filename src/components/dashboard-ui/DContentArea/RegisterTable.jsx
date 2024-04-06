@@ -272,6 +272,7 @@ const RegisterTable = () => {
         isPrfTwo={isPrfTwo}
         isPrfThree={isPrfThree}
       />
+
       <PdfMain data={formData} setData={setFormData} printOrder={printOrder} />
     </>
   );

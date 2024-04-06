@@ -43,3 +43,12 @@ body {
 .read-the-docs {
   color: #888;
 }
+
+@media print {
+  #myform {
+    page-break-after: always;
+    size: tabloid;
+    margin: 0;
+    transform: scale(0.8);
+  }
+}

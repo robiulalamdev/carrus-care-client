@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React from "react";
 
 const RFStepF4 = ({
@@ -48,9 +50,9 @@ const RFStepF4 = ({
             </h1>
             <input
               {...register("acknowledge_d", {
-                required: false,
+                required: true,
               })}
-              // required
+              required
               type="text"
               className="border-b outline-none h-9 py-0 border-gray-900"
             />
@@ -103,9 +105,9 @@ const RFStepF4 = ({
             </h1>
             <input
               {...register("acknowledge_e", {
-                required: false,
+                required: true,
               })}
-              // required
+              required
               type="text"
               className="border-b outline-none h-9 py-0 border-gray-900"
             />

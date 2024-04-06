@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from "react";
 import { Controller } from "react-hook-form";
@@ -43,9 +44,9 @@ const RFStepF5 = ({
           </h1>
           <input
             {...register("acknowledge_f", {
-              required: false,
+              required: true,
             })}
-            // required
+            required
             type="text"
             className="border-b outline-none h-9 py-0 border-gray-900"
           />
