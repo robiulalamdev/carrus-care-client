@@ -61,6 +61,10 @@ const formApi = api.injectEndpoints({
       query: (id) => `/prf-three/${id}`,
       providesTags: ["prf-three", "patient-registers"],
     }),
+
+    getMyRegister: builder.query({
+      query: (id) => `/patient-registers/my-register/${id}`,
+    }),
   }),
 });
 
@@ -79,4 +83,5 @@ export const {
   // form one
   usePostPRThreeMutation,
   usePRThreeByIdQuery,
+  useGetMyRegisterQuery,
 } = formApi;

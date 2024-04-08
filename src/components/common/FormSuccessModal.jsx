@@ -3,13 +3,17 @@
 import {
   Button,
   Dialog,
-  DialogHeader,
   DialogBody,
   DialogFooter,
   Typography,
 } from "@material-tailwind/react";
+import PdfMain from "../dashboard-ui/DContentArea/RegisterTable-ui/pdf-ui/PdfMain";
+import { useState } from "react";
 
-const FormSuccessModal = ({ open, handleClose }) => {
+const FormSuccessModal = ({ open, handleClose, data: formData }) => {
+  const [data, setData] = useState(null);
+  const [printOrder, setPrintOrder] = useState(null);
+
   return (
     <>
       <Dialog size="xs" open={open}>
@@ -41,8 +45,20 @@ const FormSuccessModal = ({ open, handleClose }) => {
           <Button className="bg-primary rounded" onClick={() => handleClose()}>
             Ok
           </Button>
+          <Button
+            type="button"
+            onClick={() => {
+              setPrintOrder("All");
+              setData(formData);
+            }}
+            className="bg-green-600 rounded"
+          >
+            Download Submission
+          </Button>
         </DialogFooter>
       </Dialog>
+
+      <PdfMain data={data} setData={setData} printOrder={printOrder} />
     </>
   );
 };

@@ -1,10 +1,13 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
 import { useForm } from "react-hook-form";
-import { usePostPRThreeMutation } from "../../../redux/features/form/formApi";
+import {
+  useGetMyRegisterQuery,
+  usePostPRThreeMutation,
+} from "../../../redux/features/form/formApi";
 import { Spinner } from "@material-tailwind/react";
 import { toast } from "react-toastify";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import RFormThreeStep1 from "./RFormThreeStep1";
 import RFormThreeStep2 from "./RFormThreeStep2";
 import { useSelector } from "react-redux";
@@ -12,6 +15,8 @@ import FormSuccessModal from "../../common/FormSuccessModal";
 
 const RForm3 = ({ step, setStep, data }) => {
   const [postPRThree, { isLoading }] = usePostPRThreeMutation();
+  const [id, setId] = useState("");
+  const { data: registerData } = useGetMyRegisterQuery(id);
   const { prfId } = useSelector((state) => state.form);
   const {
     handleSubmit,
@@ -33,8 +38,9 @@ const RForm3 = ({ step, setStep, data }) => {
         };
         const result = await postPRThree(options);
         if (result?.data?.success) {
+          setId(prfId);
           reset();
-          setOpen(true);
+          // setOpen(true);
           toast.success("Form Submit Success");
           // setStep(1);
           // window.location.reload();
@@ -69,11 +75,18 @@ const RForm3 = ({ step, setStep, data }) => {
     setOpen(false);
     window.location.reload();
     setStep(1);
+    setId("");
   };
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [form3Step]);
+
+  useMemo(() => {
+    if (id && registerData?.data[0]) {
+      setOpen(true);
+    }
+  }, [registerData]);
 
   return (
     <>
@@ -113,7 +126,11 @@ const RForm3 = ({ step, setStep, data }) => {
           </button>
         </div>
       </form>
-      <FormSuccessModal open={open} handleClose={handleClose} />
+      <FormSuccessModal
+        open={open}
+        handleClose={handleClose}
+        data={registerData?.data[0]}
+      />
     </>
   );
 };
