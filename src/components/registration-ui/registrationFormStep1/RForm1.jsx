@@ -160,7 +160,7 @@ const RForm1 = ({ step, setStep, show, data }) => {
         id="myform"
       >
         <div className="flex justify-between flex-wrap gap-4 md:gap-0">
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-2">
             <h1 className="font-bold leading-[18px] tracking-[0.2px]">Date:</h1>
             <Controller
               name="date"
@@ -181,7 +181,7 @@ const RForm1 = ({ step, setStep, show, data }) => {
               {...register("date", { required: true })}
             />
           </div>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-2">
             <h1 className="font-bold leading-[18px] tracking-[0.2px]">
               Reason for Visit:
             </h1>

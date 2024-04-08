@@ -56,7 +56,7 @@ const RfStepF1 = ({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-7 border-b border-x border-darkPrimary h-fit">
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary col-span-7 md:col-span-2">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary col-span-7 md:col-span-2">
           <label className={`${rfInput_label_class}`}>
             Patient’s Last Name:
             <span className="text-red-600 font-semibold text-xl">*</span>
@@ -70,7 +70,7 @@ const RfStepF1 = ({
             className={`${rfInput_class}`}
           />
         </div>
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary col-span-7 md:col-span-2">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary col-span-7 md:col-span-2">
           <label className={`${rfInput_label_class}`}>
             First <span className="text-red-600 font-semibold text-xl">*</span>
           </label>
@@ -83,7 +83,7 @@ const RfStepF1 = ({
             className={`${rfInput_class}`}
           />
         </div>
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary ">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary ">
           <label className={`${rfInput_label_class}`}>Middle</label>
           <input
             {...register("patient_information.middle_name", {
@@ -94,7 +94,7 @@ const RfStepF1 = ({
           />
         </div>
 
-        <div className="p-1 md:p-2 border-darkPrimary col-span-7 md:col-span-2">
+        <div className="p-2 md:p-4 border-darkPrimary col-span-7 md:col-span-2">
           <label className={`${rfInput_label_class}`}>Martial Status</label>
           <div className="flex items-center gap-3 flex-wrap">
             <Controller
@@ -163,7 +163,7 @@ const RfStepF1 = ({
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-7 border-b border-x border-darkPrimary h-fit">
-        <div className="p-1 md:p-2 border-darkPrimary col-span-2">
+        <div className="p-2 md:p-4 border-darkPrimary col-span-2">
           <label className={`${rfInput_label_class}`}>
             Upload a Government Issued ID
             <span className="text-red-600 font-semibold text-xl">*</span>
@@ -191,7 +191,7 @@ const RfStepF1 = ({
             />
           </div>
         </div>
-        <div className="p-1 md:p-2 border-darkPrimary col-span-5">
+        <div className="p-2 md:p-4 border-darkPrimary col-span-5">
           <label className={`${rfInput_label_class}`}>Gender</label>
           <div className="flex items-center gap-3 flex-wrap">
             <Controller
@@ -251,7 +251,7 @@ const RfStepF1 = ({
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-5 border-b border-x border-darkPrimary h-fit">
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary col-span-2">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary col-span-2">
           <label className={`${rfInput_label_class}`}>
             Social Security No.:
           </label>
@@ -264,7 +264,7 @@ const RfStepF1 = ({
             className={`${rfInput_class}`}
           />
         </div>
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary col-span-2">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary col-span-2">
           <label className={`${rfInput_label_class}`}>
             Phone Number:
             <span className="text-red-600 font-semibold text-xl">*</span>
@@ -279,7 +279,7 @@ const RfStepF1 = ({
             className={`${rfInput_class}`}
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-darkPrimary">
+        <div className="flex flex-col gap-0 md:gap-1 p-2 md:p-4 border-darkPrimary">
           <label className={`${rfInput_label_class}`}>
             Date Of Birth
             <span className="text-red-600 font-semibold text-xl">*</span>
@@ -308,7 +308,7 @@ const RfStepF1 = ({
         </div>
       </div>
       <div className="grid md:grid-cols-2 border-b border-x border-darkPrimary h-fit">
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary">
           <label className={`${rfInput_label_class}`}>
             Street Address:
             <span className="text-red-600 font-semibold text-xl">*</span>
@@ -322,7 +322,7 @@ const RfStepF1 = ({
             className={`${rfInput_class}`}
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-darkPrimary">
+        <div className="flex flex-col gap-0 md:gap-1 p-2 md:p-4 border-darkPrimary">
           <label className={`${rfInput_label_class}`}>City/State/Zip:</label>
           <input
             {...register("patient_information.city_state_zip", {
@@ -335,7 +335,7 @@ const RfStepF1 = ({
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 border-b border-x border-darkPrimary h-fit">
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary">
           <label className={`${rfInput_label_class}`}>
             Preferred Pharmacy
             <span className="text-red-600 font-semibold text-xl">*</span>
@@ -349,7 +349,7 @@ const RfStepF1 = ({
             className={`${rfInput_class}`}
           />
         </div>
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary">
           <label className={`${rfInput_label_class}`}>
             Pharmacy Phone:
             <span className="text-red-600 font-semibold text-xl">*</span>
@@ -364,7 +364,7 @@ const RfStepF1 = ({
             className={`${rfInput_class}`}
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-darkPrimary">
+        <div className="flex flex-col gap-0 md:gap-1 p-2 md:p-4 border-darkPrimary">
           <label className={`${rfInput_label_class}`}>
             Pharmacy Address:
             <span className="text-red-600 font-semibold text-xl">*</span>
@@ -380,7 +380,7 @@ const RfStepF1 = ({
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 border-b border-x border-darkPrimary h-fit">
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary">
           <label className={`${rfInput_label_class}`}>
             Primary Care Physician (PCP):
           </label>
@@ -393,7 +393,7 @@ const RfStepF1 = ({
             className={`${rfInput_class}`}
           />
         </div>
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary">
           <label className={`${rfInput_label_class}`}>
             Phone Number:
             <span className="text-red-600 font-semibold text-xl">*</span>
@@ -408,7 +408,7 @@ const RfStepF1 = ({
             className={`${rfInput_class}`}
           />
         </div>
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-darkPrimary">
+        <div className="flex flex-col gap-0 md:gap-1 p-2 md:p-4 border-darkPrimary">
           <label className={`${rfInput_label_class}`}>Preferred method</label>
           <div className="flex flex-wrap gap-2">
             <Controller
@@ -450,7 +450,7 @@ const RfStepF1 = ({
       </div>
 
       <div className="grid grid-cols-1 border-b border-x border-darkPrimary h-fit">
-        <div className="flex flex-col gap-0 md:gap-1 p-1 md:p-2 border-darkPrimary w-full">
+        <div className="flex flex-col gap-0 md:gap-1 p-2 md:p-4 border-darkPrimary w-full">
           <label className={`${rfInput_label_class}`}>
             Please tell us how you learned of our service or whom we may thank.
           </label>
@@ -690,11 +690,11 @@ const RfStepF1 = ({
         </div>
       </div>
       <div className="border-b border-x border-darkPrimary h-fit">
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary">
           <label className={`${rfInput_label_class}`}>
             Please indicate primary insurance:
           </label>
-          <div className="flex flex-wrap gap-x-4 cursor-pointer">
+          <div className="flex flex-wrap gap-x-4 gap-y-2 cursor-pointer">
             <Controller
               name="insurance_information.primary_insurance"
               control={control}
@@ -748,7 +748,7 @@ const RfStepF1 = ({
         </div>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-5 border-b border-x border-darkPrimary h-fit">
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary col-span-2">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary col-span-2">
           <label className={`${rfInput_label_class}`}>
             Subscriber’s Last Name:
           </label>
@@ -761,7 +761,7 @@ const RfStepF1 = ({
             className={`${rfInput_class}`}
           />
         </div>
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary col-span-2">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary col-span-2">
           <label className={`${rfInput_label_class}`}>First:</label>
           <input
             {...register("insurance_information.subscriber_first_name", {
@@ -772,7 +772,7 @@ const RfStepF1 = ({
             className={`${rfInput_class}`}
           />
         </div>
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary">
           <label className={`${rfInput_label_class}`}>
             Subscriber’s Social Security:
           </label>
@@ -787,7 +787,7 @@ const RfStepF1 = ({
         </div>
       </div>
       <div className="grid col-span-1 md:grid-cols-7 border-b border-x border-darkPrimary h-fit">
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary w-full col-span-2">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary w-full col-span-2">
           <label className={`${rfInput_label_class}`}>Member ID Number:</label>
           <input
             {...register("insurance_information.member_id_number", {
@@ -799,7 +799,7 @@ const RfStepF1 = ({
             className={`${rfInput_class}`}
           />
         </div>
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary w-full col-span-2">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary w-full col-span-2">
           <label className={`${rfInput_label_class}`}>Group Number:</label>
           <input
             {...register("insurance_information.group_number", {
@@ -811,7 +811,7 @@ const RfStepF1 = ({
             className={`${rfInput_class}`}
           />
         </div>
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary w-full col-span-3">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary w-full col-span-3">
           <label className={`${rfInput_label_class}`}>
             Patient’s relationship to subscriber:
           </label>
@@ -863,7 +863,7 @@ const RfStepF1 = ({
         <h1>Accident Related</h1>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-5 border-b border-x border-darkPrimary h-fit">
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary col-span-1">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary col-span-1">
           <label className={`${rfInput_label_class}`}>Date of Accident:</label>
 
           <Controller
@@ -885,7 +885,7 @@ const RfStepF1 = ({
             })}
           />
         </div>
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary col-span-2">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary col-span-2">
           <label className={`${rfInput_label_class}`}>Type of Accident:</label>
           <div className="flex flex-wrap gap-4 cursor-pointer">
             <Controller
@@ -914,7 +914,7 @@ const RfStepF1 = ({
           </div>
         </div>
         {watch("accident_related.type_of_accident") === "Auto" && (
-          <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary col-span-2">
+          <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary col-span-2">
             <label className={`${rfInput_label_class}`}>
               If auto, involvement in accident:
             </label>
@@ -950,7 +950,7 @@ const RfStepF1 = ({
       </div>
       <div className="w-full border-b border-x border-darkPrimary h-fit">
         <div className="items-start gap-2 grid grid-cols-1 md:grid-cols-4">
-          <div className="flex flex-col p-1 md:p-2 md:col-span-2">
+          <div className="flex flex-col p-2 md:p-4 md:col-span-2">
             <label className={`${rfInput_label_class}`}>
               Name of Worker’s Comp Insurance Company or Auto Insurance:
             </label>
@@ -963,7 +963,7 @@ const RfStepF1 = ({
               className={`${rfInput_class}`}
             />
           </div>
-          <div className="flex flex-col p-1 md:p-2 md:col-span-1">
+          <div className="flex flex-col p-2 md:p-4 md:col-span-1">
             <label className={`${rfInput_label_class}`}>Phone Number</label>
             <input
               {...register("accident_related.insurance_phone_number", {
@@ -973,7 +973,7 @@ const RfStepF1 = ({
               className={`${rfInput_class}`}
             />
           </div>
-          <div className="flex flex-col p-1 md:p-2 md:col-span-1">
+          <div className="flex flex-col p-2 md:p-4 md:col-span-1">
             <label className={`${rfInput_label_class}`}>Fax Number</label>
             <input
               {...register("accident_related.insurance_fax_number", {
@@ -986,7 +986,7 @@ const RfStepF1 = ({
         </div>
       </div>
       <div className="grid grid-cols-2 border-b border-x border-darkPrimary h-fit">
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary col-span-1">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary col-span-1">
           <label className={`${rfInput_label_class}`}>Company Address:</label>
           <input
             {...register("accident_related.company_address", {
@@ -997,7 +997,7 @@ const RfStepF1 = ({
             className={`${rfInput_class}`}
           />
         </div>
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary col-span-1">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary col-span-1">
           <label className={`${rfInput_label_class}`}>City/State/Zip:</label>
           <input
             {...register("accident_related.city_state_zip", {
@@ -1010,7 +1010,7 @@ const RfStepF1 = ({
         </div>
       </div>
       <div className="grid grid-cols-3 border-b border-x border-darkPrimary h-fit">
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary col-span-2">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary col-span-2">
           <label className={`${rfInput_label_class}`}>Name of Insured:</label>
           <input
             {...register("accident_related.name_of_insured", {
@@ -1021,7 +1021,7 @@ const RfStepF1 = ({
             className={`${rfInput_class}`}
           />
         </div>
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary">
           <label className={`${rfInput_label_class}`}>Adjuster Name:</label>
           <input
             {...register("accident_related.adjuster_name", {
@@ -1034,7 +1034,7 @@ const RfStepF1 = ({
         </div>
       </div>
       <div className="grid grid-cols-4 border-b border-x border-darkPrimary h-fit">
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary col-span-2">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary col-span-2">
           <label className={`${rfInput_label_class}`}>Policy Number:</label>
           <input
             {...register("accident_related.policy_number", {
@@ -1046,7 +1046,7 @@ const RfStepF1 = ({
             className={`${rfInput_class}`}
           />
         </div>
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary">
           <label className={`${rfInput_label_class}`}>Reported:</label>
           <div className="flex flex-wrap md:gap-4 cursor-pointer">
             <Controller
@@ -1079,7 +1079,7 @@ const RfStepF1 = ({
             />
           </div>
         </div>
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary">
           <label className={`${rfInput_label_class}`}>Claim Number:</label>
           <input
             {...register("accident_related.claim_number", {
@@ -1098,7 +1098,7 @@ const RfStepF1 = ({
         <h1>IN CASE OF EMERGENCY</h1>
       </div>
       <div className="grid md:grid-cols-3 border-b border-x border-darkPrimary h-fit">
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary">
           <label className={`${rfInput_label_class}`}>
             Name of local Relative/Friend:
           </label>
@@ -1112,7 +1112,7 @@ const RfStepF1 = ({
           />
         </div>
 
-        <div className="flex flex-col p-1 md:p-2 md:border-r border-darkPrimary">
+        <div className="flex flex-col p-2 md:p-4 md:border-r border-darkPrimary">
           <label className={`${rfInput_label_class}`}>
             Relationship to Patient:
           </label>
@@ -1125,7 +1125,7 @@ const RfStepF1 = ({
             className={`${rfInput_class}`}
           />
         </div>
-        <div className="flex flex-col p-1 md:p-2 ">
+        <div className="flex flex-col p-2 md:p-4 ">
           <label className={`${rfInput_label_class}`}>Phone Number</label>
           <input
             {...register("in_case_of_emergency.phone_number", {

@@ -16,7 +16,6 @@ const RForm3 = ({ step, setStep, data }) => {
   const {
     handleSubmit,
     register,
-    setError,
     setValue,
     watch,
     control,
