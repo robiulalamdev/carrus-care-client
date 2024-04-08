@@ -17,6 +17,7 @@ import { iDownload, iView } from "../../../utils/icons";
 import ViewRegisterInfo from "./RegisterTable-ui/ViewRegisterInfo";
 import PdfMain from "./RegisterTable-ui/pdf-ui/PdfMain";
 import { ScaleLoader } from "react-spinners";
+import { handleDownload } from "../../../lib/globalService";
 
 const TABLE_HEAD = [
   "Name",
@@ -24,6 +25,8 @@ const TABLE_HEAD = [
   "Martial Status",
   "Address",
   "Date",
+  "Issued ID",
+  "Insurance Card",
   "Action",
 ];
 const viewItems = [
@@ -174,6 +177,57 @@ const RegisterTable = () => {
                           "DD MMM YYYY"
                         )}
                       </Typography>
+                    </td>
+                    <td className={`p-4 border-b border-blue-gray-50`}>
+                      {item?.prfOneData?.patient_information?.picture && (
+                        <Button
+                          onClick={() =>
+                            handleDownload(
+                              item?.prfOneData?.patient_information?.picture
+                            )
+                          }
+                          className="font-medium bg-blue-600 rounded px-2 py-1 text-xs normal-case"
+                        >
+                          Download
+                        </Button>
+                      )}
+                    </td>
+                    <td className={`p-4 border-b border-blue-gray-50`}>
+                      {item?.prfOneData?.insurance_information?.front_picture &&
+                        item?.prfOneData?.insurance_information
+                          ?.back_picture && (
+                          <Popover>
+                            <PopoverHandler>
+                              <Button className="font-medium bg-blue-600 rounded px-2 py-1 text-xs normal-case">
+                                Download
+                              </Button>
+                            </PopoverHandler>
+                            <PopoverContent className="w-32 h-fit p-1 grid grid-cols-1 bg-blue-gray-100 rounded border">
+                              <Button
+                                onClick={() =>
+                                  handleDownload(
+                                    item?.prfOneData?.insurance_information
+                                      ?.front_picture
+                                  )
+                                }
+                                className="font-medium bg-blue-600 rounded-sm px-2 py-1 text-xs normal-case"
+                              >
+                                Front Part
+                              </Button>
+                              <Button
+                                onClick={() =>
+                                  handleDownload(
+                                    item?.prfOneData?.insurance_information
+                                      ?.back_picture
+                                  )
+                                }
+                                className="font-medium bg-blue-600 rounded-sm px-2 py-1 text-xs normal-case mt-1"
+                              >
+                                Back Part
+                              </Button>
+                            </PopoverContent>
+                          </Popover>
+                        )}
                     </td>
                     <td className={`p-4 border-b border-blue-gray-50`}>
                       <div className="flex items-center justify-center gap-3">

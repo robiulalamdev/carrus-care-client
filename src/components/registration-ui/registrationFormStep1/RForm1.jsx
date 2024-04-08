@@ -71,14 +71,16 @@ const RForm1 = ({ step, setStep, show, data }) => {
     }
     if (
       !frontPictureFile &&
-      watch("insurance_information.auto_accident") === "Yes"
+      watch("insurance_information.auto_accident") === "Yes" &&
+      watch("insurance_information.primary_insurance") !== "No Insurance"
     ) {
       frontPictureRef.current.focus();
       return;
     }
     if (
       !backPictureFile &&
-      watch("insurance_information.auto_accident") === "Yes"
+      watch("insurance_information.auto_accident") === "Yes" &&
+      watch("insurance_information.primary_insurance") !== "No Insurance"
     ) {
       backPictureRef.current.focus();
       return;
