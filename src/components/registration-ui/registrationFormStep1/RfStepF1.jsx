@@ -670,88 +670,89 @@ const RfStepF1 = ({
             </div>
             <h1>If yes, continue to accident related section</h1>
           </div>
-          {watch("insurance_information.auto_accident") === "Yes" &&
+          {/* {watch("insurance_information.auto_accident") === "Yes" &&
             watch("insurance_information.primary_insurance") !==
               "No Insurance" && (
-              <div className=" border-darkPrimary col-span-7 md:col-span-3">
-                <label className={`${rfInput_label_class}`}>
-                  Upload a Picture of Insurance Card Front and Back
-                  <span className="text-red-600 font-semibold text-xl">*</span>
-                </label>
-                <div className="flex items-start gap-3">
-                  <div className="w-fit flex flex-col items-center">
-                    <div className="bg-gray-100 w-[100px] h-[100px] rounded relative cursor-pointer flex justify-center items-center">
-                      {watch("insurance_information.front_picture") ||
-                      frontPictureFile ? (
-                        <img
-                          src={viewImg(
-                            watch("insurance_information.front_picture") ||
-                              frontPictureFile
-                          )}
-                          alt=""
-                          className="w-full h-full object-contain"
-                        />
-                      ) : (
-                        <div>{iUpload}</div>
+              
+            )} */}
+          <div className=" border-darkPrimary col-span-7 md:col-span-3">
+            <label className={`${rfInput_label_class}`}>
+              Upload a Picture of Insurance Card Front and Back
+              <span className="text-red-600 font-semibold text-xl">*</span>
+            </label>
+            <div className="flex items-start gap-3">
+              <div className="w-fit flex flex-col items-center">
+                <div className="bg-gray-100 w-[100px] h-[100px] rounded relative cursor-pointer flex justify-center items-center">
+                  {watch("insurance_information.front_picture") ||
+                  frontPictureFile ? (
+                    <img
+                      src={viewImg(
+                        watch("insurance_information.front_picture") ||
+                          frontPictureFile
                       )}
-                      <input
-                        ref={frontPictureRef}
-                        onChange={(e) =>
-                          handleFrontPictureFile(e.target.files[0])
-                        }
-                        type="file"
-                        required={
-                          watch("insurance_information.auto_accident") === "Yes"
-                        }
-                        accept=".png, .jpg, .jpeg"
-                        multiple={false}
-                        className="w-full h-full absolute opacity-0 cursor-pointer"
-                      />
-                    </div>
-                    <label
-                      className={`${rfInput_label_class} text-center text-xs font-semibold`}
-                    >
-                      Front
-                    </label>
-                  </div>
-                  <div className="w-fit flex flex-col items-center">
-                    <div className="bg-gray-100 w-[100px] h-[100px] rounded relative cursor-pointer flex justify-center items-center">
-                      {watch("insurance_information.back_picture") ||
-                      backPictureFile ? (
-                        <img
-                          src={viewImg(
-                            watch("insurance_information.back_picture") ||
-                              backPictureFile
-                          )}
-                          alt=""
-                          className="w-full h-full object-contain"
-                        />
-                      ) : (
-                        <div>{iUpload}</div>
-                      )}
-                      <input
-                        ref={backPictureRef}
-                        onChange={(e) =>
-                          handleBackPictureFile(e.target.files[0])
-                        }
-                        type="file"
-                        required={
-                          watch("insurance_information.auto_accident") === "Yes"
-                        }
-                        accept=".png, .jpg, .jpeg"
-                        multiple={false}
-                        className="w-full h-full absolute opacity-0 cursor-pointer"
-                      />
-                    </div>
-                    <label
-                      className={`${rfInput_label_class} text-center text-xs font-semibold`}
-                    >
-                      Back
-                    </label>
-                  </div>
+                      alt=""
+                      className="w-full h-full object-contain"
+                    />
+                  ) : (
+                    <div>{iUpload}</div>
+                  )}
+                  <input
+                    ref={frontPictureRef}
+                    onChange={(e) => handleFrontPictureFile(e.target.files[0])}
+                    type="file"
+                    required={
+                      watch("insurance_information.auto_accident") === "Yes" &&
+                      watch("insurance_information.primary_insurance") !==
+                        "No Insurance"
+                    }
+                    accept=".png, .jpg, .jpeg"
+                    multiple={false}
+                    className="w-full h-full absolute opacity-0 cursor-pointer"
+                  />
                 </div>
+                <label
+                  className={`${rfInput_label_class} text-center text-xs font-semibold`}
+                >
+                  Front
+                </label>
               </div>
-            )}
+              <div className="w-fit flex flex-col items-center">
+                <div className="bg-gray-100 w-[100px] h-[100px] rounded relative cursor-pointer flex justify-center items-center">
+                  {watch("insurance_information.back_picture") ||
+                  backPictureFile ? (
+                    <img
+                      src={viewImg(
+                        watch("insurance_information.back_picture") ||
+                          backPictureFile
+                      )}
+                      alt=""
+                      className="w-full h-full object-contain"
+                    />
+                  ) : (
+                    <div>{iUpload}</div>
+                  )}
+                  <input
+                    ref={backPictureRef}
+                    onChange={(e) => handleBackPictureFile(e.target.files[0])}
+                    type="file"
+                    required={
+                      watch("insurance_information.auto_accident") === "Yes" &&
+                      watch("insurance_information.primary_insurance") !==
+                        "No Insurance"
+                    }
+                    accept=".png, .jpg, .jpeg"
+                    multiple={false}
+                    className="w-full h-full absolute opacity-0 cursor-pointer"
+                  />
+                </div>
+                <label
+                  className={`${rfInput_label_class} text-center text-xs font-semibold`}
+                >
+                  Back
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
