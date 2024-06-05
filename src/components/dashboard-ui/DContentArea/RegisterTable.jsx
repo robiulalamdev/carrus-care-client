@@ -18,6 +18,8 @@ import ViewRegisterInfo from "./RegisterTable-ui/ViewRegisterInfo";
 import PdfMain from "./RegisterTable-ui/pdf-ui/PdfMain";
 import { ScaleLoader } from "react-spinners";
 import { handleDownload } from "../../../lib/globalService";
+import { h7formData, resH7From } from "../../../utils/data";
+import { saveAs } from "file-saver";
 
 const TABLE_HEAD = [
   "Name",
@@ -27,6 +29,7 @@ const TABLE_HEAD = [
   "Date",
   "Issued ID",
   "Insurance Card",
+  "H7 Form",
   "Action",
 ];
 const viewItems = [
@@ -100,10 +103,36 @@ const RegisterTable = () => {
     }
   };
 
+  const saveAsFile = (xmlString, fileName) => {
+    const blob = new Blob([xmlString], { type: "text/xml;charset=utf-8" });
+    saveAs(blob, fileName);
+  };
+
+  const h7FormDownload = async (name) => {
+    saveAsFile(resH7From, name);
+    // const data = h7formData;
+    // await fetch(`http://110.39.184.210:5443/ADTMessages`, {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     if (data?.messageXML) {
+    //       saveAsFile(data?.messageXML, name);
+    //     } else {
+    //       saveAsFile(resH7From, name);
+    //     }
+    //   });
+  };
+
   return (
     <>
       {/* <PdfFOne data={data?.data[0].prfOneData} /> */}
-      <Card className="w-full max-w-[1200px] mx-auto flex-grow pt-1 mb-4 h-full flex flex-col justify-between text-current">
+      <Card className="w-full max-w-[1400px] mx-auto flex-grow pt-1 mb-4 h-full flex flex-col justify-between text-current">
         <table className="w-full min-w-max table-auto text-left overflow-scroll">
           <thead className="bg-primary h-fit text-center">
             <tr>
@@ -158,7 +187,9 @@ const RegisterTable = () => {
                         {item?.prfOneData?.patient_information?.martial_status}
                       </Typography>
                     </td>
-                    <td className={`p-4 border-b border-blue-gray-50`}>
+                    <td
+                      className={`p-4 border-b border-blue-gray-50 max-w-[300px]`}
+                    >
                       <Typography
                         variant="small"
                         color="blue-gray"
@@ -228,6 +259,34 @@ const RegisterTable = () => {
                             </PopoverContent>
                           </Popover>
                         )}
+                    </td>
+
+                    {/* //* h7 form */}
+                    <td className={`p-4 border-b border-blue-gray-50`}>
+                      <Popover placement="bottom">
+                        <PopoverHandler>
+                          <IconButton
+                            size="sm"
+                            className="bg-pink-600 shadow-none rounded"
+                          >
+                            <div className="w-5">{iDownload}</div>
+                          </IconButton>
+                        </PopoverHandler>
+                        <PopoverContent className="w-32 h-fit p-1 grid grid-cols-1 bg-blue-gray-100 rounded border">
+                          <Button
+                            onClick={() => h7FormDownload("hfrom.txt")}
+                            className="font-medium bg-blue-600 rounded-sm px-2 py-3 text-xs normal-case"
+                          >
+                            As .Txt
+                          </Button>
+                          <Button
+                            onClick={() => h7FormDownload("hfrom.xml")}
+                            className="font-medium bg-blue-600 rounded-sm px-2 py-3 text-xs normal-case mt-1"
+                          >
+                            As .Xml
+                          </Button>
+                        </PopoverContent>
+                      </Popover>
                     </td>
                     <td className={`p-4 border-b border-blue-gray-50`}>
                       <div className="flex items-center justify-center gap-3">
