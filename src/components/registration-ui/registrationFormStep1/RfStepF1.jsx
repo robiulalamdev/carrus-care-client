@@ -7,6 +7,7 @@ import { rfInput_class, rfInput_label_class } from "../../../lib/constants";
 import CheckInput from "../../common/CheckInput";
 import { iUpload } from "../../../lib/icons";
 import useViewImage from "../../../lib/hooks/useViewImage";
+import { useEffect } from "react";
 
 const sInsuranceItems = [
   "Aetna",
@@ -50,6 +51,10 @@ const RfStepF1 = ({
   const { viewImg } = useViewImage();
 
   // console.log(errors);
+
+  useEffect(() => {
+    setValue("accident_related.report", "Yes");
+  }, []);
 
   return (
     <div className={`mt-5`}>

@@ -17,7 +17,7 @@ import { iDownload, iView } from "../../../utils/icons";
 import ViewRegisterInfo from "./RegisterTable-ui/ViewRegisterInfo";
 import PdfMain from "./RegisterTable-ui/pdf-ui/PdfMain";
 import { ScaleLoader } from "react-spinners";
-import { handleDownload } from "../../../lib/globalService";
+import { a7FormDataReady, handleDownload } from "../../../lib/globalService";
 import { h7formData, resH7From } from "../../../utils/data";
 import { saveAs } from "file-saver";
 
@@ -108,25 +108,24 @@ const RegisterTable = () => {
     saveAs(blob, fileName);
   };
 
-  const h7FormDownload = async (name) => {
-    saveAsFile(resH7From, name);
-    // const data = h7formData;
-    // await fetch(`http://110.39.184.210:5443/ADTMessages`, {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(data),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     if (data?.messageXML) {
-    //       saveAsFile(data?.messageXML, name);
-    //     } else {
-    //       saveAsFile(resH7From, name);
-    //     }
-    //   });
+  const h7FormDownload = async (itemData, name) => {
+    const formData = await a7FormDataReady(itemData);
+    await fetch(`http://110.39.184.210:5443/ADTMessages`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data?.messageXML) {
+          saveAsFile(data?.messageXML, name);
+        } else {
+          saveAsFile(resH7From, name);
+        }
+      });
   };
 
   return (
@@ -274,13 +273,13 @@ const RegisterTable = () => {
                         </PopoverHandler>
                         <PopoverContent className="w-32 h-fit p-1 grid grid-cols-1 bg-blue-gray-100 rounded border">
                           <Button
-                            onClick={() => h7FormDownload("hfrom.txt")}
+                            onClick={() => h7FormDownload(item, "hfrom.txt")}
                             className="font-medium bg-blue-600 rounded-sm px-2 py-3 text-xs normal-case"
                           >
                             As .Txt
                           </Button>
                           <Button
-                            onClick={() => h7FormDownload("hfrom.xml")}
+                            onClick={() => h7FormDownload(item, "hfrom.xml")}
                             className="font-medium bg-blue-600 rounded-sm px-2 py-3 text-xs normal-case mt-1"
                           >
                             As .Xml
